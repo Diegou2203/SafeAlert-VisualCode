@@ -7,7 +7,7 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class RecordatoriosimulacroService {
-  private url=`${base_url}/recursoinformativo`
+  private url=`${base_url}/recordatoriosimulacro`
 
   constructor(private http:HttpClient) { }
 

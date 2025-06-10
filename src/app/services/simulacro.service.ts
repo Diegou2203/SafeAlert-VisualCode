@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
-import { TipoFenomeno } from '../models/TipoFenomeno';
+import { Simulacro } from '../models/Simulacro';
 const base_url = environment.base;
 
 @Injectable({
   providedIn: 'root',
 })
-export class TipoFenomenoService {
-  private url = `${base_url}/TipoFenomeno`;
+export class SimulacroService {
+  private url = `${base_url}/simulacro`;
 
   constructor(private http: HttpClient) {}
 
   list() {
-    return this.http.get<TipoFenomeno[]>(this.url + '/list');
+    return this.http.get<Simulacro[]>(this.url + '/list');
   }
 }

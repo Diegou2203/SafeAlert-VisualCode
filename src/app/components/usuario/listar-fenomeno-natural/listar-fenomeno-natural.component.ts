@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { FenomenoNatural } from '../../../models/FenomenoNatural';
-import { FenomenoNaturalService } from '../../../services/FenomenoNatural';
+import { FenomenoNaturalService } from '../../../services/fenomenonatural.service';
+import { FenomenoNatural } from '../../../models/fenomenoNatural';
+
 
 @Component({
   selector: 'app-listar-fenomeno-natural',

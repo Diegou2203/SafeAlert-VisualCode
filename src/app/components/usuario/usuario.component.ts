@@ -8,6 +8,9 @@ import { ListarcomentarioComponent } from './listarcomentario/listarcomentario.c
 import { ListarrespuestaComponent } from './listarrespuesta/listarrespuesta.component';
 import { ListarsugerenciaComponent } from './listarsugerencia/listarsugerencia.component';
 import { ListarrecursoinformativoComponent } from './listarrecursoinformativo/listarrecursoinformativo.component';
+import { ListarSimulacroComponent } from "./listar-simulacro/listar-simulacro.component";
+import { ListarFenomenoNaturalComponent } from "./listar-fenomeno-natural/listar-fenomeno-natural.component";
+import { ListarTipoFenomenoComponent } from "./listar-tipo-fenomeno/listar-tipo-fenomeno.component";
 
 @Component({
   selector: 'app-usuario',
@@ -20,8 +23,11 @@ import { ListarrecursoinformativoComponent } from './listarrecursoinformativo/li
     ListarcomentarioComponent,
     ListarrespuestaComponent,
     ListarsugerenciaComponent,
-    ListarrecursoinformativoComponent
-  ],
+    ListarrecursoinformativoComponent,
+    ListarSimulacroComponent,
+    ListarFenomenoNaturalComponent,
+    ListarTipoFenomenoComponent
+],
   templateUrl: './usuario.component.html',
   styleUrls: ['./usuario.component.css']
 })
