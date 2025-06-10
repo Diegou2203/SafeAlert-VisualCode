@@ -7,11 +7,10 @@ const base_url = environment.base;
   providedIn: 'root',
 })
 export class UsuarioService {
-  private url = `${base_url}/usuario`;
-
-  constructor(private http: HttpClient) {}
 
   private url=`${base_url}/usuario`
+  
+  constructor(private http: HttpClient) {}
 
   list() {
     return this.http.get<Usuario[]>(this.url + '/list');

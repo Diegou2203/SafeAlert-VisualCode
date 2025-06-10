@@ -11,8 +11,6 @@ export class RolService {
 
   private url = `${base_url}/rol`;
 
-  private url=`${base_url}/rol`
-
   constructor(private http: HttpClient) {}
 
   list() {
