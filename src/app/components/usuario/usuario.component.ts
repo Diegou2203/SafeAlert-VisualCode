@@ -6,11 +6,12 @@ import { ListarubicacionComponent } from './listarubicacion/listarubicacion.comp
 import { ListarcomentarioComponent } from './listarcomentario/listarcomentario.component';
 import { ListarrespuestaComponent } from './listarrespuesta/listarrespuesta.component';
 import { ListarsugerenciaComponent } from './listarsugerencia/listarsugerencia.component';
+import { ListarrecursoinformativoComponent } from "./listarrecursoinformativo/listarrecursoinformativo.component";
 
 @Component({
   selector: 'app-usuario',
   imports: [ListarusuarioComponent, RouterOutlet, ListarrolComponent, ListarubicacionComponent,
-    ListarcomentarioComponent,ListarsugerenciaComponent,ListarrespuestaComponent],
+    ListarcomentarioComponent, ListarsugerenciaComponent, ListarrespuestaComponent, ListarrecursoinformativoComponent],
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })

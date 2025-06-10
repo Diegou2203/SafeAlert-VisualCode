@@ -8,7 +8,7 @@ const base_url=environment.base
 })
 export class UsuarioService {
 
-  private url=`${base_url}/usuarios`
+  private url=`${base_url}/usuario`
 
   constructor(private http:HttpClient) { }
   

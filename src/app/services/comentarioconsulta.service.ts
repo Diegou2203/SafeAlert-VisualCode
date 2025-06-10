@@ -10,7 +10,7 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class ComentarioService {
-  private url=`${base_url}/comentarios`
+  private url=`${base_url}/comentario`
 
    constructor(private http:HttpClient) { }
 

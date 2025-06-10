@@ -10,7 +10,7 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class RespuestaService {
-  private url=`${base_url}/respuestas`
+  private url=`${base_url}/respuesta`
 
    constructor(private http:HttpClient) { }
 
