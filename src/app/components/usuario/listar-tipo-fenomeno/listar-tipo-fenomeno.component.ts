@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TipoFenomeno } from '../../../models/TipoFenomeno';
-import { TipoFenomenoService } from '../../../services/TipoFenomeno';
+import { TipoFenomenoService } from '../../../services/tipofenomeno.service';
+
 
 @Component({
   selector: 'app-listar-tipo-fenomeno',

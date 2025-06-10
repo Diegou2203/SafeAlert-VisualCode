@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Simulacro } from '../../../models/Simulacro';
-import { SimulacroService } from '../../../services/Simulacro';
+import { SimulacroService } from '../../../services/simulacro.service';
+
 
 @Component({
   selector: 'app-listar-simulacro',
