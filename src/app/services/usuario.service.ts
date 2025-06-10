@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Usuario } from '../models/usuario';
-const base_url=environment.base
+const base_url = environment.base;
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuarioService {
+  private url = `${base_url}/usuario`;
 
-  private url=`${base_url}/usuarios`
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
-  
-  list(){
-    return this.http.get<Usuario[]>(this.url+'/list')
+  list() {
+    return this.http.get<Usuario[]>(this.url + '/list');
   }
 }

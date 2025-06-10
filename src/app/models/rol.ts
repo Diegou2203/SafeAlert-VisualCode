@@ -1,7 +1,7 @@
-import { Usuario } from "./usuario"
+import { Usuario } from './usuario';
 
-export class Rol{
-    idRol: number=0
-    rol:string=""
-    usuario: Usuario[]=[] 
+export class Rol {
+  idRol: number = 0;
+  rol: string = '';
+  usuario: Usuario[] = [];
 }
