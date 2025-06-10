@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
-import { Usuario } from '../models/usuario';
 import { Rol } from '../models/rol';
 const base_url=environment.base
 
@@ -10,7 +9,7 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class RolService {
-  private url=`${base_url}/roles`
+  private url=`${base_url}/rol`
 
    constructor(private http:HttpClient) { }
 
