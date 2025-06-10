@@ -10,6 +10,16 @@ import { ListarTipoFenomenoComponent } from './listar-tipo-fenomeno/listar-tipo-
 @Component({
   selector: 'app-usuario',
   imports: [ListarusuarioComponent, RouterOutlet, ListarrolComponent, ListarubicacionComponent, ListarSimulacroComponent, ListarFenomenoNaturalComponent, ListarTipoFenomenoComponent],
+import { ListarcomentarioComponent } from './listarcomentario/listarcomentario.component';
+import { ListarrespuestaComponent } from './listarrespuesta/listarrespuesta.component';
+import { ListarsugerenciaComponent } from './listarsugerencia/listarsugerencia.component';
+import { ListarrecursoinformativoComponent } from "./listarrecursoinformativo/listarrecursoinformativo.component";
+
+@Component({
+  selector: 'app-usuario',
+  imports: [ListarusuarioComponent, RouterOutlet, ListarrolComponent, ListarubicacionComponent,
+    ListarcomentarioComponent, ListarsugerenciaComponent, ListarrespuestaComponent, ListarrecursoinformativoComponent],
+  
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })

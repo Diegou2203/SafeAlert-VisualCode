@@ -11,6 +11,8 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
+  private url=`${base_url}/usuario`
+
   list() {
     return this.http.get<Usuario[]>(this.url + '/list');
   }
