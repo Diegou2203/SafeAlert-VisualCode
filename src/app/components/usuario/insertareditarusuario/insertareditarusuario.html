@@ -5,64 +5,81 @@
     <div class="register-form-wrapper">
         <form [formGroup]="form" (submit)="aceptar()" class="elegant-form">
 
-            <!-- Nombre  -->
+            <!-- Nombre de usuario -->
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Nombre de usuario</mat-label>
-                <input matInput formControlName="username" />
-                <mat-error *ngIf="form.get('username')?.hasError('required')">
-                    El nombre es obligatorio!!!
+                <input matInput formControlName="userusername" required>
+                <mat-error *ngIf="form.get('userusername')?.hasError('required')">
+                    El nombre es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('userusername')?.hasError('usernameExists')">
+                    Este nombre de usuario ya existe
                 </mat-error>
             </mat-form-field>
 
-            <!-- Correo  -->
+            <!-- Correo electrónico -->
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Correo</mat-label>
-                <input matInput formControlName="correo" type="email" />
-                <mat-error *ngIf="form.get('correo')?.hasError('email')">
-                    El correo es obligatorio!!!
+                <input matInput formControlName="usecorreo" type="email" required>
+                <mat-error *ngIf="form.get('usecorreo')?.hasError('required')">
+                    El correo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('usecorreo')?.hasError('email')">
+                    Ingrese un correo válido
                 </mat-error>
             </mat-form-field>
 
-            <!-- Contraseña  -->
+            <!-- Contraseña -->
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="password" type="password" />
-                <mat-error *ngIf="form.get('password')?.hasError('required')">
-                    La contraseña es obligatoria!!!
+                <input matInput formControlName="userpassword" type="password" required>
+                <mat-error *ngIf="form.get('userpassword')?.hasError('required')">
+                    La contraseña es obligatoria
+                </mat-error>
+                <mat-error *ngIf="form.get('userpassword')?.hasError('minlength')">
+                    Mínimo 8 caracteres
                 </mat-error>
             </mat-form-field>
 
-            <!-- Estado  -->
+            <!-- Estado -->
             <div class="radio-group-container">
                 <label class="radio-group-label">Estado</label>
-                <mat-radio-group formControlName="enabled" [(ngModel)]="estado" class="elegant-radio-group">
+                <mat-radio-group formControlName="userenabled" class="elegant-radio-group">
                     <mat-radio-button [value]="true" class="elegant-radio-button">Activo</mat-radio-button>
                     <mat-radio-button [value]="false" class="elegant-radio-button">Inactivo</mat-radio-button>
                 </mat-radio-group>
             </div>
 
-            <!-- celular  -->
+            <!-- Celular -->
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Celular</mat-label>
-                <input matInput formControlName="telefono" type="tel" />
-                <mat-error *ngIf="form.get('telefono')?.hasError('minLength(9)', 'maxLength(9)')">
-                    El Celular es obligatorio!!!
+                <input matInput formControlName="usertelefono" type="tel" required>
+                <mat-error *ngIf="form.get('usertelefono')?.hasError('required')">
+                    El celular es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('usertelefono')?.hasError('pattern')">
+                    Ingrese solo números
+                </mat-error>
+                <mat-error *ngIf="form.get('usertelefono')?.hasError('minlength') || form.get('usertelefono')?.hasError('maxlength')">
+                    Debe tener 9 dígitos
                 </mat-error>
             </mat-form-field>
 
-            <!-- fecha de registro  -->
+            <!-- Fecha de registro -->
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Fecha de registro</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="fecha_Registro" />
+                <input matInput [matDatepicker]="picker" formControlName="userfecha_Registro" required>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-                <mat-error *ngIf="form.get('fecha_Registro')?.hasError('required')">
-                    La fecha es obligatoria!!
-                </mat-error>    
+                <mat-error *ngIf="form.get('userfecha_Registro')?.hasError('required')">
+                    La fecha es obligatoria
+                </mat-error>
             </mat-form-field>
 
-            <button mat-raised-button color="primary" class="submit-button">Registrar</button>
+            <button mat-raised-button color="primary" class="submit-button" [disabled]="form.invalid">
+                Registrar
+            </button>
         </form>
     </div>
 </div>
