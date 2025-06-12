@@ -11,8 +11,10 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { Usuario } from '../../../models/usuario';
+
 @Component({
   selector: 'app-insertareditarusuario',
+  standalone: true,
   providers: [provideNativeDateAdapter()],
   imports: [  
     ReactiveFormsModule,
@@ -22,54 +24,55 @@ import { Usuario } from '../../../models/usuario';
     MatRadioModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatButtonModule],
+    MatButtonModule
+  ],
   templateUrl: './insertareditarusuario.html',
   styleUrl: './insertareditarusuario.css'
 })
-export class Insertareditarusuario implements OnInit{
-    form: FormGroup = new FormGroup({});
-    aplicacion: Usuario= new Usuario();
-    estado:boolean=true
+export class Insertareditarusuario implements OnInit {
+  form: FormGroup = new FormGroup({});
+  aplicacion: Usuario = new Usuario();
+  estado: boolean = true;
 
-    constructor(
+  constructor(
     private aS: UsuarioService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
-   ngOnInit(): void {
+  ngOnInit(): void {
+ 
     this.form = this.formBuilder.group({
-      username: ['', Validators.required],
-      correo: ['', Validators.email],
-      password: ['', Validators.required],
-      enabled: ['', Validators.required],
-      telefono: ['', Validators.minLength(9), Validators.maxLength(9)],
-      fecha_Registro: ['', Validators.required],
-     
+      userusername: ['', Validators.required],
+      usecorreo: ['', [Validators.required, Validators.email]],
+      userpassword: ['', [Validators.required, Validators.minLength(8)]],
+      userenabled: ['', Validators.required],
+      usertelefono: ['', [
+        Validators.required, 
+        Validators.minLength(9), 
+        Validators.maxLength(9),
+        Validators.pattern('^[0-9]*$')
+      ]],
+      userfecha_Registro: ['', Validators.required],
     });
   }
 
   aceptar() {
     if (this.form.valid) {
-    
-      this.aplicacion.username=this.form.value.username;
-      this.aplicacion.correo = this.form.value.correo;
-      this.aplicacion.password = this.form.value.password;
-      this.aplicacion.enabled = this.form.value.enabled;
-      this.aplicacion.telefono = this.form.value.telefono;
-      this.aplicacion.fecha_Registro = this.form.value.fecha_Registro;
-   
+      this.aplicacion.username = this.form.value.userusername;
+      this.aplicacion.correo = this.form.value.usecorreo;
+      this.aplicacion.password = this.form.value.userpassword;
+      this.aplicacion.enabled = this.form.value.userenabled;
+      this.aplicacion.telefono = this.form.value.usertelefono;
+      this.aplicacion.fecha_Registro = this.form.value.userfecha_Registro;
 
       this.aS.insert(this.aplicacion).subscribe(() => {
         this.aS.list().subscribe((data) => {
           this.aS.setList(data);
         });
       });
+
       this.router.navigate(['aplicaciones']);
-    
     }
   }
 }
-
-
-

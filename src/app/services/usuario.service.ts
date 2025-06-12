@@ -18,7 +18,7 @@ export class UsuarioService {
   }
 
   insert(u:Usuario){
-    return this.http.post(this.url, u);
+    return this.http.post(this.url + '/insert', u);
   }
    getList() {
     return this.listaCambio.asObservable();
