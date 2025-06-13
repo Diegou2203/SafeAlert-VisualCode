@@ -11,6 +11,8 @@ import { ListarnotificacionesComponent } from './components/safealert/notificaci
 import { ListarrecursoinformativoComponent } from './components/safealert/recursoinformativo/listarrecursoinformativo/listarrecursoinformativo.component';
 import { ListarSimulacroComponent } from './components/safealert/simulacro/listar-simulacro/listar-simulacro.component';
 import { ListarsugerenciaComponent } from './components/safealert/sugerencia/listarsugerencia/listarsugerencia.component';
+import { VermapaComponent } from './components/safealert/vermapa/vermapa.component';
+
 
 
 export const routes: Routes = [
@@ -93,6 +95,11 @@ export const routes: Routes = [
             {
                  path: "ListarSugerencia",component:ListarsugerenciaComponent
             },              
+
+
+
+            //ver mapa 
+          { path: 'vermapa/:lat/:lon', component: VermapaComponent }
 
         ]
     }
