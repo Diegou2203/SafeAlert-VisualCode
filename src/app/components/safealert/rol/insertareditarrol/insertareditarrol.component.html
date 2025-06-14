@@ -1,0 +1,41 @@
+<div class="register-container">
+    <div class="register-header">
+        <h1>Registro de Rol</h1>
+    </div>
+    <div class="register-form-wrapper">
+        <form [formGroup]="form" (submit)="aceptar()" class="elegant-form">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="rolcodigo"/>
+                <mat-error *ngIf="form.get('rolcodigo')?.hasError('required')">
+                    El ID es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Nombre de rol -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Nombre del Rol</mat-label>
+                <input matInput formControlName="rolrol" required>
+                <mat-error *ngIf="form.get('rolrol')?.hasError('required')">
+                    El nombre del rol es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- id user -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Brinda el ID del usuario</mat-label>
+                <input matInput formControlName="rolusuario" required>
+                <mat-error *ngIf="form.get('rolusuario')?.hasError('required')">
+                    El ID del usuario es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('rolusuario')?.hasError('pattern')">
+                    Ingrese solo números
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" class="submit-button" [disabled]="form.invalid">
+                Registrar
+            </button>
+        </form>
+    </div>
+</div>
