@@ -12,6 +12,8 @@ import { ListarrecursoinformativoComponent } from './components/safealert/recurs
 import { ListarSimulacroComponent } from './components/safealert/simulacro/listar-simulacro/listar-simulacro.component';
 import { ListarsugerenciaComponent } from './components/safealert/sugerencia/listarsugerencia/listarsugerencia.component';
 import { VermapaComponent } from './components/safealert/vermapa/vermapa.component';
+import { ListarTipoFenomenoComponent } from './components/safealert/tipo-fenomeno/listar-tipo-fenomeno/listar-tipo-fenomeno.component';
+import { ListarFenomenoNaturalComponent } from './components/safealert/fenomeno-natural/listar-fenomeno-natural/listar-fenomeno-natural.component';
 
 
 
@@ -78,10 +80,10 @@ export const routes: Routes = [
             },         
             
             
-            //ubicacion
+            //fenomeno
 
             {
-                 path: "ListarUbicacion",component:ListarubicacionComponent
+                 path: "ListarFenomeno",component:ListarFenomenoNaturalComponent
             },              
 
             //simulacro
@@ -89,10 +91,10 @@ export const routes: Routes = [
                  path: "ListarSimulacro",component:ListarSimulacroComponent
             },              
 
-            //recordatorio simulacro
+            //tipo fenomeno
 
             {
-                 path: "ListarRecordatorioSimulacro",component:ListarrecordatoriosimulacroComponent
+                 path: "ListarTipoFenomeno",component:ListarTipoFenomenoComponent
             },          
             
             //sugerencia

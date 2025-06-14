@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class ListarusuarioComponent implements OnInit {
 
   datasource: MatTableDataSource<Usuario>=new MatTableDataSource()
-  displayedColumns:string[]=['c1','c2','c3','c4', 'c5', 'c6'];
+  displayedColumns:string[]=['c1','c2','c3','c4', 'c5', 'c6', 'c7'];
 
   constructor(private uS:UsuarioService){}
     
