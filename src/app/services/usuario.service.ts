@@ -26,4 +26,16 @@ export class UsuarioService {
   setList(listaNueva: Usuario[]) {
     this.listaCambio.next(listaNueva);
   }
+
+  //enlistar id   
+  listId(id: number) {
+    return this.http.get<Usuario>(`${this.url + '/list'}/${id}`)
+  }
+  update(u: Usuario) {
+    return this.http.put(this.url + '/modify', u)
+  }
+  //borrar un usuario
+  deleteA(id: number) {
+    return this.http.delete(`${this.url + '/delete'}/${id}`)
+  }
 }

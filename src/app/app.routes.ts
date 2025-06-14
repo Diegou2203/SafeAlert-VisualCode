@@ -28,6 +28,10 @@ export const routes: Routes = [
             {
                  path: "RegistrarUsuario", component: Insertareditarusuario
             },
+             {
+                path:'ediciones/:id',component:Insertareditarusuario
+            },
+            
 
 
             //recordatorio simulacro
