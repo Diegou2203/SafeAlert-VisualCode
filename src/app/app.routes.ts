@@ -14,6 +14,7 @@ import { ListarsugerenciaComponent } from './components/safealert/sugerencia/lis
 import { VermapaComponent } from './components/safealert/vermapa/vermapa.component';
 import { ListarTipoFenomenoComponent } from './components/safealert/tipo-fenomeno/listar-tipo-fenomeno/listar-tipo-fenomeno.component';
 import { ListarFenomenoNaturalComponent } from './components/safealert/fenomeno-natural/listar-fenomeno-natural/listar-fenomeno-natural.component';
+import { InsertareditarrolComponent } from './components/safealert/rol/insertareditarrol/insertareditarrol.component';
 
 
 
@@ -31,7 +32,7 @@ export const routes: Routes = [
                  path: "RegistrarUsuario", component: Insertareditarusuario
             },
              {
-                path:'ediciones/:id',component:Insertareditarusuario
+                path:'edicionesUsuario/:id',component:Insertareditarusuario
             },
             
 
@@ -47,6 +48,12 @@ export const routes: Routes = [
             {
                  path: "ListarRol",component:ListarrolComponent
             },  
+            {
+                 path: "RegistrarRol", component: InsertareditarrolComponent
+            },
+             {
+                path:'edicionesRol/:id',component:InsertareditarrolComponent
+            },
 
             //ubicacion
             {

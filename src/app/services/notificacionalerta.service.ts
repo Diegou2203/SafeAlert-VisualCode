@@ -28,7 +28,7 @@ export class notificacionalertaService {
   }
       
   deleteNotificacion(id: number) {
-    return this.http.delete(`${this.url}/delete/${id}`)
+    return this.http.delete(`${this.url + '/delete'}${id}`)
   }  
 
 }
