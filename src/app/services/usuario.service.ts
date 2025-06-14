@@ -10,7 +10,7 @@ const base_url = environment.base;
 export class UsuarioService {
  
   private url=`${base_url}/usuario`
-  private listaCambio = new Subject<Usuario[]>();
+  private listaCambio = new Subject<Usuario[]>();  
   constructor(private http: HttpClient) {}
 
   list() {
@@ -20,10 +20,17 @@ export class UsuarioService {
   insert(u:Usuario){
     return this.http.post(this.url + '/insert', u);
   }
-   getList() {
+
+  getList() {
     return this.listaCambio.asObservable();
   }
+  
   setList(listaNueva: Usuario[]) {
     this.listaCambio.next(listaNueva);
   }
+
+  deleteU(id: number) {
+    return this.http.delete(`${this.url}/delete/${id}`)
+  }
+
 }
