@@ -20,12 +20,12 @@ export class FenomenoNaturalService {
   getList() {
     return this.listaCambio.asObservable();
   }
-        
+
   setList(listaNueva: FenomenoNatural[]) {
     this.listaCambio.next(listaNueva);
   }
-      
+
   deleteNotificacion(id: number) {
-    return this.http.delete(`${this.url}/delete/${id}`)
-  }  
+    return this.http.delete(`${this.url + '/delete'}${id}`);
+  }
 }

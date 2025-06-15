@@ -10,6 +10,8 @@ import { ListarrecordatoriosimulacroComponent } from "./recordatorio-simulacro/l
 import { ListarnotificacionesComponent } from "./notificacion-alerta/listarnotificaciones/listarnotificaciones.component";
 import { ListarcomentarioComponent } from "./comentario/listarcomentario/listarcomentario.component";
 import { ListarrespuestaComponent } from "./respuesta/listarrespuesta/listarrespuesta.component";
+import { ListarrolComponent } from './rol/listarrol/listarrol.component';
+import { ListarsugerenciaComponent } from './sugerencia/listarsugerencia/listarsugerencia.component';
 
 
 
@@ -27,7 +29,9 @@ import { ListarrespuestaComponent } from "./respuesta/listarrespuesta/listarresp
     ListarrecordatoriosimulacroComponent,
     ListarnotificacionesComponent,
     ListarcomentarioComponent,
-    ListarrespuestaComponent
+    ListarrespuestaComponent,
+    ListarrolComponent,
+    ListarsugerenciaComponent
 ],
   templateUrl: './safealert.component.html',
   styleUrl: './safealert.component.css'

@@ -29,6 +29,6 @@ export class RespuestaService {
     }
       
     deleteRespuesta(id: number) {
-      return this.http.delete(`${this.url}/delete/${id}`)
+      return this.http.delete(`${this.url + '/delete'}${id}`)
     }     
 }

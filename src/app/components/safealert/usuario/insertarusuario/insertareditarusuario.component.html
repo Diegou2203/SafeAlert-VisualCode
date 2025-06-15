@@ -4,6 +4,13 @@
     </div>
     <div class="register-form-wrapper">
         <form [formGroup]="form" (submit)="aceptar()" class="elegant-form">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="usercodigo"/>
+                <mat-error *ngIf="form.get('usercodigo')?.hasError('required')">
+                    El ID es obligatorio
+                </mat-error>
+            </mat-form-field>
 
             <!-- Nombre de usuario -->
             <mat-form-field appearance="outline" class="full-width-field">

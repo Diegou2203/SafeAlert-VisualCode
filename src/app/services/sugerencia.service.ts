@@ -28,6 +28,6 @@ export class SugerenciaService {
     }
     
     deleteS(id: number) {
-      return this.http.delete(`${this.url}/delete/${id}`)
+      return this.http.delete(`${this.url + '/delete'}${id}`)
     }
   }
