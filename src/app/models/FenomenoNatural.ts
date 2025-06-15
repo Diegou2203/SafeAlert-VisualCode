@@ -5,5 +5,5 @@ export class FenomenoNatural {
   intensidad: string = '';
   fecha_fenomeno: Date = new Date();
   activo: boolean = false;
-  ubicacion: Ubicacion[] = [];
+  ubicacion: Ubicacion = new Ubicacion();
 }

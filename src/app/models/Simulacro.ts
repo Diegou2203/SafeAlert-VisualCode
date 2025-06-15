@@ -5,5 +5,5 @@ export class Simulacro {
   fecha_simulacro: Date = new Date();
   duracion_minutos: number = 0;
   tipo: string = '';
-  ubicacion: Ubicacion[] = [];
+  ubicacion: Ubicacion = new Ubicacion();
 }

@@ -27,8 +27,19 @@ export class ComentarioService {
   setList(listaNueva: Comentario[]) {
     this.listaCambio.next(listaNueva);
   }
-      
+
+  update(u: Comentario) {
+        return this.http.put(this.url + '/modify', u)
+  }      
   deleteNotificacion(id: number) {
-    return this.http.delete(`${this.url+ '/delete'}${id}`)
+    return this.http.delete(`${this.url+ '/delete'}/${id}`)
   }  
+
+  insert(u:Comentario){
+    return this.http.post(this.url + '/insert', u);
+  }
+
+  listId(id: number) {
+    return this.http.get<Comentario>(`${this.url + '/list'}/${id}`)
+  }
 }

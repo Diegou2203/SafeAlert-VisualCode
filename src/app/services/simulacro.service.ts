@@ -26,6 +26,6 @@ export class SimulacroService {
   }
     
   deleteSimulacro(id: number) {
-    return this.http.delete(`${this.url + '/delete'}${id}`)
+    return this.http.delete(`${this.url + '/delete'}/${id}`)
   }  
 }

@@ -1,0 +1,73 @@
+<div class="register-container">
+    <div class="register-header">
+        <h1>Registro de Comentario</h1>
+    </div>
+    <div class="register-form-wrapper">
+        <form [formGroup]="form" (submit)="aceptar()" class="elegant-form">
+            
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="comentariocodigo"/>
+                <mat-error *ngIf="form.get('comentariocodigo')?.hasError('required')">
+                    El ID es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Tema</mat-label>
+                <input matInput formControlName="comentariotema" required>
+                <mat-error *ngIf="form.get('comentariotema')?.hasError('required')">
+                    El tema del comentario es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fecha de registro</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="comentariofecha" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('comentariofecha')?.hasError('required')">
+                    La fecha es obligatoria
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Contenido</mat-label>
+                <input matInput formControlName="comentariocontenido" required>
+                <mat-error *ngIf="form.get('comentariocontenido')?.hasError('required')">
+                    El contenido del comentario es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('comentariocontenido')?.hasError('maxlength')">
+                    Maximo 40 caracteres
+                </mat-error>              
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Estado</mat-label>
+                <input matInput formControlName="comentarioestado" required>
+                <mat-error *ngIf="form.get('comentarioestado')?.hasError('required')">
+                    El estado del comentario es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('comentarioestado')?.hasError('maxlength')">
+                    Maximo 40 caracteres
+                </mat-error>                
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Brinda el ID del usuario</mat-label>
+                <input matInput formControlName="comentariousuario" required>
+                <mat-error *ngIf="form.get('comentariousuario')?.hasError('required')">
+                    El ID del usuario es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('comentariousuario')?.hasError('pattern')">
+                    Ingrese solo números
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" class="submit-button" [disabled]="form.invalid">
+                Registrar
+            </button>
+        </form>
+    </div>
+</div>
