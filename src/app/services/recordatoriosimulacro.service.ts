@@ -20,10 +20,21 @@ export class RecordatoriosimulacroService {
   getList() {
     return this.listaCambio.asObservable();
   }
+   insert(reco:recordatoriosimulacro){
+          return this.http.post(this.url + '/insert', reco);
+        }
+  
         
   setList(listaNueva: recordatoriosimulacro[]) {
     this.listaCambio.next(listaNueva);
   }
+   listId(id: number) {
+            return this.http.get<recordatoriosimulacro>(`${this.url + '/list'}/${id}`)
+      }
+      update(reco:recordatoriosimulacro) {
+            return this.http.put(this.url + '/modify', reco)
+      }
+  
       
   deleteRecordatorio(id: number) {
     return this.http.delete(`${this.url + '/delete'}${id}`)
