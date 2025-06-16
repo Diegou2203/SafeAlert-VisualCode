@@ -6,5 +6,6 @@ export class RecursoInformativo{
     descripcion: string=""
     url: string=""
     fecha_publicacion: Date = new Date()
-    usuario: Usuario[]=[]
+    usuario: Usuario=new Usuario();
+    
 }

@@ -18,10 +18,18 @@ export class RecursoinformativoService {
   getList() {
     return this.listaCambio.asObservable();
   }
-        
+   insert(recu:RecursoInformativo){
+           return this.http.post(this.url + '/insert', recu);
+         }     
   setList(listaNueva: RecursoInformativo[]) {
     this.listaCambio.next(listaNueva);
   }
+  listId(id: number) {
+            return this.http.get<RecursoInformativo>(`${this.url + '/list'}/${id}`)
+      }
+      update(recu:RecursoInformativo) {
+            return this.http.put(this.url + '/modify', recu)
+      }
       
   deleteRecursoInformativo(id: number) {
     return this.http.delete(`${this.url + '/delete' }${id}`)

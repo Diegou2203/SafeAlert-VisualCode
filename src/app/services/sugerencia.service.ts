@@ -18,6 +18,9 @@ export class SugerenciaService {
     list(){
       return this.http.get<Sugerencia[]>(this.url+'/list')
     }
+     insert(sug:Sugerencia){
+               return this.http.post(this.url + '/insert', sug);
+             }  
 
     getList() {
       return this.listaCambio.asObservable();
@@ -26,7 +29,12 @@ export class SugerenciaService {
     setList(listaNueva: Sugerencia[]) {
       this.listaCambio.next(listaNueva);
     }
-    
+     listId(id: number) {
+                return this.http.get<Sugerencia>(`${this.url + '/list'}/${id}`)
+          }
+          update(sug:Sugerencia) {
+                return this.http.put(this.url + '/modify', sug)
+          }
     deleteS(id: number) {
       return this.http.delete(`${this.url + '/delete'}${id}`)
     }
