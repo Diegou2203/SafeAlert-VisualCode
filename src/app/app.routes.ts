@@ -16,6 +16,8 @@ import { ListarTipoFenomenoComponent } from './components/safealert/tipo-fenomen
 import { ListarFenomenoNaturalComponent } from './components/safealert/fenomeno-natural/listar-fenomeno-natural/listar-fenomeno-natural.component';
 import { InsertareditarrolComponent } from './components/safealert/rol/insertareditarrol/insertareditarrol.component';
 import { InsertareditarcomentarioComponent } from './components/safealert/comentario/insertareditarcomentario/insertareditarcomentario.component';
+import { InsertareditarrespuestaComponent } from './components/safealert/respuesta/insertareditarrespuesta/insertareditarrespuesta.component';
+
 
 
 
@@ -35,8 +37,6 @@ export const routes: Routes = [
              {
                 path:'edicionesUsuario/:id',component:Insertareditarusuario
             },
-            
-
 
             //recordatorio simulacro
 
@@ -81,7 +81,12 @@ export const routes: Routes = [
             {
                  path: "ListarRespuesta",component:ListarrespuestaComponent
             },  
-
+            {
+               path: "RegistrarRespuesta", component: InsertareditarrespuestaComponent
+            },
+            {
+               path: "edicionesRespuesta/:id", component: InsertareditarrespuestaComponent
+            },
 
             //notificacion
 

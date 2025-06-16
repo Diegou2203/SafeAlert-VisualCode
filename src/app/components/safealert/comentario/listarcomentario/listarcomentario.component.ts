@@ -30,7 +30,7 @@ export class ListarcomentarioComponent {
   }
 
   eliminar(id: number) {
-        this.cS.deleteNotificacion(id).subscribe(data => {
+        this.cS.deleteComentario(id).subscribe(data => {
           this.cS.list().subscribe(data => {
           this.cS.setList(data)
         })

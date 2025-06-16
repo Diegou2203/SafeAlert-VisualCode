@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
-import { Usuario } from '../models/usuario';
 import { Comentario } from '../models/comentarioconsulta';
 import { Subject } from 'rxjs';
 const base_url=environment.base
@@ -31,7 +30,7 @@ export class ComentarioService {
   update(u: Comentario) {
         return this.http.put(this.url + '/modify', u)
   }      
-  deleteNotificacion(id: number) {
+  deleteComentario(id: number) {
     return this.http.delete(`${this.url+ '/delete'}/${id}`)
   }  
 

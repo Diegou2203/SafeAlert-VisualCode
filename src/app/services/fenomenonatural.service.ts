@@ -25,7 +25,7 @@ export class FenomenoNaturalService {
     this.listaCambio.next(listaNueva);
   }
 
-  deleteNotificacion(id: number) {
+  deleteFenomeno(id: number) {
     return this.http.delete(`${this.url + '/delete'}/${id}`);
   }
 }

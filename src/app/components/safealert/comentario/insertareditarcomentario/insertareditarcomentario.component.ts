@@ -54,20 +54,22 @@ export class InsertareditarcomentarioComponent {
       comentariocodigo: [''],
       comentariofecha: ['', Validators.required],
       comentariotema: ['', [Validators.required]],
-      comentariocontenido: ['', [Validators.required, Validators.maxLength(40)]],
+      comentariocontenido: ['', [Validators.required, Validators.maxLength(200)]],
       comentarioestado: ['', [Validators.required, Validators.maxLength(40)]],
-      comentariousuario: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      comentariorespuesta: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }
 
  aceptar() {
+
+
     if (this.form.valid) {
       this.aplicacion.idComentario = this.form.value.comentariocodigo;
       this.aplicacion.fechaComentario = this.form.value.comentariofecha;
       this.aplicacion.tema = this.form.value.comentariotema;
       this.aplicacion.contenido = this.form.value.comentariocontenido;
       this.aplicacion.estado = this.form.value.comentarioestado;
-      this.aplicacion.usuario.idUsuario = this.form.value.comentariousuario;
+      this.aplicacion.respuesta.idRespuesta = this.form.value.comentariorespuesta;
 
       if (this.edicion) {
         //actualizar
@@ -98,7 +100,7 @@ export class InsertareditarcomentarioComponent {
           comentariocontenido: new FormControl(data.contenido),
           comentariotema: new FormControl(data.tema),
           comentarioestado: new FormControl(data.estado),
-          comentariousuario: new FormControl(data.usuario.idUsuario)          
+          comentariorespuesta: new FormControl(data.respuesta.idRespuesta)          
         })
       })
     }

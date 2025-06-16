@@ -1,9 +1,10 @@
-import { Usuario } from "./usuario"
+import { Respuesta } from "./respuesta";
+
 export class Comentario {
     idComentario: number = 0;
     fechaComentario: Date = new Date()
     tema: string = ""
     contenido: string = ""
     estado: string = ""
-    usuario: Usuario = new Usuario();
+    respuesta: Respuesta = new Respuesta();
 }

@@ -32,7 +32,7 @@ export class ListarFenomenoNaturalComponent {
   }
 
   eliminar(id: number) {
-        this.fnS.deleteNotificacion(id).subscribe(data => {
+        this.fnS.deleteFenomeno(id).subscribe(data => {
           this.fnS.list().subscribe(data => {
           this.fnS.setList(data)
         })
