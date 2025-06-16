@@ -18,6 +18,7 @@ import { InsertareditarrolComponent } from './components/safealert/rol/insertare
 import { InsertareditarfenomenoComponent } from './components/safealert/fenomeno-natural/insertareditarfenomeno/insertareditarfenomeno.component';
 import { InsertareditarrecodatorioComponent } from './components/safealert/recordatorio-simulacro/insertareditarrecodatorio/insertareditarrecodatorio.component';
 import { InsertareditarnotificacionesComponent } from './components/safealert/notificacion-alerta/insertareditarnotificaciones/insertareditarnotificaciones.component';
+import { InsertareditarrecursoComponent } from './components/safealert/recursoinformativo/insertareditarrecurso/insertareditarrecurso.component';
 
 
 
@@ -100,7 +101,12 @@ export const routes: Routes = [
             {
                  path: "ListarRecurso",component:ListarrecursoinformativoComponent
             },         
-            
+            {
+                 path: "RegistrarRecursoinformatico", component: InsertareditarrecursoComponent
+            },
+             {
+                path:'edicionesRecursoinformatico/:id',component:InsertareditarrecursoComponent
+            },         
             
             //fenomeno
 

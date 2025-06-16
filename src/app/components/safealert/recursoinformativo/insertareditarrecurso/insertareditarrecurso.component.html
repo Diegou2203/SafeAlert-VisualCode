@@ -1,0 +1,77 @@
+<div class="register-container">
+    <div class="register-header">
+        <h1>Registrar recurso</h1>
+    </div>
+    <div class="register-form-wrapper">
+        <form [formGroup]="form" (submit)="aceptar()" class="elegant-form">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="recucodigo"/>
+                <mat-error *ngIf="form.get('recucodigo')?.hasError('required')">
+                    El ID es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- tipo -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Nombre del tipo</mat-label>
+                <input matInput formControlName="recutipo" required>
+                <mat-error *ngIf="form.get('recutipo')?.hasError('required')">
+                    El nombre de tipo es obligatorio
+                </mat-error>
+            </mat-form-field>
+            <!--  titulo -->
+ <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>titulo</mat-label>
+                <input matInput formControlName="recutitulo" required>
+                <mat-error *ngIf="form.get('recutitulo')?.hasError('required')">
+                    El titulo es obligatorio
+                </mat-error>
+            </mat-form-field>
+             <!-- descripcion -->
+ <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>descripcion</mat-label>
+                <input matInput formControlName="recudescripcion" required>
+                <mat-error *ngIf="form.get('recudescripcion')?.hasError('required')">
+                    La descripcion es obligatorio
+                </mat-error>
+            </mat-form-field>
+  <!-- descripcion -->
+ <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>URL</mat-label>
+                <input matInput formControlName="recuurl" required>
+                <mat-error *ngIf="form.get('recuurl')?.hasError('required')">
+                    La URL es obligatorio
+                </mat-error>
+            </mat-form-field>
+            <!-- fecha de fenomeno -->
+              <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Fecha de recurso</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="recufecha" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('recufecha')?.hasError('required')">
+                    La fecha es obligatoria
+                </mat-error>
+            </mat-form-field>
+            
+            <!-- id ubicacion -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Brinda el ID de ubicacion</mat-label>
+                <input matInput formControlName="recuusuario" required>
+                <mat-error *ngIf="form.get('recuusuario')?.hasError('required')">
+                    El ID de usuario es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('recuusuario')?.hasError('pattern')">
+                    Ingrese solo números
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" class="submit-button" [disabled]="form.invalid">
+                Registrar
+            </button>
+        </form>
+    </div>
+</div>
+
