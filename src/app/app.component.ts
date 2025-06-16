@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { UsuarioComponent } from './components/usuario/usuario.component';
+import { Safealert } from './components/safealert/safealert.component';
 
 @Component({
   selector: 'app-root',
-  imports: [UsuarioComponent],
+  imports: [Safealert],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
