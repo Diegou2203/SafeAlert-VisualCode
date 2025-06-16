@@ -36,11 +36,20 @@
               </ng-container>
             <!-- Weight Column -->
             <ng-container matColumnDef="c6">
-              <th mat-header-cell *matHeaderCellDef> Id Usuario </th>
-              <td mat-cell *matCellDef="let element"> {{element.usuario.idUsuario}} </td>
+              <th mat-header-cell *matHeaderCellDef> Id Respuesta </th>
+              <td mat-cell *matCellDef="let element"> {{element.respuesta.idRespuesta}} </td>
             </ng-container>
           
             <ng-container matColumnDef="c7">
+                <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+                <td mat-cell *matCellDef="let element">
+                  <button matButton [routerLink]="['/safealert/edicionesComentario', element.idComentario]">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="c8">
               <th mat-header-cell *matHeaderCellDef> Eliminar </th>
               <td mat-cell *matCellDef="let element">
                 <button matButton 

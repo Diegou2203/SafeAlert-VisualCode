@@ -29,6 +29,17 @@ export class RespuestaService {
     }
       
     deleteRespuesta(id: number) {
-      return this.http.delete(`${this.url + '/delete'}${id}`)
+      return this.http.delete(`${this.url + '/delete'}/${id}`)
     }     
+
+  update(u: Respuesta) {
+        return this.http.put(this.url + '/modify', u)
+  }      
+    insert(u:Respuesta){
+      return this.http.post(this.url + '/insert', u);
+    }
+
+    listId(id: number) {
+      return this.http.get<Respuesta>(`${this.url + '/list'}/${id}`)
+    }
 }

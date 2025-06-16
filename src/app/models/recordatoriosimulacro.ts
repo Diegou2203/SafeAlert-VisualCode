@@ -5,5 +5,5 @@ export class recordatoriosimulacro {
   fecha_recordatorio: Date = new Date();
   metodo_envio: string = '';
   estado: string = '';
-  simulacro: Simulacro[] = [];
+  simulacro: Simulacro = new Simulacro();
 }

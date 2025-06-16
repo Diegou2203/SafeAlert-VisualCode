@@ -24,6 +24,6 @@ export class RecursoinformativoService {
   }
       
   deleteRecursoInformativo(id: number) {
-    return this.http.delete(`${this.url + '/delete' }${id}`)
+    return this.http.delete(`${this.url + '/delete' }/${id}`)
   }    
 }

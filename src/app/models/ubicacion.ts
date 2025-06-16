@@ -9,5 +9,5 @@ export class Ubicacion {
   region: string = '';
   pais: string = '';
   codigo_postal: string = '';
-  usuario: Usuario[] = [];
+  usuario: Usuario = new Usuario();
 }
