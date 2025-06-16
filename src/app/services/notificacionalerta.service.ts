@@ -18,6 +18,9 @@ export class notificacionalertaService {
   list() {
     return this.http.get<notificacionalerta[]>(this.url + '/list');
   }
+  insert(noti:notificacionalerta){
+          return this.http.post(this.url + '/insert', noti);
+        }
 
   getList() {
     return this.listaCambio.asObservable();
@@ -26,6 +29,12 @@ export class notificacionalertaService {
   setList(listaNueva: notificacionalerta[]) {
     this.listaCambio.next(listaNueva);
   }
+  listId(id: number) {
+            return this.http.get<notificacionalerta>(`${this.url + '/list'}/${id}`)
+      }
+      update(noti:notificacionalerta) {
+            return this.http.put(this.url + '/modify', noti)
+      }
       
   deleteNotificacion(id: number) {
     return this.http.delete(`${this.url + '/delete'}${id}`)

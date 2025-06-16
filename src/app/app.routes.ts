@@ -17,6 +17,7 @@ import { ListarFenomenoNaturalComponent } from './components/safealert/fenomeno-
 import { InsertareditarrolComponent } from './components/safealert/rol/insertareditarrol/insertareditarrol.component';
 import { InsertareditarfenomenoComponent } from './components/safealert/fenomeno-natural/insertareditarfenomeno/insertareditarfenomeno.component';
 import { InsertareditarrecodatorioComponent } from './components/safealert/recordatorio-simulacro/insertareditarrecodatorio/insertareditarrecodatorio.component';
+import { InsertareditarnotificacionesComponent } from './components/safealert/notificacion-alerta/insertareditarnotificaciones/insertareditarnotificaciones.component';
 
 
 
@@ -86,7 +87,13 @@ export const routes: Routes = [
 
             {
                  path: "ListarNotificacion",component:ListarnotificacionesComponent
-            },             
+            },
+             {
+                 path: "RegistrarNotificacion", component: InsertareditarnotificacionesComponent
+            },
+             {
+                path:'edicionesNotificacion/:id',component:InsertareditarnotificacionesComponent
+            },                 
 
             //recursoinformativo
 
