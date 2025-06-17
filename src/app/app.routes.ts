@@ -26,165 +26,197 @@ import { InsertareditarsimulacroComponent } from './components/safealert/simulac
 import { InsertareditarnotificacionComponent } from './components/safealert/notificacion-alerta/insertareditarnotificacion/insertareditarnotificacion.component';
 import { InsertareditarrecordatoriosimulacroComponent } from './components/safealert/recordatorio-simulacro/insertareditarrecordatoriosimulacro/insertareditarrecordatoriosimulacro.component';
 
-
-
-
 export const routes: Routes = [
-    {
-        path:"safealert", component:Safealert,
-        children:[
+  {
+    path: '',
+    redirectTo: 'safealert',
+    pathMatch: 'full',
+  },
+  {
+    path: 'safealert',
+    component: Safealert,
+    children: [
+      //usuario
 
-            //usuario
+      {
+        path: 'ListarUsuario',
+        component: ListarusuarioComponent,
+      },
+      {
+        path: 'RegistrarUsuario',
+        component: Insertareditarusuario,
+      },
+      {
+        path: 'edicionesUsuario/:id',
+        component: Insertareditarusuario,
+      },
 
-            {
-                 path: "ListarUsuario", component: ListarusuarioComponent
-            },
-            {
-                 path: "RegistrarUsuario", component: Insertareditarusuario
-            },
-             {
-                path:'edicionesUsuario/:id',component:Insertareditarusuario
-            },
+      //recordatorio simulacro
 
-            //recordatorio simulacro
+      {
+        path: 'ListarRecordatorio',
+        component: ListarrecordatoriosimulacroComponent,
+      },
+      {
+        path: 'RegistrarRecordatorio',
+        component: InsertareditarrecordatoriosimulacroComponent,
+      },
+      {
+        path: 'edicionesRecorda/:id',
+        component: InsertareditarrecordatoriosimulacroComponent,
+      },
 
-            {
-                 path: "ListarRecordatorio",component:ListarrecordatoriosimulacroComponent
-            },     
-            {
-                 path: "RegistrarRecordatorio", component: InsertareditarrecordatoriosimulacroComponent
-            },
-             {
-                path:'edicionesRecorda/:id',component:InsertareditarrecordatoriosimulacroComponent
-            },
+      //rol
 
-            //rol
+      {
+        path: 'ListarRol',
+        component: ListarrolComponent,
+      },
+      {
+        path: 'RegistrarRol',
+        component: InsertareditarrolComponent,
+      },
+      {
+        path: 'edicionesRol/:id',
+        component: InsertareditarrolComponent,
+      },
 
-            {
-                 path: "ListarRol",component:ListarrolComponent
-            },  
-            {
-                 path: "RegistrarRol", component: InsertareditarrolComponent
-            },
-             {
-                path:'edicionesRol/:id',component:InsertareditarrolComponent
-            },
+      //ubicacion
+      {
+        path: 'ListarUbicacion',
+        component: ListarubicacionComponent,
+      },
+      {
+        path: 'RegistrarUbicacion',
+        component: InsertareditarubicacionComponent,
+      },
 
-            //ubicacion
-            {
-                 path: "ListarUbicacion",component:ListarubicacionComponent
-            },  
-            {
-               path: "RegistrarUbicacion", component: InsertareditarubicacionComponent
-            },
+      {
+        path: 'edicionesUbicacion/:id',
+        component: InsertareditarubicacionComponent,
+      },
 
-            {
-               path: "edicionesUbicacion/:id", component: InsertareditarubicacionComponent
-            },
+      //comentario
+      {
+        path: 'ListarComentario',
+        component: ListarcomentarioComponent,
+      },
+      {
+        path: 'RegistrarComentario',
+        component: InsertareditarcomentarioComponent,
+      },
 
-            //comentario
-            {
-                 path: "ListarComentario",component:ListarcomentarioComponent
-            },  
-            {
-               path: "RegistrarComentario", component: InsertareditarcomentarioComponent
-            },
+      {
+        path: 'edicionesComentario/:id',
+        component: InsertareditarcomentarioComponent,
+      },
 
-            {
-               path: "edicionesComentario/:id", component: InsertareditarcomentarioComponent
-            },
+      //respueta
 
+      {
+        path: 'ListarRespuesta',
+        component: ListarrespuestaComponent,
+      },
+      {
+        path: 'RegistrarRespuesta',
+        component: InsertareditarrespuestaComponent,
+      },
+      {
+        path: 'edicionesRespuesta/:id',
+        component: InsertareditarrespuestaComponent,
+      },
 
+      //notificacion
 
-            //respueta 
+      {
+        path: 'ListarNotificacion',
+        component: ListarnotificacionesComponent,
+      },
+      {
+        path: 'RegistrarNotificacion',
+        component: InsertareditarnotificacionComponent,
+      },
+      {
+        path: 'edicionesNoti/:id',
+        component: InsertareditarnotificacionComponent,
+      },
 
-            {
-                 path: "ListarRespuesta",component:ListarrespuestaComponent
-            },  
-            {
-               path: "RegistrarRespuesta", component: InsertareditarrespuestaComponent
-            },
-            {
-               path: "edicionesRespuesta/:id", component: InsertareditarrespuestaComponent
-            },
+      //recursoinformativo
 
-            //notificacion
+      {
+        path: 'ListarRecurso',
+        component: ListarrecursoinformativoComponent,
+      },
+      {
+        path: 'RegistrarRecurso',
+        component: IsertareditarrecursoinformativoComponent,
+      },
+      {
+        path: 'edicionesRecur/:id',
+        component: IsertareditarrecursoinformativoComponent,
+      },
 
-            {
-                 path: "ListarNotificacion",component:ListarnotificacionesComponent
-            },  
-             {
-               path: "RegistrarNotificacion", component: InsertareditarnotificacionComponent
-            },
-            {
-               path: "edicionesNoti/:id", component: InsertareditarnotificacionComponent
-            },           
+      //fenomeno
 
-            //recursoinformativo
+      {
+        path: 'ListarFenomeno',
+        component: ListarFenomenoNaturalComponent,
+      },
+      {
+        path: 'RegistrarFenomeno',
+        component: InsertareditarfenomenonaturalComponent,
+      },
+      {
+        path: 'edicionesFenNa/:id',
+        component: InsertareditarfenomenonaturalComponent,
+      },
 
-            {
-                 path: "ListarRecurso",component:ListarrecursoinformativoComponent
-            },         
-             {
-                 path: "RegistrarRecurso", component: IsertareditarrecursoinformativoComponent
-            },
-             {
-                path:'edicionesRecur/:id',component:IsertareditarrecursoinformativoComponent
-            },   
-            
-            //fenomeno
+      //simulacro
+      {
+        path: 'ListarSimulacro',
+        component: ListarSimulacroComponent,
+      },
+      {
+        path: 'RegistrarSimulacro',
+        component: InsertareditarsimulacroComponent,
+      },
+      {
+        path: 'edicionesSim/:id',
+        component: InsertareditarsimulacroComponent,
+      },
 
-            {
-                 path: "ListarFenomeno",component:ListarFenomenoNaturalComponent
-            },
-            {
-                 path: "RegistrarFenomeno", component: InsertareditarfenomenonaturalComponent
-            },
-             {
-                path:'edicionesFenNa/:id',component:InsertareditarfenomenonaturalComponent
-            },              
+      //tipo fenomeno
 
-            //simulacro
-            {
-                 path: "ListarSimulacro",component:ListarSimulacroComponent
-            },    
-             {
-                 path: "RegistrarSimulacro", component: InsertareditarsimulacroComponent
-            },
-             {
-                path:'edicionesSim/:id',component:InsertareditarsimulacroComponent
-            },               
+      {
+        path: 'ListarTipoFenomeno',
+        component: ListarTipoFenomenoComponent,
+      },
+      {
+        path: 'RegistrarTipoFenomeno',
+        component: InsertareditartipofenomenoComponent,
+      },
+      {
+        path: 'edicionesTipFem/:id',
+        component: InsertareditartipofenomenoComponent,
+      },
 
-            //tipo fenomeno
+      //sugerencia
+      {
+        path: 'ListarSugerencia',
+        component: ListarsugerenciaComponent,
+      },
+      {
+        path: 'RegistrarSugerencia',
+        component: InsertareditarsugerenciaComponent,
+      },
 
-            {
-                 path: "ListarTipoFenomeno",component:ListarTipoFenomenoComponent
-            },
-            {
-                 path: "RegistrarTipoFenomeno", component: InsertareditartipofenomenoComponent
-            },
-             {
-                path:'edicionesTipFem/:id',component:InsertareditartipofenomenoComponent
-            },          
-            
-            //sugerencia
-            {
-                 path: "ListarSugerencia",component:ListarsugerenciaComponent
-            },              
-            {
-               path: "RegistrarSugerencia", component: InsertareditarsugerenciaComponent
-            },
+      {
+        path: 'edicionesSugerencia/:id',
+        component: InsertareditarsugerenciaComponent,
+      },
 
-            {
-               path: "edicionesSugerencia/:id", component: InsertareditarsugerenciaComponent
-            },
-
-
-            //ver mapa 
-          { path: 'vermapa/:lat/:lon', component: VermapaComponent }
-
-        ]
-    }
-
-    
+      //ver mapa
+      { path: 'vermapa/:lat/:lon', component: VermapaComponent },
+    ],
+  },
 ];
