@@ -17,6 +17,10 @@ export class FenomenoNaturalService {
     return this.http.get<FenomenoNatural[]>(this.url + '/list');
   }
 
+  insert(fena:FenomenoNatural){
+        return this.http.post(this.url + '/insert', fena);
+      }
+
   getList() {
     return this.listaCambio.asObservable();
   }
@@ -25,7 +29,17 @@ export class FenomenoNaturalService {
     this.listaCambio.next(listaNueva);
   }
 
-  deleteFenomeno(id: number) {
+
+  //enlistar id fenomeno natural
+    listId(id: number) {
+      return this.http.get<FenomenoNatural>(`${this.url + '/list'}/${id}`)
+    }
+    update(fena: FenomenoNatural) {
+      return this.http.put(this.url + '/modify', fena)
+    }
+
+    //delete un fenomeno natural
+    deleteFenomeno(id: number) {
     return this.http.delete(`${this.url + '/delete'}/${id}`);
-  }
+    }
 }

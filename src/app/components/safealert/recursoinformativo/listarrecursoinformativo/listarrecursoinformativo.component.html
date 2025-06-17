@@ -47,6 +47,15 @@
             </ng-container>
 
             <ng-container matColumnDef="c8">
+                <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+                <td mat-cell *matCellDef="let element">
+                  <button matButton [routerLink]="['/safealert/edicionesRecur',element.idRecursoInformativo]">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                </td>
+              </ng-container>
+
+            <ng-container matColumnDef="c9">
               <th mat-header-cell *matHeaderCellDef> Eliminar </th>
               <td mat-cell *matCellDef="let element">
                 <button matButton 

@@ -15,6 +15,11 @@ export class RecursoinformativoService {
   list(){
     return this.http.get<RecursoInformativo[]>(this.url+'/list')
   }
+
+  insert(recur:RecursoInformativo){
+        return this.http.post(this.url + '/insert', recur);
+      }
+
   getList() {
     return this.listaCambio.asObservable();
   }
@@ -23,6 +28,15 @@ export class RecursoinformativoService {
     this.listaCambio.next(listaNueva);
   }
       
+  //enlistar id   
+    listId(id: number) {
+          return this.http.get<RecursoInformativo>(`${this.url + '/list'}/${id}`)
+    }
+    update(recur: RecursoInformativo) {
+          return this.http.put(this.url + '/modify', recur)
+    }
+  
+
   deleteRecursoInformativo(id: number) {
     return this.http.delete(`${this.url + '/delete' }/${id}`)
   }    

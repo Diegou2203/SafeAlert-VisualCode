@@ -19,6 +19,12 @@ import { InsertareditarcomentarioComponent } from './components/safealert/coment
 import { InsertareditarrespuestaComponent } from './components/safealert/respuesta/insertareditarrespuesta/insertareditarrespuesta.component';
 import { InsertareditarubicacionComponent } from './components/safealert/ubicacion/insertareditarubicacion/insertareditarubicacion.component';
 import { InsertareditarsugerenciaComponent } from './components/safealert/sugerencia/insertareditarsugerencia/insertareditarsugerencia.component';
+import { InsertareditarfenomenonaturalComponent } from './components/safealert/fenomeno-natural/insertareditarfenomenonatural/insertareditarfenomenonatural.component';
+import { InsertareditartipofenomenoComponent } from './components/safealert/tipo-fenomeno/insertareditartipofenomeno/insertareditartipofenomeno.component';
+import { IsertareditarrecursoinformativoComponent } from './components/safealert/recursoinformativo/isertareditarrecursoinformativo/isertareditarrecursoinformativo.component';
+import { InsertareditarsimulacroComponent } from './components/safealert/simulacro/insertareditarsimulacro/insertareditarsimulacro.component';
+import { InsertareditarnotificacionComponent } from './components/safealert/notificacion-alerta/insertareditarnotificacion/insertareditarnotificacion.component';
+import { InsertareditarrecordatoriosimulacroComponent } from './components/safealert/recordatorio-simulacro/insertareditarrecordatoriosimulacro/insertareditarrecordatoriosimulacro.component';
 
 
 
@@ -45,6 +51,12 @@ export const routes: Routes = [
             {
                  path: "ListarRecordatorio",component:ListarrecordatoriosimulacroComponent
             },     
+            {
+                 path: "RegistrarRecordatorio", component: InsertareditarrecordatoriosimulacroComponent
+            },
+             {
+                path:'edicionesRecorda/:id',component:InsertareditarrecordatoriosimulacroComponent
+            },
 
             //rol
 
@@ -100,30 +112,59 @@ export const routes: Routes = [
 
             {
                  path: "ListarNotificacion",component:ListarnotificacionesComponent
-            },             
+            },  
+             {
+               path: "RegistrarNotificacion", component: InsertareditarnotificacionComponent
+            },
+            {
+               path: "edicionesNoti/:id", component: InsertareditarnotificacionComponent
+            },           
 
             //recursoinformativo
 
             {
                  path: "ListarRecurso",component:ListarrecursoinformativoComponent
             },         
-            
+             {
+                 path: "RegistrarRecurso", component: IsertareditarrecursoinformativoComponent
+            },
+             {
+                path:'edicionesRecur/:id',component:IsertareditarrecursoinformativoComponent
+            },   
             
             //fenomeno
 
             {
                  path: "ListarFenomeno",component:ListarFenomenoNaturalComponent
+            },
+            {
+                 path: "RegistrarFenomeno", component: InsertareditarfenomenonaturalComponent
+            },
+             {
+                path:'edicionesFenNa/:id',component:InsertareditarfenomenonaturalComponent
             },              
 
             //simulacro
             {
                  path: "ListarSimulacro",component:ListarSimulacroComponent
-            },              
+            },    
+             {
+                 path: "RegistrarSimulacro", component: InsertareditarsimulacroComponent
+            },
+             {
+                path:'edicionesSim/:id',component:InsertareditarsimulacroComponent
+            },               
 
             //tipo fenomeno
 
             {
                  path: "ListarTipoFenomeno",component:ListarTipoFenomenoComponent
+            },
+            {
+                 path: "RegistrarTipoFenomeno", component: InsertareditartipofenomenoComponent
+            },
+             {
+                path:'edicionesTipFem/:id',component:InsertareditartipofenomenoComponent
             },          
             
             //sugerencia

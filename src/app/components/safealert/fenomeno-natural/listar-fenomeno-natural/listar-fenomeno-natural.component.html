@@ -44,8 +44,18 @@
               <th mat-header-cell *matHeaderCellDef> Id Ubicación </th>
               <td mat-cell *matCellDef="let element"> {{element.ubicacion.idUbicacion}} </td>
             </ng-container>
-          
+
+
             <ng-container matColumnDef="c7">
+                <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+                <td mat-cell *matCellDef="let element">
+                  <button matButton [routerLink]="['/safealert/edicionesFenNa',element.idFenomenoNatural]">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                </td>
+              </ng-container>
+          
+            <ng-container matColumnDef="c8">
               <th mat-header-cell *matHeaderCellDef> Eliminar </th>
               <td mat-cell *matCellDef="let element">
                 <button matButton 

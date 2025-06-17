@@ -7,5 +7,4 @@ export class Usuario {
   enabled: boolean = false;
   telefono: string = '';
   fecha_Registro: Date = new Date();
-  
 }
