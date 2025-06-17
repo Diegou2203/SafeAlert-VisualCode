@@ -3,17 +3,18 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SugerenciaService } from '../../../../services/sugerencia.service';
 import { Sugerencia } from '../../../../models/sugerenciapreventiva';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-listarsugerencia',
-  imports: [MatTableModule, MatIconModule],
+  imports: [MatTableModule, MatIconModule, RouterLink],
   templateUrl: './listarsugerencia.component.html',
   styleUrl: './listarsugerencia.component.css'
 })
 export class ListarsugerenciaComponent {
 datasource: MatTableDataSource<Sugerencia>=new MatTableDataSource()
-  displayedColumns:string[]=['c1','c2','c3','c4','c5', 'c6']
+  displayedColumns:string[]=['c1','c2','c3','c4','c5', 'c6', 'c7']
 
     constructor(private suS:SugerenciaService){
       

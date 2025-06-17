@@ -18,6 +18,7 @@ import { InsertareditarrolComponent } from './components/safealert/rol/insertare
 import { InsertareditarcomentarioComponent } from './components/safealert/comentario/insertareditarcomentario/insertareditarcomentario.component';
 import { InsertareditarrespuestaComponent } from './components/safealert/respuesta/insertareditarrespuesta/insertareditarrespuesta.component';
 import { InsertareditarubicacionComponent } from './components/safealert/ubicacion/insertareditarubicacion/insertareditarubicacion.component';
+import { InsertareditarsugerenciaComponent } from './components/safealert/sugerencia/insertareditarsugerencia/insertareditarsugerencia.component';
 
 
 
@@ -129,7 +130,13 @@ export const routes: Routes = [
             {
                  path: "ListarSugerencia",component:ListarsugerenciaComponent
             },              
+            {
+               path: "RegistrarSugerencia", component: InsertareditarsugerenciaComponent
+            },
 
+            {
+               path: "edicionesSugerencia/:id", component: InsertareditarsugerenciaComponent
+            },
 
 
             //ver mapa 

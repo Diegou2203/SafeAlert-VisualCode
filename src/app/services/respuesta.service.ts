@@ -32,9 +32,9 @@ export class RespuestaService {
       return this.http.delete(`${this.url + '/delete'}/${id}`)
     }     
 
-  update(u: Respuesta) {
-        return this.http.put(this.url + '/modify', u)
-  }      
+    update(u: Respuesta) {
+          return this.http.put(this.url + '/modify', u)
+    }      
     insert(u:Respuesta){
       return this.http.post(this.url + '/insert', u);
     }
