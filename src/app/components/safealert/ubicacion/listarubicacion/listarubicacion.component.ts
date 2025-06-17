@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ListarubicacionComponent {
   datasource: MatTableDataSource<Ubicacion>=new MatTableDataSource()
-  displayedColumns:string[]=['c1','c2','c3','c4','c5','c6','c7','c8','c9', 'c10', 'c11']
+  displayedColumns:string[]=['c1','c2','c3','c4','c5','c6','c7','c8','c9', 'c10', 'c11', 'c12']
 
     constructor(private ubS:UbicacionService){
   
