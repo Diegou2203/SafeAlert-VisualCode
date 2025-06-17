@@ -30,4 +30,16 @@ export class SugerenciaService {
     deleteS(id: number) {
       return this.http.delete(`${this.url + '/delete'}/${id}`)
     }
+
+    update(u: Sugerencia) {
+      return this.http.put(this.url + '/modify', u)
+    } 
+
+    insert(u:Sugerencia){
+      return this.http.post(this.url + '/insert', u);
+    }
+
+    listId(id: number) {
+      return this.http.get<Sugerencia>(`${this.url + '/list'}/${id}`)
+    }
   }

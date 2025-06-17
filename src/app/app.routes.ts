@@ -17,6 +17,8 @@ import { ListarFenomenoNaturalComponent } from './components/safealert/fenomeno-
 import { InsertareditarrolComponent } from './components/safealert/rol/insertareditarrol/insertareditarrol.component';
 import { InsertareditarcomentarioComponent } from './components/safealert/comentario/insertareditarcomentario/insertareditarcomentario.component';
 import { InsertareditarrespuestaComponent } from './components/safealert/respuesta/insertareditarrespuesta/insertareditarrespuesta.component';
+import { InsertareditarubicacionComponent } from './components/safealert/ubicacion/insertareditarubicacion/insertareditarubicacion.component';
+import { InsertareditarsugerenciaComponent } from './components/safealert/sugerencia/insertareditarsugerencia/insertareditarsugerencia.component';
 
 
 
@@ -60,7 +62,13 @@ export const routes: Routes = [
             {
                  path: "ListarUbicacion",component:ListarubicacionComponent
             },  
+            {
+               path: "RegistrarUbicacion", component: InsertareditarubicacionComponent
+            },
 
+            {
+               path: "edicionesUbicacion/:id", component: InsertareditarubicacionComponent
+            },
 
             //comentario
             {
@@ -122,7 +130,13 @@ export const routes: Routes = [
             {
                  path: "ListarSugerencia",component:ListarsugerenciaComponent
             },              
+            {
+               path: "RegistrarSugerencia", component: InsertareditarsugerenciaComponent
+            },
 
+            {
+               path: "edicionesSugerencia/:id", component: InsertareditarsugerenciaComponent
+            },
 
 
             //ver mapa 
