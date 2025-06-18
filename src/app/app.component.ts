@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { Safealert } from './components/safealert/safealert.component';
+
+import { RouterOutlet } from '@angular/router';
+import { MenuComponent } from './components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
-  imports: [Safealert],
+  imports: [MenuComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
