@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ListarusuarioComponent } from './components/usuario/listarusuario/listarusuario.component';
 import { Insertareditarusuario } from './components/usuario/insertarusuario/insertareditarusuario.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 export const routes: Routes = [
   {
@@ -9,10 +10,13 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'usuarios',
-    component: ListarusuarioComponent,
+    path: 'Usuarios',
+    component: UsuarioComponent,
     children: [
-      //usuario
+      {
+        path: 'ListarUsuarios',
+        component: ListarusuarioComponent,
+      },
       {
         path: 'RegistrarUsuario',
         component: Insertareditarusuario,
