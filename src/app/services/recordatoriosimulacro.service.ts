@@ -17,6 +17,11 @@ export class RecordatoriosimulacroService {
   list(){
     return this.http.get<recordatoriosimulacro[]>(this.url+'/list')
   }  
+
+  insert(recor:recordatoriosimulacro){
+          return this.http.post(this.url + '/insert', recor);
+        }
+  
   getList() {
     return this.listaCambio.asObservable();
   }
@@ -25,6 +30,14 @@ export class RecordatoriosimulacroService {
     this.listaCambio.next(listaNueva);
   }
       
+  //enlistar id   
+  listId(id: number) {
+            return this.http.get<recordatoriosimulacro>(`${this.url + '/list'}/${id}`)
+  }
+  update(recor: recordatoriosimulacro) {
+            return this.http.put(this.url + '/modify', recor)
+  }
+
   deleteRecordatorio(id: number) {
     return this.http.delete(`${this.url + '/delete'}/${id}`)
   }  

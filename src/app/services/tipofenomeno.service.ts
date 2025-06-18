@@ -14,9 +14,13 @@ export class TipoFenomenoService {
 
   constructor(private http: HttpClient) {}
 
-  list() {
+    list() {
     return this.http.get<TipoFenomeno[]>(this.url + '/list');
-  }
+    }
+
+    insert(tipfem:TipoFenomeno){
+        return this.http.post(this.url + '/insert', tipfem);
+      }
 
     getList() {
       return this.listaCambio.asObservable();
@@ -26,6 +30,14 @@ export class TipoFenomenoService {
       this.listaCambio.next(listaNueva);
     }
     
+    //enlistar id   
+      listId(id: number) {
+            return this.http.get<TipoFenomeno>(`${this.url + '/list'}/${id}`)
+      }
+      update(tipfem: TipoFenomeno) {
+            return this.http.put(this.url + '/modify', tipfem)
+      }
+
     deleteTf(id: number) {
       return this.http.delete(`${this.url + '/delete'}/${id}`)
     }

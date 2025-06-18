@@ -1,0 +1,75 @@
+<div class="register-container">
+    <div class="register-header">
+        <h1>Registro de Simulacro</h1>
+    </div>
+    <div class="register-form-wrapper">
+        <form [formGroup]="form" (submit)="aceptar()" class="elegant-form">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="simulacrocodigo"/>
+                <mat-error *ngIf="form.get('simulacrocodigo')?.hasError('required')">
+                    El ID es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- titulo simu -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Titulo del simulacro</mat-label>
+                <input matInput formControlName="simulacrotitulo" required>
+                <mat-error *ngIf="form.get('simulacrotitulo')?.hasError('required')">
+                    El titulo del simulacro es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Fecha de simula -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Fecha del simulacro</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="simulacrofecha" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('simulacrofecha')?.hasError('required')">
+                    La fecha es obligatoria
+                </mat-error>
+            </mat-form-field>
+
+             <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Duración del simulacro </mat-label>
+                <input matInput formControlName="simulacroduracion" required>
+                <mat-error *ngIf="form.get('simulacroduracion')?.hasError('required')">
+                    La duración del simulacro es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('simulacroduracion')?.hasError('pattern')">
+                    Ingrese solo números
+                </mat-error>
+            </mat-form-field>
+
+
+            <!-- titulo simu -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Tipo del simulacro</mat-label>
+                <input matInput formControlName="simulacrotipo" required>
+                <mat-error *ngIf="form.get('simulacrotipo')?.hasError('required')">
+                    El Tipo del simulacro es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- id ubi -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Brinda el ID de la ubicación </mat-label>
+                <input matInput formControlName="simulacroubicacion" required>
+                <mat-error *ngIf="form.get('simulacroubicacion')?.hasError('required')">
+                    El ID de la ubicación es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('simulacroubicacion')?.hasError('pattern')">
+                    Ingrese solo números
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" class="submit-button" [disabled]="form.invalid">
+                Registrar
+            </button>
+        </form>
+    </div>
+</div>
+
