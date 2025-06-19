@@ -84,7 +84,7 @@ export class InsertareditarrecordatoriosimulacroComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['Recordatorios/ListarRecordatorios']);
     }
   }
 

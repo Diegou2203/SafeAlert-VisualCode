@@ -40,43 +40,48 @@ import { InsertareditarsugerenciaComponent } from './components/sugerencia/inser
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'Usuarios',
+    redirectTo: 'usuarios',
     pathMatch: 'full',
   },
   {
-    path: 'Usuarios',
+    path: 'usuarios',
     component: UsuarioComponent,
     children: [
       {
-        path: 'ListarUsuarios',
+        path: 'listar',
         component: ListarusuarioComponent,
       },
       {
-        path: 'RegistrarUsuario',
+        path: 'registrar',
         component: Insertareditarusuario,
       },
       {
-        path: 'EdicionesUsuario/:id',
+        path: 'ediciones/:id',
         component: Insertareditarusuario,
       },
     ],
   },
   {
-    path: 'Ubicaciones',
+    path: 'ubicaciones',
     component: UbicacionComponent,
     children: [
       {
-        path: 'ListarUbicaciones',
+        path: 'listar',
         component: ListarubicacionComponent,
       },
       {
-        path: 'RegistrarUbicaciones',
+        path: 'registrar',
         component: InsertareditarubicacionComponent,
       },
       {
-        path: 'EdicionesUbicaciones/:id',
+        path: 'ediciones/:id',
         component: InsertareditarubicacionComponent,
       },
+        { 
+    path: 'vermapa/:lat/:lon', 
+    component: VermapaComponent 
+  },
+
     ],
   },
   {
@@ -97,7 +102,6 @@ export const routes: Routes = [
       },
     ],
   },
-
    {
     path: 'Comentarios',
     component: ComentarioComponent,
@@ -261,5 +265,5 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: 'VerMapa', component: VermapaComponent },
+ 
 ];

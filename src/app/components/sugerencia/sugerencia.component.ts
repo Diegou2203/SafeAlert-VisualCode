@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-sugerencia',
-  imports: [ListarsugerenciaComponent, RouterOutlet],
+  imports: [ RouterOutlet],
   templateUrl: './sugerencia.component.html',
   styleUrl: './sugerencia.component.css',
 })

@@ -87,7 +87,7 @@ export class InsertareditarfenomenonaturalComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['Fenomenos/ListarFenomenos']);
     }
   }
 

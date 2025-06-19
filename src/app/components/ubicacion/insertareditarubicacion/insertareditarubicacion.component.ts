@@ -92,7 +92,7 @@ aceptar() {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['ubicaciones/listar']);
     }
   }
 

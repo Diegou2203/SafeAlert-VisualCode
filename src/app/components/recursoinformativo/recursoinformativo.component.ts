@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-recursoinformativo',
-  imports: [ListarrecursoinformativoComponent,RouterOutlet ],
+  imports: [RouterOutlet ],
   templateUrl: './recursoinformativo.component.html',
   styleUrl: './recursoinformativo.component.css'
 })

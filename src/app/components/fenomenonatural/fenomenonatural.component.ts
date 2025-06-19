@@ -5,7 +5,7 @@ import { ListarTipoFenomenoComponent } from '../tipofenomeno/listar-tipo-fenomen
 
 @Component({
   selector: 'app-fenomenonatural',
-  imports: [ListarFenomenoNaturalComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './fenomenonatural.component.html',
   styleUrl: './fenomenonatural.component.css',
 })

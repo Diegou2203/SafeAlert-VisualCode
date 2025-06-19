@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-respuesta',
-  imports: [ListarrespuestaComponent,RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './respuesta.component.html',
   styleUrl: './respuesta.component.css'
 })

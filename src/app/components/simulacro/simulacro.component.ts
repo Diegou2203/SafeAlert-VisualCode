@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-simulacro',
-  imports: [ListarSimulacroComponent,RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './simulacro.component.html',
   styleUrl: './simulacro.component.css'
 })

@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-tipofenomeno',
-  imports: [ListarTipoFenomenoComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './tipofenomeno.component.html',
   styleUrl: './tipofenomeno.component.css',
 })

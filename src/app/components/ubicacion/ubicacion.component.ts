@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-ubicacion',
-  imports: [ListarubicacionComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './ubicacion.component.html',
   styleUrl: './ubicacion.component.css',
 })

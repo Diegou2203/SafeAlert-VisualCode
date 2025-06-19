@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-notificacionalerta',
-  imports: [ListarnotificacionesComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './notificacionalerta.component.html',
   styleUrl: './notificacionalerta.component.css',
 })

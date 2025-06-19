@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-rol',
-  imports: [ListarrolComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './rol.component.html',
   styleUrl: './rol.component.css',
 })

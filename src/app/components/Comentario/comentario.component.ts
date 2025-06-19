@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-comentario',
-  imports: [ListarcomentarioComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './comentario.component.html',
   styleUrl: './comentario.component.css',
 })

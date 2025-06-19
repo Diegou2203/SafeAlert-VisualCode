@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-recordatoriosimulacro',
-  imports: [ListarrecordatoriosimulacroComponent,RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './recordatoriosimulacro.component.html',
   styleUrl: './recordatoriosimulacro.component.css'
 })
