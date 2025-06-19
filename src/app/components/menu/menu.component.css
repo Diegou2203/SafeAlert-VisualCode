@@ -1,0 +1,142 @@
+/* Estilos para el contenedor del toolbar */
+.toolbar-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #3f51b5 #f5f5f5;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* Personalización de la barra de scroll */
+.toolbar-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.toolbar-scroll-container::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.toolbar-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #3f51b5;
+  border-radius: 4px;
+  border: 1px solid #f5f5f5;
+}
+
+/* Estilos del toolbar */
+.custom-toolbar {
+  background: transparent;
+  color: #3f51b5;
+  padding: 0 10px;
+  display: inline-flex;
+  min-height: 56px;
+  align-items: center;
+  white-space: nowrap;
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Contenedores de botones */
+.custom-toolbar > div {
+  display: inline-block;
+  margin: 0 4px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Estilos de los botones */
+.btn-rojo {
+  background: transparent;
+  color: #3f51b5 !important;
+  border-radius: 18px;
+  padding: 6px 12px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  white-space: nowrap;
+  min-width: max-content;
+  height: 36px;
+}
+
+.btn-rojo:hover {
+  background: rgba(63, 81, 181, 0.08);
+  border-color: #3f51b5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(63, 81, 181, 0.2);
+}
+
+.btn-rojo.menu-abierto {
+  background: rgba(63, 81, 181, 0.15);
+  border-color: #3f51b5;
+}
+
+/* Estilos para los iconos */
+.btn-rojo mat-icon {
+  margin-right: 6px;
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: #3f51b5;
+}
+
+/* Estilos para los menús desplegables */
+.mat-menu-panel {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  min-width: 180px !important;
+  margin-top: 5px !important;
+  background: white !important;
+}
+
+.mat-menu-item {
+  color: #3f51b5 !important;
+  font-size: 13px !important;
+  height: 38px !important;
+  line-height: 38px !important;
+  transition: all 0.2s ease;
+}
+
+.mat-menu-item:hover {
+  background-color: #f5f5f5 !important;
+  color: #2196f3 !important;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .btn-rojo {
+    padding: 5px 10px;
+    font-size: 12px;
+    height: 34px;
+  }
+  
+  .btn-rojo mat-icon {
+    margin-right: 4px;
+    font-size: 15px;
+  }
+  
+  .toolbar-scroll-container {
+    margin-bottom: 10px;
+  }
+}
+
+/* Pequeña animación para los items del menú */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mat-menu-content {
+  animation: fadeIn 0.2s ease-out forwards;
+}
