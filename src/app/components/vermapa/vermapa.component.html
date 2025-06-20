@@ -1,0 +1,13 @@
+<router-outlet></router-outlet>
+
+<div class="map-container">
+  <h2>📍 Mapa de Ubicación</h2>
+
+  <div class="map-card" *ngIf="mapaUrl; else loading">
+    <img [src]="mapaUrl" alt="Mapa estático" class="map-img" />
+  </div>
+
+  <ng-template #loading>
+    <p class="loading-text">Cargando mapa...</p>
+  </ng-template>
+</div>

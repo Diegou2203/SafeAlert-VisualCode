@@ -1,0 +1,35 @@
+.map-container {
+  max-width: 700px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  background: #f7f9fc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.map-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+.map-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.loading-text {
+  font-style: italic;
+  color: #666;
+  margin-top: 20px;
+}

@@ -4,5 +4,5 @@ export class Respuesta{
     titulo: string=""
     contenido:string=""
     fechacreacion: Date=new Date()
-     usuario: Usuario[]= [];
+    usuario: Usuario= new Usuario;
 }

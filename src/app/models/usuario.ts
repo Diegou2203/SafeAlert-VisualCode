@@ -1,5 +1,4 @@
 
-
 export class Usuario {
   idUsuario: number = 0;
   username: string = '';
@@ -8,5 +7,4 @@ export class Usuario {
   enabled: boolean = false;
   telefono: string = '';
   fecha_Registro: Date = new Date();
-  
 }
