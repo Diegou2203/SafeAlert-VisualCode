@@ -16,3 +16,4 @@ export class FenomenoNaturalService {
     return this.http.get<FenomenoNatural[]>(this.url + '/list');
   }
 }
+  
