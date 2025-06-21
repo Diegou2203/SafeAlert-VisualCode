@@ -36,6 +36,8 @@ import { InsertareditarsimulacroComponent } from './components/simulacro/inserta
 import { SugerenciaComponent } from './components/sugerencia/sugerencia.component';
 import { ListarsugerenciaComponent } from './components/sugerencia/listarsugerencia/listarsugerencia.component';
 import { InsertareditarsugerenciaComponent } from './components/sugerencia/insertareditarsugerencia/insertareditarsugerencia.component';
+import { ListarUsuarioPorZonaRiesgoComponent } from './components/ubicacion/listar-usuario-por-zona-riesgo/listar-usuario-por-zona-riesgo.component';
+import { ListarCantidadNotificacionRevisadaPorUsuarioComponent } from './components/notificacionalerta/listar-cantidad-notificacion-revisada-por-usuario/listar-cantidad-notificacion-revisada-por-usuario.component';
 
 export const routes: Routes = [
   {
@@ -77,6 +79,11 @@ export const routes: Routes = [
         path: 'ediciones/:id',
         component: InsertareditarubicacionComponent,
       },
+
+       {
+        path: 'listarUsuarioPorZonaDeRiesgo',
+        component: ListarUsuarioPorZonaRiesgoComponent,
+      },     
         { 
     path: 'vermapa/:lat/:lon', 
     component: VermapaComponent 
@@ -208,6 +215,10 @@ export const routes: Routes = [
       {
         path: 'EdicionesNotificaciones/:id',
         component: InsertareditarnotificacionComponent,
+      },
+      {
+        path: 'ListarCantidadNotificacionRevisadas',
+        component: ListarCantidadNotificacionRevisadaPorUsuarioComponent,
       },
     ],
   },

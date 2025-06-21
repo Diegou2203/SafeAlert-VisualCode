@@ -178,6 +178,10 @@
     <mat-icon>add_location</mat-icon>
     <span>Registrar Ubicación</span>
   </button>
+  <button mat-menu-item routerLink="/ubicaciones/listarUsuarioPorZonaDeRiesgo">
+    <mat-icon>add_location</mat-icon>
+    <span>Listar Usuario Por Zona de Riesgo</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuRoles="matMenu">
@@ -255,6 +259,11 @@
     <mat-icon>add_alert</mat-icon>
     <span>Registrar Notificación</span>
   </button>
+  <button mat-menu-item routerLink="/Notificaciones/ListarCantidadNotificacionRevisadas">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad de Notificaciones Revisadas Por Usuario</span>
+  </button>
+
 </mat-menu>
 
 <mat-menu #menuRecordatorio="matMenu">

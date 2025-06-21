@@ -39,5 +39,10 @@ export class UbicacionService {
     update(u: Ubicacion) {
       return this.http.put(this.url + '/modify', u)
     }
+
+  
+    listUsuarioPorZonaAltoRiesgo(){
+      return this.http.get<Ubicacion[]>(this.url+'/list/ListaUsuariosPorZonasAltoRiesgo')
+    }
   
 }

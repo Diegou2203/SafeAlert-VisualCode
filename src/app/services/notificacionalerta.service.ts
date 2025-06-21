@@ -43,4 +43,8 @@ export class notificacionalertaService {
     return this.http.delete(`${this.url + '/delete'}/${id}`)
   }  
 
+  listarcantidadnotificacion(){
+    return this.http.get<notificacionalerta[]>(this.url+'/list/CantidadNotificacionesRevisadasPorUsuario')
+  }
+
 }
