@@ -36,20 +36,22 @@
              <!-- type Column -->
             <ng-container matColumnDef="c5">
               <th mat-header-cell *matHeaderCellDef> Activo </th>
-              <td mat-cell *matCellDef="let element"> {{element.activo}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.activo? 'Activo' : 'Inactivo'}} </td>
             </ng-container>
 
-            <!-- idubicacion Column -->
+            <!-- idubicacion Column-->
             <ng-container matColumnDef="c6">
               <th mat-header-cell *matHeaderCellDef> Id Ubicación </th>
               <td mat-cell *matCellDef="let element"> {{element.ubicacion.idUbicacion}} </td>
-            </ng-container>
+            </ng-container> 
 
 
             <ng-container matColumnDef="c7">
                 <th mat-header-cell *matHeaderCellDef> Actualizar </th>
                 <td mat-cell *matCellDef="let element">
-                  <button matButton [routerLink]="['/Fenomenos/EdicionesFenomenos',element.idFenomenoNatural]">
+
+                  <button mat-button [routerLink]="['/Fenomenos/EdicionesFenomenos',element.idFenomenoNatural]">
+
                   <mat-icon>edit</mat-icon>
                 </button>
                 </td>
@@ -58,7 +60,7 @@
             <ng-container matColumnDef="c8">
               <th mat-header-cell *matHeaderCellDef> Eliminar </th>
               <td mat-cell *matCellDef="let element">
-                <button matButton 
+                <button mat-button 
                 (click)="eliminar(element.idFenomenoNatural)"
                 >
                 <mat-icon>delete</mat-icon>
@@ -69,6 +71,6 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          
+          <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
