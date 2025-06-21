@@ -82,7 +82,7 @@ export class InsertareditartipofenomenoComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['TipoFenomenos/ListarTipoFenomenos']);
     }
   }
 

@@ -88,7 +88,7 @@ export class InsertareditarnotificacionComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['Notificaciones/ListarNotificaciones']);
     }
   }
 

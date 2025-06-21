@@ -82,7 +82,7 @@ export class InsertareditarrespuestaComponent {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['Respuestas/ListarRespuestas']);
     }
   }
 

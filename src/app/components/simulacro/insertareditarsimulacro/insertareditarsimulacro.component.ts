@@ -86,7 +86,7 @@ export class InsertareditarsimulacroComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['Simulacros/ListarSimulacros']);
     }
   }
 

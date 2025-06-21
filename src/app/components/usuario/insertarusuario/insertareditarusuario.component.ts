@@ -95,7 +95,7 @@ export class Insertareditarusuario implements OnInit {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['usuarios/listar']);
     }
   }
 

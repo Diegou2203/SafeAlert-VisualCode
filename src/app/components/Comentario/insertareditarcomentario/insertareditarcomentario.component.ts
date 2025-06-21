@@ -87,7 +87,7 @@ export class InsertareditarcomentarioComponent {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['Comentarios/ListarComentarios']);
     }
   }
 

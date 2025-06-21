@@ -82,7 +82,7 @@ export class InsertareditarrolComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['Rol/ListarRoles']);
     }
   }
 

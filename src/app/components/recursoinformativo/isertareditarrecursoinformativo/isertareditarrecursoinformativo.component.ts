@@ -88,7 +88,7 @@ export class IsertareditarrecursoinformativoComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['safealert']);
+      this.router.navigate(['Recursos/ListarRecursos']);
     }
   }
 
