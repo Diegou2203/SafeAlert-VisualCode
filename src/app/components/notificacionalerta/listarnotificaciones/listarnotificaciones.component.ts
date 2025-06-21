@@ -6,12 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
+import {MatCardModule} from '@angular/material/card';
 
 
 @Component({
   selector: 'app-listarnotificaciones',
-  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule],
+  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule],
   templateUrl: './listarnotificaciones.component.html',
   styleUrl: './listarnotificaciones.component.css'
 })

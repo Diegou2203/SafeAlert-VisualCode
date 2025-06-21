@@ -45,10 +45,10 @@
              <!-- Fecha de expiracion -->
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Fecha de expiración</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="notificacionfechaexpiracion" required>
+                <input matInput [matDatepicker]="picker1" formControlName="notificacionfechaexpiracion" required>
                 <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
                 <mat-error *ngIf="form.get('notificacionfechaexpiracion')?.hasError('required')">
                     La fecha es obligatoria
                 </mat-error>
