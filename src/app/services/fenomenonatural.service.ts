@@ -43,3 +43,4 @@ export class FenomenoNaturalService {
     return this.http.delete(`${this.url + '/delete'}/${id}`);
     }
 }
+  

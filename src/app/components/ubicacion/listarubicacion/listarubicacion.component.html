@@ -59,7 +59,7 @@
           <ng-container matColumnDef="c9">
             <th mat-header-cell *matHeaderCellDef> Mapa </th>
             <td mat-cell *matCellDef="let element">
-              <button matButton [routerLink]="['/ubicaciones/vermapa', element.latitud, element.longitud]">
+              <button mat-button [routerLink]="['/ubicaciones/vermapa', element.latitud, element.longitud]">
                 <mat-icon> place</mat-icon>
               </button>
             </td>
@@ -68,22 +68,27 @@
             <ng-container matColumnDef="c10">
                 <th mat-header-cell *matHeaderCellDef> Actualizar </th>
                 <td mat-cell *matCellDef="let element">
-                  <button mat-button  [routerLink]="['/ubicaciones/ediciones', element.idUbicacion]">
+
+                  <button mat-button [routerLink]="['/ubicaciones/ediciones', element.idUbicacion]">
+
                   <mat-icon>edit</mat-icon>
                 </button>
                 </td>
             </ng-container>
 
+          
           <ng-container matColumnDef="c11">
               <th mat-header-cell *matHeaderCellDef> Eliminar </th>
               <td mat-cell *matCellDef="let element">
-                <button mat-button  
+
+                <button mat-button 
+
                 (click)="eliminar(element.idUbicacion)"
                 >
                 <mat-icon>delete</mat-icon>
               </button>
               </td>
-          </ng-container>
+            </ng-container>
 
           <ng-container matColumnDef="c12">
               <th mat-header-cell *matHeaderCellDef> Id Usuario </th>
