@@ -1,138 +1,291 @@
-<div class="toolbar-scroll-container">
-  <mat-toolbar class="custom-toolbar">
-    <!-- Botones del toolbar -->
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuUsuarios" class="btn-rojo">
-        <mat-icon>person</mat-icon>
-        Usuarios
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuUbicaciones" class="btn-rojo">
-        <mat-icon> place</mat-icon>
-        Ubicaciones
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuRoles" class="btn-rojo">
-        <mat-icon>swap_vertical_circle</mat-icon>
-        Roles
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuComentarios" class="btn-rojo">
-        <mat-icon> textsms</mat-icon>
-        Comentarios
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuRespuesta" class="btn-rojo">
-        <mat-icon>question_answer</mat-icon>
-        Respuesta
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuRecurso" class="btn-rojo">
-        <mat-icon>swap_vertical_circle</mat-icon>
-        Recurso Informativo
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuFenomeno" class="btn-rojo">
-        <mat-icon>nature</mat-icon>
-        Fenomeno Natural
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuTipoFenomeno" class="btn-rojo">
-       <mat-icon>wb_cloudy</mat-icon> 
-        Tipo Fenomeno Natural
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuNotificacion" class="btn-rojo">
-        <mat-icon>sms_failed</mat-icon>
-        Notificaciones de alerta
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuRecordatorio" class="btn-rojo">
-        <mat-icon>timer</mat-icon>
-        Recordatorio de simulacro
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuSimulacro" class="btn-rojo">
-        <mat-icon>swap_vertical_circle</mat-icon>
-        Simulacro
-      </button>
-    </div>
-    <div>
-      <button mat-button [matMenuTriggerFor]="menuTipoSugerencia" class="btn-rojo">
-        <mat-icon>swap_vertical_circle</mat-icon>
-        Sugerencias
-      </button>
-    </div>
+<div class="sidebar-container" 
+     [class.hidden]="isHidden" 
+     (mouseenter)="onMouseEnterMenu()"
+     (mouseleave)="onMouseLeaveMenu($event)">
+  <mat-toolbar class="sidebar-toolbar">
+    <button mat-icon-button class="menu-toggle" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="toolbar-title">Menú</span>
   </mat-toolbar>
+
+  <div class="sidebar-content">
+    <!-- Sección Usuarios -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuUsuarios"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>person</mat-icon>
+        <span class="menu-label">Usuarios</span>
+      </button>
+    </div>
+
+    <!-- Sección Ubicaciones -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuUbicaciones"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>place</mat-icon>
+        <span class="menu-label">Ubicaciones</span>
+      </button>
+    </div>
+
+    <!-- Sección Roles -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuRoles"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <span class="menu-label">Roles</span>
+      </button>
+    </div>
+
+    <!-- Sección Comentarios -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuComentarios"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>comment</mat-icon>
+        <span class="menu-label">Comentarios</span>
+      </button>
+    </div>
+
+    <!-- Sección Respuesta -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuRespuesta"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>reply</mat-icon>
+        <span class="menu-label">Respuesta</span>
+      </button>
+    </div>
+
+    <!-- Sección Recurso Informativo -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuRecurso"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>info</mat-icon>
+        <span class="menu-label">Recurso Informativo</span>
+      </button>
+    </div>
+
+    <!-- Sección Fenomeno Natural -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuFenomeno"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>nature</mat-icon>
+        <span class="menu-label">Fenómeno Natural</span>
+      </button>
+    </div>
+
+    <!-- Sección Tipo Fenomeno Natural -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuTipoFenomeno"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>wb_cloudy</mat-icon>
+        <span class="menu-label">Tipo Fenómeno</span>
+      </button>
+    </div>
+
+    <!-- Sección Notificaciones de alerta -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuNotificacion"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>notifications</mat-icon>
+        <span class="menu-label">Alertas</span>
+      </button>
+    </div>
+
+    <!-- Sección Recordatorio de simulacro -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuRecordatorio"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>alarm</mat-icon>
+        <span class="menu-label">Recordatorios</span>
+      </button>
+    </div>
+
+    <!-- Sección Simulacro -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuSimulacro"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>warning</mat-icon>
+        <span class="menu-label">Simulacros</span>
+      </button>
+    </div>
+
+    <!-- Sección Sugerencias -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuTipoSugerencia"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>lightbulb</mat-icon>
+        <span class="menu-label">Sugerencias</span>
+      </button>
+    </div>
+
+    <!-- Sección Registro de Usuario -->
+    <div class="menu-section">
+      <button mat-button class="menu-button" routerLink="/registro">
+        <mat-icon>person_add</mat-icon>
+        <span class="menu-label">Registro</span>
+      </button>
+    </div>
+  </div>
 </div>
+
+<!-- Zona sensible para activar el menú -->
+<div class="hover-trigger" 
+     (mouseenter)="showMenu()" 
+     *ngIf="isHidden"></div>
 
 <!-- Menús desplegables -->
 <mat-menu #menuUsuarios="matMenu">
-  <button mat-menu-item routerLink="/usuarios/listar">Listar</button>
-  <button mat-menu-item routerLink="/usuarios/registrar">Registrar</button>
+  <button mat-menu-item routerLink="/usuarios/listar">
+    <mat-icon>list</mat-icon>
+    <span>Listar Usuarios</span>
+  </button>
+  <button mat-menu-item routerLink="/usuarios/registrar">
+    <mat-icon>person_add</mat-icon>
+    <span>Registrar Usuario</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuUbicaciones="matMenu">
-  <button mat-menu-item routerLink="/ubicaciones/listar">Listar</button>
-  <button mat-menu-item routerLink="/ubicaciones/registrar">Registrar</button>
+  <button mat-menu-item routerLink="/ubicaciones/listar">
+    <mat-icon>list</mat-icon>
+    <span>Listar Ubicaciones</span>
+  </button>
+  <button mat-menu-item routerLink="/ubicaciones/registrar">
+    <mat-icon>add_location</mat-icon>
+    <span>Registrar Ubicación</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuRoles="matMenu">
-  <button mat-menu-item routerLink="/Rol/ListarRoles">Listar</button>
-  <button mat-menu-item routerLink="/Rol/RegistrarRoles">Registrar</button>
+  <button mat-menu-item routerLink="/Rol/ListarRoles">
+    <mat-icon>list</mat-icon>
+    <span>Listar Roles</span>
+  </button>
+  <button mat-menu-item routerLink="/Rol/RegistrarRoles">
+    <mat-icon>playlist_add</mat-icon>
+    <span>Registrar Rol</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuComentarios="matMenu">
-  <button mat-menu-item routerLink="/Comentarios/ListarComentarios">Listar</button>
-  <button mat-menu-item routerLink="/Comentarios/RegistrarComentarios">Registrar</button>
+  <button mat-menu-item routerLink="/Comentarios/ListarComentarios">
+    <mat-icon>list</mat-icon>
+    <span>Listar Comentarios</span>
+  </button>
+  <button mat-menu-item routerLink="/Comentarios/RegistrarComentarios">
+    <mat-icon>add_comment</mat-icon>
+    <span>Registrar Comentario</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuRespuesta="matMenu">
-  <button mat-menu-item routerLink="/Respuestas/ListarRespuestas">Listar</button>
-  <button mat-menu-item routerLink="/Respuestas/RegistrarRespuestas">Registrar</button>
+  <button mat-menu-item routerLink="/Respuestas/ListarRespuestas">
+    <mat-icon>list</mat-icon>
+    <span>Listar Respuestas</span>
+  </button>
+  <button mat-menu-item routerLink="/Respuestas/RegistrarRespuestas">
+    <mat-icon>reply</mat-icon>
+    <span>Registrar Respuesta</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuRecurso="matMenu">
-  <button mat-menu-item routerLink="/Recursos/ListarRecursos">Listar</button>
-  <button mat-menu-item routerLink="/Recursos/RegistrarRecursos">Registrar</button>
+  <button mat-menu-item routerLink="/Recursos/ListarRecursos">
+    <mat-icon>list</mat-icon>
+    <span>Listar Recursos</span>
+  </button>
+  <button mat-menu-item routerLink="/Recursos/RegistrarRecursos">
+    <mat-icon>post_add</mat-icon>
+    <span>Registrar Recurso</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuFenomeno="matMenu">
-  <button mat-menu-item routerLink="/Fenomenos/ListarFenomenos">Listar</button>
-  <button mat-menu-item routerLink="/Fenomenos/RegistrarFenomenos">Registrar</button>
+  <button mat-menu-item routerLink="/Fenomenos/ListarFenomenos">
+    <mat-icon>list</mat-icon>
+    <span>Listar Fenómenos</span>
+  </button>
+  <button mat-menu-item routerLink="/Fenomenos/RegistrarFenomenos">
+    <mat-icon>nature_people</mat-icon>
+    <span>Registrar Fenómeno</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuTipoFenomeno="matMenu">
-  <button mat-menu-item routerLink="/TipoFenomenos/ListarTipoFenomenos">Listar</button>
-  <button mat-menu-item routerLink="/TipoFenomenos/RegistrarTipoFenomenos">Registrar</button>
+  <button mat-menu-item routerLink="/TipoFenomenos/ListarTipoFenomenos">
+    <mat-icon>list</mat-icon>
+    <span>Listar Tipos</span>
+  </button>
+  <button mat-menu-item routerLink="/TipoFenomenos/RegistrarTipoFenomenos">
+    <mat-icon>playlist_add</mat-icon>
+    <span>Registrar Tipo</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuNotificacion="matMenu">
-  <button mat-menu-item routerLink="/Notificaciones/ListarNotificaciones">Listar</button>
-  <button mat-menu-item routerLink="/Notificaciones/RegistrarNotificaciones">Registrar</button>
+  <button mat-menu-item routerLink="/Notificaciones/ListarNotificaciones">
+    <mat-icon>list</mat-icon>
+    <span>Listar Notificaciones</span>
+  </button>
+  <button mat-menu-item routerLink="/Notificaciones/RegistrarNotificaciones">
+    <mat-icon>add_alert</mat-icon>
+    <span>Registrar Notificación</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuRecordatorio="matMenu">
-  <button mat-menu-item routerLink="/Recordatorios/ListarRecordatorios">Listar</button>
-  <button mat-menu-item routerLink="/Recordatorios/RegistrarRecordatorios">Registrar</button>
+  <button mat-menu-item routerLink="/Recordatorios/ListarRecordatorios">
+    <mat-icon>list</mat-icon>
+    <span>Listar Recordatorios</span>
+  </button>
+  <button mat-menu-item routerLink="/Recordatorios/RegistrarRecordatorios">
+    <mat-icon>alarm_add</mat-icon>
+    <span>Registrar Recordatorio</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuSimulacro="matMenu">
-  <button mat-menu-item routerLink="/Simulacros/ListarSimulacros">Listar</button>
-  <button mat-menu-item routerLink="/Simulacros/RegistrarSimulacros">Registrar</button>
+  <button mat-menu-item routerLink="/Simulacros/ListarSimulacros">
+    <mat-icon>list</mat-icon>
+    <span>Listar Simulacros</span>
+  </button>
+  <button mat-menu-item routerLink="/Simulacros/RegistrarSimulacros">
+    <mat-icon>add_circle_outline</mat-icon>
+    <span>Registrar Simulacro</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuTipoSugerencia="matMenu">
-  <button mat-menu-item routerLink="/Sugerencias/ListarSugerencias">Listar</button>
-  <button mat-menu-item routerLink="/Sugerencias/RegistrarSugerencias">Registrar</button>
+  <button mat-menu-item routerLink="/Sugerencias/ListarSugerencias">
+    <mat-icon>list</mat-icon>
+    <span>Listar Sugerencias</span>
+  </button>
+  <button mat-menu-item routerLink="/Sugerencias/RegistrarSugerencias">
+    <mat-icon>lightbulb_outline</mat-icon>
+    <span>Registrar Sugerencia</span>
+  </button>
 </mat-menu>
