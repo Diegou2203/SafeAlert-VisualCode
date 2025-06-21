@@ -40,7 +40,7 @@
             <ng-container matColumnDef="c6">
                 <th mat-header-cell *matHeaderCellDef> Actualizar </th>
                 <td mat-cell *matCellDef="let element">
-                  <button matButton [routerLink]="['/Respuestas/EdicionesRespuestas', element.idRespuesta]">
+                  <button mat-button  [routerLink]="['/Respuestas/EdicionesRespuestas', element.idRespuesta]">
                   <mat-icon>edit</mat-icon>
                 </button>
                 </td>
@@ -49,7 +49,7 @@
             <ng-container matColumnDef="c7">
               <th mat-header-cell *matHeaderCellDef> Eliminar </th>
               <td mat-cell *matCellDef="let element">
-                <button matButton 
+                <button mat-button  
                 (click)="eliminar(element.idRespuesta)"
                 >
                 <mat-icon>delete</mat-icon>
