@@ -35,6 +35,27 @@ export class InsertareditartipofenomenoComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
 
+  tipos: { value: string; viewValue: string }[] = [
+    { value: "Inundación", viewValue: "Inundación" },
+    { value: "Deslizamiento", viewValue: "Deslizamiento" },
+    { value: "Granizada", viewValue: "Granizada" },    
+    { value: "Incendio forestal", viewValue: "Incendio forestal" },  
+    { value: "Sequía", viewValue: "Sequía" },   
+    { value: "Terremotos", viewValue: "Terremotos" },   
+    { value: "Erupciones volcánicas", viewValue: "Deslizamiento" },   
+    { value: "Tsunamis", viewValue: "Tsunamis" },   
+    { value: "Fallas geológicas", viewValue: "Fallas geológicas" },
+    { value: "Tormentas eléctricas", viewValue: "Tormentas eléctricas" },   
+    { value: "Huracanes", viewValue: "Huracanes" },   
+    { value: "Olas de frío", viewValue: "Olas de frío" },   
+    { value: "Olas de calor", viewValue: "Olas de calor" },  
+    { value: "Erosión fluvial", viewValue: "Erosión fluvial" },   
+    { value: "Plagas naturales", viewValue: "Plagas naturales" },  
+    { value: "Proliferación de bacterias", viewValue: "Proliferación de bacterias" },  
+    { value: "Impacto de meteoritos", viewValue: "Impacto de meteoritos" },  
+    { value: "Nevadas", viewValue: "Nevadas" },  
+    { value: "Avalanchas de lodo", viewValue: "Avalanchas de lodo" } 
+  ]
   constructor(
     private tifemS: TipoFenomenoService,
     private router: Router,
@@ -52,8 +73,8 @@ export class InsertareditartipofenomenoComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       tipofenomenocodigo: [''],
-      tipofenomenonombre: ['', Validators.required],
-      tipofenomenodescripcion: ['', Validators.required],
+      tipofenomenonombre: ['', [Validators.required, Validators.maxLength(50)]],
+      tipofenomenodescripcion: ['', [Validators.required, Validators.maxLength(200)]],
       tipofenomenofemnatural: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }

@@ -52,10 +52,10 @@ export class InsertareditarsimulacroComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       simulacrocodigo: [''],
-      simulacrotitulo: ['', Validators.required],
+      simulacrotitulo: ['', [Validators.required, Validators.maxLength(20)]],
       simulacrofecha: ['', Validators.required],
       simulacroduracion: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      simulacrotipo: ['', Validators.required],
+      simulacrotipo: ['', [Validators.required, Validators.maxLength(50)]],
       simulacroubicacion: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }

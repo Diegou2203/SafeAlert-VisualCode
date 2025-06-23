@@ -19,6 +19,9 @@
                 <mat-error *ngIf="form.get('recursotipo')?.hasError('required')">
                     El tipo del recurso informativo es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('recursotipo')?.hasError('maxlength')">
+                    Maximo 20 caracteres
+                </mat-error> 
             </mat-form-field>
 
               <!-- titulo -->
@@ -28,6 +31,9 @@
                 <mat-error *ngIf="form.get('recursotitulo')?.hasError('required')">
                     El titulo del recurso informativo es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('recursotitulo')?.hasError('maxlength')">
+                    Maximo 35 caracteres
+                </mat-error> 
             </mat-form-field>
 
               <!-- descrip -->
@@ -37,6 +43,9 @@
                 <mat-error *ngIf="form.get('recursodescripcion')?.hasError('required')">
                     La Descripción del recurso informativo es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('recursodescripcion')?.hasError('maxlength')">
+                    Maximo 200 caracteres
+                </mat-error> 
             </mat-form-field>
 
               <!-- url -->
@@ -45,6 +54,9 @@
                 <input matInput formControlName="recursourl" required>
                 <mat-error *ngIf="form.get('recursourl')?.hasError('required')">
                     La Url del recurso informativo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('recursourl')?.hasError('maxlength')">
+                    Maximo 70 caracteres
                 </mat-error>
             </mat-form-field>
 

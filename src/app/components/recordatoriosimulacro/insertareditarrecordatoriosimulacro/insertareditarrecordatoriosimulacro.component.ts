@@ -53,8 +53,8 @@ export class InsertareditarrecordatoriosimulacroComponent implements OnInit {
     this.form = this.formBuilder.group({
       recordatoriocodigo: [''],
       recordatoriofecha: ['', Validators.required],
-      recordatoriometodoenvio: ['', Validators.required],
-      recordatorioestado: ['', Validators.required],
+      recordatoriometodoenvio: ['', [Validators.required, Validators.maxLength(40)]],
+      recordatorioestado: ['', [Validators.required, Validators.maxLength(30)]],
       recordatoriosimulacro: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }

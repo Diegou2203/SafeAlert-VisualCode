@@ -19,6 +19,9 @@
                 <mat-error *ngIf="form.get('simulacrotitulo')?.hasError('required')">
                     El titulo del simulacro es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('simulacrotitulo')?.hasError('maxlength')">
+                    Maximo 20 caracteres
+                </mat-error> 
             </mat-form-field>
 
             <!-- Fecha de simula -->
@@ -52,6 +55,9 @@
                 <mat-error *ngIf="form.get('simulacrotipo')?.hasError('required')">
                     El Tipo del simulacro es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('simulacrotipo')?.hasError('maxlength')">
+                    Maximo 50 caracteres
+                </mat-error> 
             </mat-form-field>
 
             <!-- id ubi -->

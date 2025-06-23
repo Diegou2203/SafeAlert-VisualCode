@@ -52,8 +52,8 @@ export class InsertareditarnotificacionComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       notificacioncodigo: [''],
-      notificaciontitulo: ['', Validators.required],
-      notificacionresumen: ['', Validators.required],
+      notificaciontitulo: ['',  [Validators.required, Validators.maxLength(200)]],
+      notificacionresumen: ['',  [Validators.required, Validators.maxLength(150)]],
       notificacionfechaemision: ['', Validators.required],
       notificacionfechaexpiracion: ['', Validators.required],
       notificacionrevisada: ['', Validators.required],
