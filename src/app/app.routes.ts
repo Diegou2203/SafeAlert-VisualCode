@@ -180,6 +180,10 @@ export const routes: Routes = [
         path: 'EdicionesFenomenos/:id',
         component: InsertareditarfenomenonaturalComponent,
       },
+        { 
+    path: 'vermapa/:lat/:lon', 
+    component: VermapaComponent 
+  },
     ],
   },
   {
