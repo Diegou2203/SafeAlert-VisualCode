@@ -16,6 +16,14 @@ export class UbicacionService {
     return this.http.get<Ubicacion[]>(this.url + '/list');
   }
 
+  insert(u:Ubicacion){
+    return this.http.post(this.url + '/insert', u);
+  }
+    
+  listId(id: number) {
+    return this.http.get<Ubicacion>(`${this.url + '/list'}/${id}`)
+  }
+
   getList() {
     return this.listaCambio.asObservable();
   }
@@ -25,6 +33,16 @@ export class UbicacionService {
   }
   
   deleteUb(id: number) {
-    return this.http.delete(`${this.url + '/delete'}${id}`)
+    return this.http.delete(`${this.url + '/delete'}/${id}`)
   }
+
+    update(u: Ubicacion) {
+      return this.http.put(this.url + '/modify', u)
+    }
+
+  
+    listUsuarioPorZonaAltoRiesgo(){
+      return this.http.get<Ubicacion[]>(this.url+'/list/ListaUsuariosPorZonasAltoRiesgo')
+    }
+  
 }

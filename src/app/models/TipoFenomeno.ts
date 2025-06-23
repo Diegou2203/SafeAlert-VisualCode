@@ -1,7 +1,8 @@
-import { FenomenoNatural } from './FenomenoNatural';
+import { FenomenoNatural } from "./FenomenoNatural";
+
 export class TipoFenomeno {
   idTipoFenomeno: number = 0;
   nombre_tipo: string = '';
   descripcion: string = '';
-  fenomenoNatural: FenomenoNatural[] = [];
+  fenomenoNatural: FenomenoNatural = new FenomenoNatural();
 }

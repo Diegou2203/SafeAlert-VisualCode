@@ -16,26 +16,37 @@ export class FenomenoNaturalService {
   list() {
     return this.http.get<FenomenoNatural[]>(this.url + '/list');
   }
-  insert(feno:FenomenoNatural){
-        return this.http.post(this.url + '/insert', feno);
+
+  insert(fena:FenomenoNatural){
+        return this.http.post(this.url + '/insert', fena);
       }
 
   getList() {
     return this.listaCambio.asObservable();
   }
 
-
   setList(listaNueva: FenomenoNatural[]) {
     this.listaCambio.next(listaNueva);
   }
-   listId(id: number) {
-          return this.http.get<FenomenoNatural>(`${this.url + '/list'}/${id}`)
+
+
+  //enlistar id fenomeno natural
+    listId(id: number) {
+      return this.http.get<FenomenoNatural>(`${this.url + '/list'}/${id}`)
     }
-    update(feno:FenomenoNatural) {
-          return this.http.put(this.url + '/modify', feno)
+    update(fena: FenomenoNatural) {
+      return this.http.put(this.url + '/modify', fena)
     }
 
-  deleteNotificacion(id: number) {
-    return this.http.delete(`${this.url + '/delete'}${id}`);
-  }
+    //delete un fenomeno natural
+    deleteFenomeno(id: number) {
+    return this.http.delete(`${this.url + '/delete'}/${id}`);
+    }
+    listarcantidadFenomeno(){
+        return this.http.get<FenomenoNatural[]>(this.url+'/list/CantidadFenomenosNaturalesPorUbicacion')
+      }
+       listarintensidadFenomeno(){
+        return this.http.get<FenomenoNatural[]>(this.url+'/list/HistoricoPorIntensidad')
+      }
 }
+  

@@ -7,5 +7,5 @@ export class notificacionalerta {
   fecha_emision: Date = new Date();
   fecha_expiracion: Date = new Date();
   notificacion_revisada:boolean = false;
-  usuario: Usuario =new Usuario() ;
+  usuario: Usuario = new Usuario();
 }

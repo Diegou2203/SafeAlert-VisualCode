@@ -1,0 +1,77 @@
+<div class="register-container">
+    <div class="register-header">
+        <h1>Registro de Fenomeno Natural</h1>
+    </div>
+    <div class="register-form-wrapper">
+        <form [formGroup]="form" (submit)="aceptar()" class="elegant-form">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="fenacodigo"/>
+                <mat-error *ngIf="form.get('fenacodigo')?.hasError('required')">
+                    El ID es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Nombre de fenomeno natural -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Nombre del Fenomeno</mat-label>
+                <input matInput formControlName="fenanombre" required>
+                <mat-error *ngIf="form.get('fenanombre')?.hasError('required')">
+                    El nombre del fenomeno natural es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('fenanombre')?.hasError('maxlength')">
+                    Maximo 30 caracteres
+                </mat-error> 
+            </mat-form-field>
+
+            <!-- intesidad fenomeno natural -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Intensidad</mat-label>
+                <input matInput formControlName="fenaintesidad" required>
+                <mat-error *ngIf="form.get('fenaintesidad')?.hasError('required')">
+                    El nombre del fenomeno natural es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('fenaintesidad')?.hasError('maxlength')">
+                    Maximo 10 caracteres
+                </mat-error> 
+            </mat-form-field>
+
+            <!-- Fecha de registro -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Fecha del fenomeno natural</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fenafechafenomeno" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('fenafechafenomeno')?.hasError('required')">
+                    La fecha es obligatoria
+                </mat-error>
+            </mat-form-field>
+
+              <div class="radio-group-container">
+                <label class="radio-group-label">Estado</label>
+                <mat-radio-group formControlName="fenaactivo" class="elegant-radio-group">
+                    <mat-radio-button [value]="true" class="elegant-radio-button">Activo</mat-radio-button>
+                    <mat-radio-button [value]="false" class="elegant-radio-button">Inactivo</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <!-- id ubicacion -->
+            <mat-form-field appearance="outline" class="full-width-field">
+                <mat-label>Brinda el ID de la ubicacion</mat-label>
+                <input matInput formControlName="fenaubicacion" required>
+                <mat-error *ngIf="form.get('fenaubicacion')?.hasError('required')">
+                    El ID de la ubicacion es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('fenaubicacion')?.hasError('pattern')">
+                    Ingrese solo números
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" class="submit-button" [disabled]="form.invalid">
+                Registrar
+            </button>
+        </form>
+    </div>
+</div>
+

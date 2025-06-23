@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
-import { Usuario } from '../models/usuario';
 import { Comentario } from '../models/comentarioconsulta';
 import { Subject } from 'rxjs';
 const base_url=environment.base
@@ -27,8 +26,26 @@ export class ComentarioService {
   setList(listaNueva: Comentario[]) {
     this.listaCambio.next(listaNueva);
   }
-      
-  deleteNotificacion(id: number) {
-    return this.http.delete(`${this.url+ '/delete'}${id}`)
+
+  update(u: Comentario) {
+        return this.http.put(this.url + '/modify', u)
+  }      
+  deleteComentario(id: number) {
+    return this.http.delete(`${this.url+ '/delete'}/${id}`)
   }  
+
+  insert(u:Comentario){
+    return this.http.post(this.url + '/insert', u);
+  }
+
+  listId(id: number) {
+    return this.http.get<Comentario>(`${this.url + '/list'}/${id}`)
+  }
+   lisCantidadrespuestaComentario(){
+        return this.http.get<Comentario[]>(this.url+'/list/CantidadRespuestasPorComentario')
+      }
+    searchType(tema:string){
+    const params={tema:tema}
+    return this.http.get<Comentario[]>(`${this.url}/list/ComentarioPorTema`,{params})
+  }
 }

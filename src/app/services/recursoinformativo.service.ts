@@ -15,23 +15,32 @@ export class RecursoinformativoService {
   list(){
     return this.http.get<RecursoInformativo[]>(this.url+'/list')
   }
+
+  insert(recur:RecursoInformativo){
+        return this.http.post(this.url + '/insert', recur);
+      }
+
   getList() {
     return this.listaCambio.asObservable();
   }
-   insert(recu:RecursoInformativo){
-           return this.http.post(this.url + '/insert', recu);
-         }     
+        
   setList(listaNueva: RecursoInformativo[]) {
     this.listaCambio.next(listaNueva);
   }
-  listId(id: number) {
-            return this.http.get<RecursoInformativo>(`${this.url + '/list'}/${id}`)
-      }
-      update(recu:RecursoInformativo) {
-            return this.http.put(this.url + '/modify', recu)
-      }
       
+  //enlistar id   
+    listId(id: number) {
+          return this.http.get<RecursoInformativo>(`${this.url + '/list'}/${id}`)
+    }
+    update(recur: RecursoInformativo) {
+          return this.http.put(this.url + '/modify', recur)
+    }
+  
+
   deleteRecursoInformativo(id: number) {
-    return this.http.delete(`${this.url + '/delete' }${id}`)
-  }    
+    return this.http.delete(`${this.url + '/delete' }/${id}`)
+  }
+   listarcantidadRecurso(){
+          return this.http.get<RecursoInformativo[]>(this.url+'/list/CantidadRecursosPorUsuario')
+        } 
 }

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { Safealert } from './components/safealert/safealert.component';
+import { RouterOutlet } from '@angular/router';
+import { MenuComponent } from './components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
-  imports: [Safealert],
+  standalone: true,
+  imports: [MenuComponent, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'SafeAlertFront';

@@ -17,6 +17,10 @@ export class SimulacroService {
     return this.http.get<Simulacro[]>(this.url + '/list');
   }
 
+  insert(sim:Simulacro){
+        return this.http.post(this.url + '/insert', sim);
+      }
+
   getList() {
     return this.listaCambio.asObservable();
   }
@@ -25,7 +29,16 @@ export class SimulacroService {
     this.listaCambio.next(listaNueva);
   }
     
+   //enlistar id   
+    listId(id: number) {
+          return this.http.get<Simulacro>(`${this.url + '/list'}/${id}`)
+    }
+    update(sim: Simulacro) {
+          return this.http.put(this.url + '/modify', sim)
+    }
+  
+
   deleteSimulacro(id: number) {
-    return this.http.delete(`${this.url + '/delete'}${id}`)
+    return this.http.delete(`${this.url + '/delete'}/${id}`)
   }  
 }
