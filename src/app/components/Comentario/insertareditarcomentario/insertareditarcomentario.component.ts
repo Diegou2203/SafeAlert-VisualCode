@@ -30,8 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
 export class InsertareditarcomentarioComponent {
   form: FormGroup = new FormGroup({});
   aplicacion: Comentario= new Comentario();
-  estado: boolean = true;
-
+  estados:string[]= ['Revisado', 'No revisado'];
+  temas: string[] = ['Salud', 'Educación', 'Tecnología', 'Economía']; //
   id: number = 0
   edicion: boolean = false;
 

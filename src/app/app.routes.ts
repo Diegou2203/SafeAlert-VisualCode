@@ -38,6 +38,13 @@ import { ListarsugerenciaComponent } from './components/sugerencia/listarsugeren
 import { InsertareditarsugerenciaComponent } from './components/sugerencia/insertareditarsugerencia/insertareditarsugerencia.component';
 import { ListarUsuarioPorZonaRiesgoComponent } from './components/ubicacion/listar-usuario-por-zona-riesgo/listar-usuario-por-zona-riesgo.component';
 import { ListarCantidadNotificacionRevisadaPorUsuarioComponent } from './components/notificacionalerta/listar-cantidad-notificacion-revisada-por-usuario/listar-cantidad-notificacion-revisada-por-usuario.component';
+import { BuscarTemaComponent } from './components/Comentario/buscar-tema/buscar-tema.component';
+import { CantidadRespuestaComentarioComponent } from './components/Comentario/cantidad-respuesta-comentario/cantidad-respuesta-comentario.component';
+import { FenomenoIntensidadComponent } from './components/fenomenonatural/fenomeno-intensidad/fenomeno-intensidad.component';
+import { CantidadfenomenoComponent } from './components/fenomenonatural/cantidadfenomeno/cantidadfenomeno.component';
+import { CantidadRecursoUsuarioComponent } from './components/recursoinformativo/cantidad-recurso-usuario/cantidad-recurso-usuario.component';
+import { CantidadrespuestaPorUsuarioComponent } from './components/respuesta/cantidadrespuesta-por-usuario/cantidadrespuesta-por-usuario.component';
+import { BuscarPorTituloComponent } from './components/respuesta/buscar-por-titulo/buscar-por-titulo.component';
 
 export const routes: Routes = [
   {
@@ -125,6 +132,14 @@ export const routes: Routes = [
         path: 'EdicionesComentarios/:id',
         component: InsertareditarcomentarioComponent,
       },
+      {
+        path: 'ListarCantidadRespuestaPorComentario',
+        component: CantidadRespuestaComentarioComponent,
+      },
+      {
+        path: 'BuscarTema',
+        component: BuscarTemaComponent,
+      },
     ],
   },
 
@@ -144,6 +159,14 @@ export const routes: Routes = [
         path: 'EdicionesRespuestas/:id',
         component: InsertareditarrespuestaComponent,
       },
+      {
+        path: 'Cantidadrespuestaporusuario',
+        component: CantidadrespuestaPorUsuarioComponent,
+      },
+      {
+        path: 'BuscarPorTitulo',
+        component: BuscarPorTituloComponent,
+      },
     ],
   },
    {
@@ -162,6 +185,11 @@ export const routes: Routes = [
         path: 'EdicionesRecursos/:id',
         component: IsertareditarrecursoinformativoComponent,
       },
+      {
+        path: 'CantidadrecursoPorUsuario',
+        component: CantidadRecursoUsuarioComponent,
+      },
+
     ],
   },
   {
@@ -179,6 +207,14 @@ export const routes: Routes = [
       {
         path: 'EdicionesFenomenos/:id',
         component: InsertareditarfenomenonaturalComponent,
+      },
+       {
+        path: 'CantidadFenomeno',
+        component: CantidadfenomenoComponent,
+      },
+       {
+        path: 'Cantidadporintensidad',
+        component: FenomenoIntensidadComponent,
       },
         { 
     path: 'vermapa/:lat/:lon', 

@@ -198,6 +198,14 @@
     <mat-icon>add_comment</mat-icon>
     <span>Registrar Comentario</span>
   </button>
+   <button mat-menu-item routerLink="/Comentarios/ListarCantidadRespuestaPorComentario">
+    <mat-icon>list</mat-icon>
+    <span> Cantidad de Respuestas Por Comentario </span>
+  </button>
+  <button mat-menu-item routerLink="/Comentarios/BuscarTema">
+    <mat-icon>list</mat-icon>
+    <span> Buscar Comentarios Por Tema</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuRespuesta="matMenu">
@@ -208,6 +216,14 @@
   <button mat-menu-item routerLink="/Respuestas/RegistrarRespuestas">
     <mat-icon>reply</mat-icon>
     <span>Registrar Respuesta</span>
+  </button>
+   <button mat-menu-item routerLink="/Respuestas/Cantidadrespuestaporusuario">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad de Respuesta por usuario</span>
+  </button>
+   <button mat-menu-item routerLink="/Respuestas/BuscarPorTitulo">
+    <mat-icon>list</mat-icon>
+    <span>Buscar por titulo</span>
   </button>
 </mat-menu>
 
@@ -220,6 +236,10 @@
     <mat-icon>post_add</mat-icon>
     <span>Registrar Recurso</span>
   </button>
+   <button mat-menu-item routerLink="/Recursos/CantidadrecursoPorUsuario">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad Recurso por usuario</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuFenomeno="matMenu">
@@ -230,6 +250,14 @@
   <button mat-menu-item routerLink="/Fenomenos/RegistrarFenomenos">
     <mat-icon>nature_people</mat-icon>
     <span>Registrar Fenómeno</span>
+  </button>
+   <button mat-menu-item routerLink="/Fenomenos/CantidadFenomeno">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad Fenómeno por ciudad</span>
+  </button>
+  <button mat-menu-item routerLink="/Fenomenos/Cantidadporintensidad">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad Fenómeno por Intensidad</span>
   </button>
 </mat-menu>
 

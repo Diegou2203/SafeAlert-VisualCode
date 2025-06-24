@@ -42,4 +42,11 @@ export class RespuestaService {
     listId(id: number) {
       return this.http.get<Respuesta>(`${this.url + '/list'}/${id}`)
     }
+    lisCantidadrespuestaUsuario(){
+      return this.http.get<Respuesta[]>(this.url+'/list/CantidadRespuestasPorUsuario')
+    }
+    buscartipo(tema:string){
+      const params={t:tema}
+      return this.http.get<Respuesta[]>(`${this.url}/list/BusquedasPorTitulo`,{params})
+    }
 }
