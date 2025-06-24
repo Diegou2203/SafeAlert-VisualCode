@@ -46,12 +46,17 @@ import { CantidadRecursoUsuarioComponent } from './components/recursoinformativo
 import { CantidadrespuestaPorUsuarioComponent } from './components/respuesta/cantidadrespuesta-por-usuario/cantidadrespuesta-por-usuario.component';
 import { BuscarPorTituloComponent } from './components/respuesta/buscar-por-titulo/buscar-por-titulo.component';
 
+import { LandingComponent } from './components/landing/landing.component';
+
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'usuarios',
+    redirectTo: 'lanpage',
     pathMatch: 'full',
   },
+  { path: "lanpage",
+    component: LandingComponent,},
+   
   {
     path: 'usuarios',
     component: UsuarioComponent,
