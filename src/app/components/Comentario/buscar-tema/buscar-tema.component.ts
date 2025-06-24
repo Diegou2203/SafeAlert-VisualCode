@@ -34,7 +34,18 @@ export class BuscarTemaComponent implements OnInit{
   notResults:boolean=false
   
   form:FormGroup
-  temas: string[] = ['Salud', 'Educación', 'Tecnología', 'Economía']; //
+  temas: string[] = ['Facilidad de uso e interfaz intuitiva', 
+    'Estabilidad de la app', 
+    'Velocidad de carga ', 
+    'Rapidez para recibir alertas',
+    'Utilidad general de la aplicacion',
+    'Diseño visual y apariencia de la interfaz',
+    'Estabilidad',
+    'Rendimiento técnico',
+    'Calidad del contenido',
+    'Nivel de confianza',
+    'Soporte técnico y atención al usuario'
+  ]; //
 
   constructor(private cS: ComentarioService, private fb:FormBuilder) { 
     this.form=fb.group({

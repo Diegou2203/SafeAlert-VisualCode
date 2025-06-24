@@ -31,7 +31,18 @@ export class InsertareditarcomentarioComponent {
   form: FormGroup = new FormGroup({});
   aplicacion: Comentario= new Comentario();
   estados:string[]= ['Revisado', 'No revisado'];
-  temas: string[] = ['Salud', 'Educación', 'Tecnología', 'Economía']; //
+  temas: string[] = ['Facilidad de uso e interfaz intuitiva', 
+    'Estabilidad de la app', 
+    'Velocidad de carga ', 
+    'Rapidez para recibir alertas',
+    'Utilidad general de la aplicacion',
+    'Diseño visual y apariencia de la interfaz',
+    'Estabilidad',
+    'Rendimiento técnico',
+    'Calidad del contenido',
+    'Nivel de confianza',
+    'Soporte técnico y atención al usuario'
+  ]; //
   id: number = 0
   edicion: boolean = false;
 
