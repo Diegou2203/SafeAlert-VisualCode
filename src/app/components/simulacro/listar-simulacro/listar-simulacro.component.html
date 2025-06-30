@@ -1,74 +1,26 @@
 <div>
-    <div>
-        <h1>Lista de Simulacros</h1>
-    </div>
-    
-    <div>
-        <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+  <h1>Lista de Simulacros</h1>
 
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
-            <!-- id Column -->
-            <ng-container matColumnDef="c1">
-              <th mat-header-cell *matHeaderCellDef> Id Simulacro</th>
-              <td mat-cell *matCellDef="let element"> {{element.idSimulacro}} </td>
-            </ng-container>
-          
-             <!-- title Column -->
-            <ng-container matColumnDef="c2">
-              <th mat-header-cell *matHeaderCellDef> Titulo</th>
-              <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
-            </ng-container>
+  <div class="cards">
+    <mat-card *ngFor="let element of datasource" class="notification-card mat-elevation-z4">
+      <mat-card-title>Simulacro #{{ element.idSimulacro }}</mat-card-title>
 
-            <!-- date Column -->
-            <ng-container matColumnDef="c3">
-              <th mat-header-cell *matHeaderCellDef> Fecha simulacro </th>
-              <td mat-cell *matCellDef="let element"> {{element.fecha_simulacro}} </td>
-            </ng-container>
-          
-            <!-- duration Column -->
-            <ng-container matColumnDef="c4">
-              <th mat-header-cell *matHeaderCellDef> Duración minutos</th>
-              <td mat-cell *matCellDef="let element"> {{element.duracion_minutos}} </td>
-            </ng-container>
-          
-            <!-- type Column -->
-            <ng-container matColumnDef="c5">
-              <th mat-header-cell *matHeaderCellDef> Tipo </th>
-              <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
-            </ng-container>
+      <mat-card-content>
+        <p><strong>Título:</strong> {{ element.titulo }}</p>
+        <p><strong>Fecha simulacro:</strong> {{ element.fecha_simulacro }}</p>
+        <p><strong>Duración (minutos):</strong> {{ element.duracion_minutos }}</p>
+        <p><strong>Tipo:</strong> {{ element.tipo }}</p>
+        <p><strong>Id Ubicación:</strong> {{ element.ubicacion.idUbicacion }}</p>
+      </mat-card-content>
 
-            <!-- idubicacion Column -->
-            <ng-container matColumnDef="c6">
-              <th mat-header-cell *matHeaderCellDef> Id ubicación </th>
-              <td mat-cell *matCellDef="let element"> {{element.ubicacion.idUbicacion}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="c7">
-                <th mat-header-cell *matHeaderCellDef> Actualizar </th>
-                <td mat-cell *matCellDef="let element">
-                  <button mat-button  [routerLink]="['/Simulacros/EdicionesSimulacros',element.idSimulacro]">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                </td>
-              </ng-container>
-
-            <ng-container matColumnDef="c8">
-              <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-button  
-                (click)="eliminar(element.idSimulacro)"
-                >
-                <mat-icon>delete</mat-icon>
-              </button>
-              </td>
-            </ng-container>
-
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-          
-    </div>
+      <mat-card-actions>
+        <button mat-icon-button color="primary" [routerLink]="['/Simulacros/EdicionesSimulacros', element.idSimulacro]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="eliminar(element.idSimulacro)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

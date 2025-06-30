@@ -6,17 +6,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 
 @Component({
   selector: 'app-listar-tipo-fenomeno',
-  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule],
+  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule],
   templateUrl: './listar-tipo-fenomeno.component.html',
   styleUrl: './listar-tipo-fenomeno.component.css'
 })
 export class ListarTipoFenomenoComponent implements OnInit {
 
-  datasource: MatTableDataSource<TipoFenomeno>=new MatTableDataSource()
+  datasource: TipoFenomeno[]=[]
   displayedColumns:string[]=['c1','c2','c3','c4', 'c5', 'c6'];
 
     constructor(private tfS:TipoFenomenoService){
@@ -25,11 +26,11 @@ export class ListarTipoFenomenoComponent implements OnInit {
 
     ngOnInit(): void {
     this.tfS.list().subscribe(data=>{
-      this.datasource = new MatTableDataSource(data)
+      this.datasource = data
     })
 
     this.tfS.getList().subscribe(data => {
-      this.datasource = new MatTableDataSource(data)
+      this.datasource = data
     })
   }
 

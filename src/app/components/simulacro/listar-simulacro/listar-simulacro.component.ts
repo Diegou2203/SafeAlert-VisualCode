@@ -6,18 +6,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 
 
 @Component({
   selector: 'app-listar-simulacro',
-  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule],
+  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule],
   templateUrl: './listar-simulacro.component.html',
   styleUrl: './listar-simulacro.component.css'
 })
 export class ListarSimulacroComponent implements OnInit {
 
-  datasource: MatTableDataSource<Simulacro>=new MatTableDataSource()
+  datasource: Simulacro[]=[]
   displayedColumns:string[]=['c1','c2','c3','c4','c5', 'c6', 'c7', 'c8'];
 
     constructor(private smS:SimulacroService){
@@ -26,11 +27,11 @@ export class ListarSimulacroComponent implements OnInit {
 
     ngOnInit(): void {
     this.smS.list().subscribe(data=>{
-      this.datasource = new MatTableDataSource(data)
+      this.datasource = data
     })
 
     this.smS.getList().subscribe(data => {
-      this.datasource = new MatTableDataSource(data)
+      this.datasource = data
     })
   }
 

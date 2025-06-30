@@ -6,16 +6,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 
 @Component({
   selector: 'app-listarrecordatoriosimulacro',
-  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule],
+  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule],
   templateUrl: './listarrecordatoriosimulacro.component.html',
   styleUrl: './listarrecordatoriosimulacro.component.css'
 })
 export class ListarrecordatoriosimulacroComponent implements OnInit {
-  datasource: MatTableDataSource<recordatoriosimulacro>=new MatTableDataSource()
+  datasource: recordatoriosimulacro[]=[]
     displayedColumns:string[]=['c1','c2','c3','c4','c5', 'c6', 'c7'];
     constructor(private rsS:RecordatoriosimulacroService){
       
@@ -23,10 +24,10 @@ export class ListarrecordatoriosimulacroComponent implements OnInit {
   
     ngOnInit(): void {
       this.rsS.list().subscribe(data=>{
-        this.datasource = new MatTableDataSource<recordatoriosimulacro>(data)
+        this.datasource = data
       })
       this.rsS.getList().subscribe(data => {
-        this.datasource = new MatTableDataSource(data)
+        this.datasource = data
       })  
     }
 

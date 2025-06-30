@@ -6,15 +6,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listarrecursoinformativo',
-  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule],
+  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule],
   templateUrl: './listarrecursoinformativo.component.html',
   styleUrl: './listarrecursoinformativo.component.css',
 })
 export class ListarrecursoinformativoComponent implements OnInit {
-  datasource: MatTableDataSource<RecursoInformativo> = new MatTableDataSource();
+  datasource: RecursoInformativo[]=[];
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -30,10 +31,10 @@ export class ListarrecursoinformativoComponent implements OnInit {
 
   ngOnInit(): void {
     this.recuS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data);
+      this.datasource = data;
     });
     this.recuS.getList().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data);
+      this.datasource = data;
     });
   }
   eliminar(id: number) {
