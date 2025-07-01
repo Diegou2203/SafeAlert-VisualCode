@@ -1,10 +1,19 @@
-<div>
+<div class="notification-container">
   <h1>Lista de Sugerencia</h1>
 
   <div class="cards">
-    <mat-card *ngFor="let element of datasource" class="notification-card mat-elevation-z4">
-      <mat-card-title>Sugerencia #{{ element.idSugerenciaPreventiva }}</mat-card-title>
+    <mat-card *ngFor="let element of datasource.data.slice(
+        ((paginator?.pageIndex ?? 0) * (paginator?.pageSize ?? 5)),
+        (((paginator?.pageIndex ?? 0) + 1) * (paginator?.pageSize ?? 5)))"
+        class="notification-card mat-elevation-z4">
+        
+      <mat-card-title-group>
+        <mat-card-title>Sugerencia #{{ element.idSugerenciaPreventiva }}</mat-card-title>
+        <mat-icon class="editar">lightbulb</mat-icon>
+      </mat-card-title-group>
+
       <mat-card-subtitle>{{ element.fecha_sugerencia }}</mat-card-subtitle>
+
 
       <mat-card-content>
         <p><strong>Área:</strong> {{ element.area }}</p>
@@ -13,8 +22,7 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-icon-button color="primary"
-          [routerLink]="['/Sugerencias/EdicionesSugerencias', element.idSugerenciaPreventiva]">
+        <button mat-icon-button [routerLink]="['/Sugerencias/EdicionesSugerencias', element.idSugerenciaPreventiva]">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" (click)="eliminar(element.idSugerenciaPreventiva)">
@@ -23,4 +31,14 @@
       </mat-card-actions>
     </mat-card>
   </div>
+  <!-- Paginador fuera del contenedor de cards -->
+  <div class="pagination-wrapper">
+    <mat-paginator [length]="datasource.data.length"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Selecciona página de notificaciones">
+    </mat-paginator>
+  </div>
+
 </div>

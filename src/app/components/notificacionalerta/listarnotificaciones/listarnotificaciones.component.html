@@ -1,32 +1,45 @@
-<div>
-    <div>
-        <h1>Lista de Notificaciones de alertas</h1>
-    </div>
-    
-    <div class="cards">
-      <mat-card *ngFor="let element of datasource.data" class="notification-card">
-        <mat-card-header>
-          <mat-card-title>{{ element.titulo }}</mat-card-title>
-          <mat-card-subtitle>Id: {{ element.idNotificacionAlerta }}</mat-card-subtitle>
-        </mat-card-header>
-
-        <mat-card-content>
-          <p><strong>Resumen:</strong> {{ element.resumen }}</p>
-          <p><strong>Fecha de emisión:</strong> {{ element.fecha_emision }}</p>
-          <p><strong>Fecha de expiración:</strong> {{ element.fecha_expiracion }}</p>
-          <p><strong>Revisada:</strong> {{ element.notificacion_revisada ? 'Sí' : 'No' }}</p>
-          <p><strong>Nombre del Usuario:</strong> {{ element.usuario.username }}</p>
-        </mat-card-content>
-
-        <mat-card-actions>
-          <button mat-button [routerLink]="['/Notificaciones/EdicionesNotificaciones', element.idNotificacionAlerta]">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-button (click)="eliminar(element.idNotificacionAlerta)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-          
-    </div>
+<div class="notification-container">
+  <h1>Lista de Notificaciones de alertas</h1>
+  
+  <div class="cards">
+    <mat-card *ngFor="let element of datasource.data.slice(
+        ((paginator?.pageIndex ?? 0) * (paginator?.pageSize ?? 5)),
+        (((paginator?.pageIndex ?? 0) + 1) * (paginator?.pageSize ?? 5)))"
+        class="notification-card mat-elevation-z4">
+      
+      <mat-card-title-group>
+        <mat-card-title>{{ element.titulo }}</mat-card-title>
+        <mat-icon class="editar">notifications</mat-icon>
+      </mat-card-title-group>
+      
+      <mat-card-subtitle>Id: {{ element.idNotificacionAlerta }}</mat-card-subtitle>
+      
+      <mat-card-content>
+        <p><strong>Resumen:</strong> {{ element.resumen }}</p>
+        <p><strong>Fecha de emisión:</strong> {{ element.fecha_emision | date }}</p>
+        <p><strong>Fecha de expiración:</strong> {{ element.fecha_expiracion | date }}</p>
+        <p><strong>Revisada:</strong> {{ element.notificacion_revisada ? 'Sí' : 'No' }}</p>
+        <p><strong>Nombre del Usuario:</strong> {{ element.usuario.username }}</p>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <button mat-icon-button [routerLink]="['/Notificaciones/EdicionesNotificaciones', element.idNotificacionAlerta]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="eliminar(element.idNotificacionAlerta)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
+  <!-- Paginador fuera del contenedor de cards -->
+  <div class="pagination-wrapper">
+    <mat-paginator [length]="datasource.data.length"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Selecciona página de notificaciones">
+    </mat-paginator>
+  </div>
 </div>

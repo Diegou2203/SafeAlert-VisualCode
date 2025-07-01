@@ -1,9 +1,18 @@
-<div>
+<div class="notification-container">
   <h1>Lista de Respuesta</h1>
 
   <div class="cards">
-    <mat-card *ngFor="let element of datasource" class="notification-card mat-elevation-z4">
-      <mat-card-title>Respuesta #{{ element.idRespuesta }}</mat-card-title>
+    <mat-card *ngFor="let element of datasource.data.slice(
+        ((paginator?.pageIndex ?? 0) * (paginator?.pageSize ?? 5)),
+        (((paginator?.pageIndex ?? 0) + 1) * (paginator?.pageSize ?? 5)))"
+        class="notification-card mat-elevation-z4">
+
+         <mat-card-title-group>
+          <mat-card-title>Respuesta #{{ element.idRespuesta }}</mat-card-title>
+           <mat-icon class="editar">reply</mat-icon>
+         </mat-card-title-group>
+
+
       <mat-card-subtitle>{{ element.fechacreacion }}</mat-card-subtitle>
 
       <mat-card-content>
@@ -12,14 +21,25 @@
         <p><strong>Usuario:</strong> {{ element.usuario.username }}</p>
       </mat-card-content>
 
-      <mat-card-actions>
-        <button mat-button [routerLink]="['/Respuestas/EdicionesRespuestas', element.idRespuesta]">
+        <mat-card-actions>
+        <button mat-icon-button [routerLink]="['/Respuestas/EdicionesRespuestas', element.idRespuesta]">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-button color="warn" (click)="eliminar(element.idRespuesta)">
+        <button mat-icon-button color="warn" (click)="eliminar(element.idRespuesta)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card>
+  </div>
+
+
+   <!-- Paginador fuera del contenedor de cards -->
+  <div class="pagination-wrapper">
+    <mat-paginator [length]="datasource.data.length"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Selecciona página de notificaciones">
+    </mat-paginator>
   </div>
 </div>

@@ -23,7 +23,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 })
 export class ListarFenomenoNaturalComponent implements OnInit {
   datasource: MatTableDataSource<FenomenoNatural> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9'];
+  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'];
 
    @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private fnS: FenomenoNaturalService) {}
