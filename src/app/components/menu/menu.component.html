@@ -12,7 +12,7 @@
   <div class="sidebar-content">
 
         <!-- Sección Inicio -->
-     <div class="menu-section">
+     <div class="menu-section" *ngIf="verificar()">
     <button mat-button class="menu-button" [routerLink]="['/lanpage']">
       <mat-icon>home</mat-icon>
     <span class="menu-label">Inicio</span>
@@ -20,8 +20,8 @@
   </div>
 
 
-    <!-- Sección Usuarios -->
-    <div class="menu-section">
+    <!-- Sección Usuarios  (Ambos roles)-->
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuUsuarios"
               (menuOpened)="onSubmenuOpened()"
@@ -31,8 +31,8 @@
       </button>
     </div>
 
-    <!-- Sección Ubicaciones -->
-    <div class="menu-section">
+    <!-- Sección Ubicaciones  -->
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuUbicaciones"
               (menuOpened)="onSubmenuOpened()"
@@ -42,8 +42,8 @@
       </button>
     </div>
 
-    <!-- Sección Roles -->
-    <div class="menu-section">
+    <!-- Sección Roles  (solo admin)-->
+    <div class="menu-section" *ngIf="isAdmin()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuRoles"
               (menuOpened)="onSubmenuOpened()"
@@ -54,7 +54,7 @@
     </div>
 
     <!-- Sección Comentarios -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuComentarios"
               (menuOpened)="onSubmenuOpened()"
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Sección Respuesta -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuRespuesta"
               (menuOpened)="onSubmenuOpened()"
@@ -76,7 +76,7 @@
     </div>
 
     <!-- Sección Recurso Informativo -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuRecurso"
               (menuOpened)="onSubmenuOpened()"
@@ -87,7 +87,7 @@
     </div>
 
     <!-- Sección Fenomeno Natural -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuFenomeno"
               (menuOpened)="onSubmenuOpened()"
@@ -98,7 +98,7 @@
     </div>
 
     <!-- Sección Tipo Fenomeno Natural -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuTipoFenomeno"
               (menuOpened)="onSubmenuOpened()"
@@ -109,7 +109,7 @@
     </div>
 
     <!-- Sección Notificaciones de alerta -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuNotificacion"
               (menuOpened)="onSubmenuOpened()"
@@ -120,7 +120,7 @@
     </div>
 
     <!-- Sección Recordatorio de simulacro -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuRecordatorio"
               (menuOpened)="onSubmenuOpened()"
@@ -131,7 +131,7 @@
     </div>
 
     <!-- Sección Simulacro -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuSimulacro"
               (menuOpened)="onSubmenuOpened()"
@@ -142,7 +142,7 @@
     </div>
 
     <!-- Sección Sugerencias -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuTipoSugerencia"
               (menuOpened)="onSubmenuOpened()"
@@ -152,7 +152,7 @@
       </button>
     </div>
 
- <div class="menu-section">
+ <div class="menu-section" *ngIf="verificar()">
   <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuSalir"
               (menuOpened)="onSubmenuOpened()"

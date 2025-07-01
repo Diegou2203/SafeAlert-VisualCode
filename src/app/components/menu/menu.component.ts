@@ -121,11 +121,11 @@ export class MenuComponent {
     this.role = this.loginService.showRole();
     return this.loginService.verificar();
   }
-  isDeveloper() {
-    return this.role === 'DEVELOPER';
+  isAdmin() {
+    return this.role === 'ADMIN';
   }
 
-  isTester() {
-    return this.role === 'TESTER';
+  isUsuario() {
+    return this.role === 'USUARIO';
   }
 }
