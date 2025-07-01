@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -106,5 +107,25 @@ export class MenuComponent {
       this.isMouseOverMenu = false;
       this.isMouseOverSubmenu = false;
     }
+  }
+
+
+  role: string = '';
+  constructor(private loginService: LoginService) {}
+  cerrar() {
+    
+    sessionStorage.clear();
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isDeveloper() {
+    return this.role === 'DEVELOPER';
+  }
+
+  isTester() {
+    return this.role === 'TESTER';
   }
 }

@@ -142,7 +142,16 @@
       </button>
     </div>
 
-    <!-- Sección Registro de Usuario -->
+ <div class="menu-section">
+  <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuSalir"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>person</mat-icon>
+        <span class="menu-label">Salir</span>
+      </button>
+ </div>
+    
   </div>
 </div>
 
@@ -316,7 +325,18 @@
     <span >Listar Sugerencias</span>
   </button>
   <button mat-menu-item routerLink="/Sugerencias/RegistrarSugerencias">
-    <mat-icon>lightbulb_outline</mat-icon>
+    <mat-icon>lightbulb_outline</mat-icon>  
     <span >Registrar Sugerencia</span>
+  </button>
+</mat-menu>
+
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol:
+    <span>{{ role }}</span>
   </button>
 </mat-menu>

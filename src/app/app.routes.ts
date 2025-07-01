@@ -47,8 +47,20 @@ import { CantidadrespuestaPorUsuarioComponent } from './components/respuesta/can
 import { BuscarPorTituloComponent } from './components/respuesta/buscar-por-titulo/buscar-por-titulo.component';
 
 import { LandingComponent } from './components/landing/landing.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
 
 export const routes: Routes = [
+
+      {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: '',
     redirectTo: 'lanpage',
@@ -74,6 +86,7 @@ export const routes: Routes = [
         component: Insertareditarusuario,
       },
     ],
+     canActivate: [seguridadGuard],
   },
   {
     path: 'ubicaciones',
@@ -102,6 +115,7 @@ export const routes: Routes = [
   },
 
     ],
+     canActivate: [seguridadGuard],
   },
   {
     path: 'Rol',
@@ -120,6 +134,7 @@ export const routes: Routes = [
         component: InsertareditarrolComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
    {
     path: 'Comentarios',
@@ -146,6 +161,7 @@ export const routes: Routes = [
         component: BuscarTemaComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
 
   {
@@ -173,6 +189,7 @@ export const routes: Routes = [
         component: BuscarPorTituloComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
    {
     path: 'Recursos',
@@ -196,6 +213,7 @@ export const routes: Routes = [
       },
 
     ],
+     canActivate: [seguridadGuard],
   },
   {
     path: 'Fenomenos',
@@ -226,6 +244,7 @@ export const routes: Routes = [
     component: VermapaComponent 
   },
     ],
+     canActivate: [seguridadGuard],
   },
   {
     path: 'TipoFenomenos',
@@ -244,6 +263,7 @@ export const routes: Routes = [
         component: InsertareditartipofenomenoComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
    {
     path: 'Notificaciones',
@@ -266,6 +286,7 @@ export const routes: Routes = [
         component: ListarCantidadNotificacionRevisadaPorUsuarioComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
     {
     path: 'Recordatorios',
@@ -284,6 +305,7 @@ export const routes: Routes = [
         component: InsertareditarrecordatoriosimulacroComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
     {
     path: 'Simulacros',
@@ -302,6 +324,7 @@ export const routes: Routes = [
         component: InsertareditarsimulacroComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
      {
     path: 'Sugerencias',
@@ -320,6 +343,7 @@ export const routes: Routes = [
         component: InsertareditarsugerenciaComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
  
 ];
