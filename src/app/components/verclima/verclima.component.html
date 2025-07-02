@@ -37,7 +37,11 @@
       <p><i class="fas fa-globe-europe"></i> Zona horaria: {{ climaData.location.tz_id }}</p>
     </div>
   </div>
+  <div class="button-container">
+  <button class="download-btn" mat-menu-item routerLink="/ubicaciones/listar">Regresar</button>
 </div>
+</div>
+
 
 <div *ngIf="!climaData" class="loading">
   <p>Cargando datos del clima...</p>
