@@ -34,6 +34,7 @@ export class ListarubicacionComponent {
     'c8',
     'c9',
     'c10',
+    'c11',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

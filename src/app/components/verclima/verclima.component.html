@@ -1,0 +1,44 @@
+<router-outlet></router-outlet>
+<div class="weather-container" *ngIf="climaData">
+  <div class="weather-data">
+    <h2>Clima en {{ climaData.location.name }}, {{ climaData.location.country }}</h2>
+    <p class="local-time"><i class="fas fa-clock"></i> Hora local: {{ climaData.location.localtime }}</p>
+    
+    <div class="current-weather">
+      <div class="temp-section">
+        <img class="weather-icon" 
+             [src]="'https:' + climaData.current.condition.icon" 
+             [alt]="climaData.current.condition.text">
+        <div>
+          <span class="temperature">{{ climaData.current.temp_c }}°C</span>
+          <span class="feels-like">Sensación: {{ climaData.current.feelslike_c }}°C</span>
+        </div>
+      </div>
+      
+      <div class="details">
+        <div class="detail-column">
+          <p><i class="fas fa-cloud"></i> Condición: {{ climaData.current.condition.text }}</p>
+          <p><i class="fas fa-tint"></i> Humedad: {{ climaData.current.humidity }}%</p>
+          <p><i class="fas fa-wind"></i> Viento: {{ climaData.current.wind_kph }} km/h ({{ climaData.current.wind_dir }})</p>
+          <p><i class="fas fa-compress-alt"></i> Presión: {{ climaData.current.pressure_mb }} mb</p>
+        </div>
+        
+        <div class="detail-column">
+          <p><i class="fas fa-eye"></i> Visibilidad: {{ climaData.current.vis_km }} km</p>
+          <p><i class="fas fa-umbrella"></i> Precipitación: {{ climaData.current.precip_mm }} mm</p>
+          <p><i class="fas fa-temperature-low"></i> Punto de rocío: {{ climaData.current.dewpoint_c }}°C</p>
+          <p><i class="fas fa-sun"></i> Índice UV: {{ climaData.current.uv }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="additional-info">
+     
+      <p><i class="fas fa-globe-europe"></i> Zona horaria: {{ climaData.location.tz_id }}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!climaData" class="loading">
+  <p>Cargando datos del clima...</p>
+</div>

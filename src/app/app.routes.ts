@@ -49,6 +49,7 @@ import { BuscarPorTituloComponent } from './components/respuesta/buscar-por-titu
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
+import { VerclimaComponent } from './components/verclima/verclima.component';
 
 export const routes: Routes = [
 
@@ -113,6 +114,10 @@ export const routes: Routes = [
     path: 'vermapa/:lat/:lon', 
     component: VermapaComponent 
   },
+  {
+     path: 'verclima/:ciudad', 
+    component: VerclimaComponent 
+  }
 
     ],
      canActivate: [seguridadGuard],
