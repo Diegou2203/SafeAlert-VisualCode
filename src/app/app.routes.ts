@@ -53,15 +53,6 @@ import { VerclimaComponent } from './components/verclima/verclima.component';
 
 export const routes: Routes = [
 
-      {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
   {
     path: '',
     redirectTo: 'lanpage',
@@ -70,6 +61,16 @@ export const routes: Routes = [
   { path: "lanpage",
     component: LandingComponent,},
    
+   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  
   {
     path: 'usuarios',
     component: UsuarioComponent,

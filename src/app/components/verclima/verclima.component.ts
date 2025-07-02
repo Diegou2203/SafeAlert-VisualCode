@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { VerclimaService } from '../../services/verclima.service';
 
 @Component({
   selector: 'app-verclima',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterOutlet,RouterLink ],
   templateUrl: './verclima.component.html',
   styleUrls: ['./verclima.component.css']
 })

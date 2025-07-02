@@ -126,3 +126,27 @@
     gap: 0;
   }
 }
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */          /* Ocupa toda la altura de la pantalla */
+}
+
+.download-btn {
+  background-color: #F97316; /* Naranja terracota - CTA */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.download-btn:hover {
+  background-color: #ea580c;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
