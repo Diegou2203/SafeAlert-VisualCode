@@ -1,36 +1,18 @@
 <div>
     <div>
-        <h1> Fenomenos  Por Intensidad</h1>
+        <h1> Cantidad de fenomenos Fenomenos Por Intensidad </h1>
     </div>
     
-    <div>
-        <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
-          
-            <!-- Name Column -->
-
-          <ng-container matColumnDef="c1">
-              <th mat-header-cell *matHeaderCellDef> Intensidad </th>
-              <td mat-cell *matCellDef="let element"> {{element.intensidad}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="c2">
-              <th mat-header-cell *matHeaderCellDef> Año </th>
-              <td mat-cell *matCellDef="let element"> {{element.amio}} </td>
-          </ng-container>
-           <ng-container matColumnDef="c3">
-              <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-              <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
-          </ng-container>
 
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-        
+    <!-- Pie Chart -->
+    <div class="pie-chart-container">
+        <canvas baseChart
+                [datasets]="[{ data: pieChartData }]"
+                [labels]="pieChartLabels"
+                [options]="pieChartOptions"
+                [legend]="true"
+                [type]="pieChartType">
+        </canvas>
     </div>
 </div>
-

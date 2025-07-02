@@ -40,7 +40,6 @@ import { ListarUsuarioPorZonaRiesgoComponent } from './components/ubicacion/list
 import { ListarCantidadNotificacionRevisadaPorUsuarioComponent } from './components/notificacionalerta/listar-cantidad-notificacion-revisada-por-usuario/listar-cantidad-notificacion-revisada-por-usuario.component';
 import { BuscarTemaComponent } from './components/Comentario/buscar-tema/buscar-tema.component';
 import { CantidadRespuestaComentarioComponent } from './components/Comentario/cantidad-respuesta-comentario/cantidad-respuesta-comentario.component';
-import { FenomenoIntensidadComponent } from './components/fenomenonatural/fenomeno-intensidad/fenomeno-intensidad.component';
 import { CantidadfenomenoComponent } from './components/fenomenonatural/cantidadfenomeno/cantidadfenomeno.component';
 import { CantidadRecursoUsuarioComponent } from './components/recursoinformativo/cantidad-recurso-usuario/cantidad-recurso-usuario.component';
 import { CantidadrespuestaPorUsuarioComponent } from './components/respuesta/cantidadrespuesta-por-usuario/cantidadrespuesta-por-usuario.component';
@@ -50,6 +49,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { VerclimaComponent } from './components/verclima/verclima.component';
+import { FenomenoIntensidadComponentDTO } from './components/fenomenonatural/fenomeno-intensidad/fenomeno-intensidad.component';
 
 export const routes: Routes = [
 
@@ -242,7 +242,7 @@ export const routes: Routes = [
       },
        {
         path: 'Cantidadporintensidad',
-        component: FenomenoIntensidadComponent,
+        component: FenomenoIntensidadComponentDTO,
       },
         { 
     path: 'vermapa/:lat/:lon', 

@@ -15,4 +15,6 @@ export const seguridadGuard= (
       return false;
     }
     return rpta;
+
+    
 };
