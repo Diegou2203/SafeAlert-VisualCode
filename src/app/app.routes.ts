@@ -50,6 +50,7 @@ import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { VerclimaComponent } from './components/verclima/verclima.component';
 import { FenomenoIntensidadComponentDTO } from './components/fenomenonatural/fenomeno-intensidad/fenomeno-intensidad.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
 
@@ -60,12 +61,9 @@ export const routes: Routes = [
   },
   { path: "lanpage",
     component: LandingComponent,},
-   
-   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
+     { path: "home",
+    component: HomeComponent,},
+
   {
     path: 'login',
     component: LoginComponent,

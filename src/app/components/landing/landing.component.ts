@@ -8,10 +8,4 @@ import { RouterLink } from '@angular/router';
   styleUrl: './landing.component.css'
 })
 export class LandingComponent {
-  scrollTo(section: string) {
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
 }
