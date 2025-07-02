@@ -95,7 +95,7 @@ export class InsertareditarsimulacroComponent implements OnInit {
       this.simuS.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
           simulacrocodigo: new FormControl(data.idSimulacro),
-          rolrol: new FormControl(data.titulo),
+          simulacrotitulo: new FormControl(data.titulo),
           simulacrofecha: new FormControl(data.fecha_simulacro),
           simulacroduracion: new FormControl(data.duracion_minutos),
           simulacrotipo: new FormControl(data.tipo),
