@@ -1,0 +1,187 @@
+<router-outlet></router-outlet>
+<div class="container">
+  <!-- Spinner de carga -->
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-spinner diameter="50" class="spinner"></mat-spinner>
+    <p class="loading-text">Cargando datos...</p>
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error-message">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <span class="error-text">{{ errorMessage }}</span>
+    <button
+      mat-stroked-button
+      color="warn"
+      (click)="errorMessage = ''"
+      class="dismiss-btn"
+    >
+      <mat-icon>close</mat-icon> Cerrar
+    </button>
+  </div>
+
+  <!-- Cabecera -->
+  <div class="header-section">
+    <h1 class="main-title">Información Meteorológica</h1>
+    <h2 class="subtitle">Consulta en tiempo real del clima y ubicación</h2>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="dashboard-container" *ngIf="mapaUrl || climaData">
+    <!-- Sección del Mapa -->
+    <div class="map-section" *ngIf="mapaUrl">
+      <div class="section-header">
+        <h2 class="subtitle"><mat-icon>map</mat-icon> Mapa de la ubicación</h2>
+      </div>
+      <div class="map-wrapper">
+        <img [src]="mapaUrl" alt="Mapa" class="map-image" />
+        <div class="location-info-box">
+          <div class="location-title">
+            {{ climaData.location.name }}, {{ climaData.location.country }}
+          </div>
+          <div class="location-time">
+            <mat-icon>schedule</mat-icon>
+            {{ climaData.location.localtime | date : "medium" }}
+          </div>
+          <div class="coordinates-badge">
+            <mat-icon>location_on</mat-icon>
+            {{ lat | number : "1.4-4" }}, {{ lon | number : "1.4-4" }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección del Clima -->
+    <div class="weather-section" *ngIf="climaData">
+      <div class="section-header">
+        <h2 class="subtitle">
+          <mat-icon>cloud</mat-icon> Información del clima
+        </h2>
+      </div>
+
+      <div class="weather-card">
+        <!-- Condición actual -->
+        <div class="current-condition">
+          <div class="weather-icon-container">
+            <img
+              [src]="'https:' + climaData.current.condition.icon"
+              alt="{{ climaData.current.condition.text }}"
+              class="weather-icon"
+            />
+          </div>
+          <div class="temperature-display">
+            <span class="temp">{{ climaData.current.temp_c }}°C</span>
+            <span class="condition">{{
+              climaData.current.condition.text
+            }}</span>
+            <span class="feels-like"
+              >Sensación: {{ climaData.current.feelslike_c }}°C</span
+            >
+          </div>
+        </div>
+
+        <!-- Detalles del clima -->
+        <div class="weather-details-grid">
+          <div class="weather-detail-card">
+            <mat-icon class="detail-icon">opacity</mat-icon>
+            <div class="detail-content">
+              <div class="detail-label">HUMEDAD</div>
+              <div class="detail-value">{{ climaData.current.humidity }}%</div>
+            </div>
+          </div>
+
+          <div class="weather-detail-card">
+            <mat-icon class="detail-icon">air</mat-icon>
+            <div class="detail-content">
+              <div class="detail-label">VIENTO</div>
+              <div class="detail-value">
+                {{ climaData.current.wind_kph }} km/h
+                {{ climaData.current.wind_dir }}
+              </div>
+            </div>
+          </div>
+
+          <div class="weather-detail-card">
+            <mat-icon class="detail-icon">speed</mat-icon>
+            <div class="detail-content">
+              <div class="detail-label">PRESIÓN</div>
+              <div class="detail-value">
+                {{ climaData.current.pressure_mb }} mb
+              </div>
+            </div>
+          </div>
+
+          <div class="weather-detail-card">
+            <mat-icon class="detail-icon">visibility</mat-icon>
+            <div class="detail-content">
+              <div class="detail-label">VISIBILIDAD</div>
+              <div class="detail-value">{{ climaData.current.vis_km }} km</div>
+            </div>
+          </div>
+
+          <div class="weather-detail-card">
+            <mat-icon class="detail-icon">umbrella</mat-icon>
+            <div class="detail-content">
+              <div class="detail-label">PRECIPITACIÓN</div>
+              <div class="detail-value">
+                {{ climaData.current.precip_mm }} mm
+              </div>
+            </div>
+          </div>
+
+          <div class="weather-detail-card">
+            <mat-icon class="detail-icon">water_drop</mat-icon>
+            <div class="detail-content">
+              <div class="detail-label">PUNTO DE ROCÍO</div>
+              <div class="detail-value">
+                {{ climaData.current.dewpoint_c }}°C
+              </div>
+            </div>
+          </div>
+
+          <div class="weather-detail-card">
+            <mat-icon class="detail-icon">wb_sunny</mat-icon>
+            <div class="detail-content">
+              <div class="detail-label">ÍNDICE UV</div>
+              <div class="detail-value">{{ climaData.current.uv }}</div>
+            </div>
+          </div>
+
+          <div class="weather-detail-card">
+            <mat-icon class="detail-icon">brightness_high</mat-icon>
+            <div class="detail-content">
+              <div class="detail-label">NUBOSIDAD</div>
+              <div class="detail-value">{{ climaData.current.cloud }}%</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+                <div class="button-container">
+            <button
+              class="download-btn"
+              mat-menu-item
+              routerLink="/ubicaciones/listar"
+            >
+              Regresar
+            </button>
+          </div>
+    </div>
+  </div>
+
+  <!-- Mensaje sin datos -->
+  <div
+    *ngIf="!mapaUrl && !climaData && !isLoading && !errorMessage"
+    class="no-data"
+  >
+    <mat-icon class="no-data-icon">info</mat-icon>
+    <h3>No hay datos para mostrar</h3>
+    <p>
+      Proporciona parámetros válidos para ver la información del clima y
+      ubicación.
+    </p>
+    <button mat-raised-button color="primary" class="action-btn">
+      <mat-icon>refresh</mat-icon> Intentar de nuevo
+    </button>
+  </div>
+</div>

@@ -48,9 +48,10 @@ import { BuscarPorTituloComponent } from './components/respuesta/buscar-por-titu
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
-import { VerclimaComponent } from './components/verclima/verclima.component';
+
 import { FenomenoIntensidadComponentDTO } from './components/fenomenonatural/fenomeno-intensidad/fenomeno-intensidad.component';
 import { HomeComponent } from './components/home/home.component';
+import { JuntarapisComponent } from './components/juntarapis/juntarapis.component';
 
 export const routes: Routes = [
 
@@ -109,15 +110,11 @@ export const routes: Routes = [
         path: 'listarUsuarioPorZonaDeRiesgo',
         component: ListarUsuarioPorZonaRiesgoComponent,
       },     
-        { 
-    path: 'vermapa/:lat/:lon', 
-    component: VermapaComponent 
-  },
   {
-     path: 'verclima/:ciudad', 
-    component: VerclimaComponent 
+     path: 'Detalles/:lat/:lon/:ciudad', 
+    component: JuntarapisComponent 
   }
-
+  
     ],
      canActivate: [seguridadGuard],
   },
