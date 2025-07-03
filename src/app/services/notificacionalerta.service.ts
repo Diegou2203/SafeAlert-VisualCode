@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { notificacionalerta } from '../models/notificacion';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { CantidadNotificacionxUserDTO } from '../models/CantidadNotificacionxUserDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -42,5 +43,9 @@ export class notificacionalertaService {
   deleteNotificacion(id: number) {
     return this.http.delete(`${this.url + '/delete'}/${id}`)
   }  
+
+  getlistarcantidadnotificacion():Observable<CantidadNotificacionxUserDTO[]>{
+    return this.http.get<CantidadNotificacionxUserDTO[]>(this.url+'/list/CantidadNotificacionesRevisadasPorUsuario')
+  }
 
 }

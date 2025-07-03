@@ -52,8 +52,8 @@ export class InsertareditarfenomenonaturalComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       fenacodigo: [''],
-      fenanombre: ['', Validators.required],
-      fenaintesidad: ['', Validators.required],
+      fenanombre: ['', [Validators.required, Validators.maxLength(30)]],
+      fenaintesidad: ['', [Validators.required, Validators.maxLength(10)]],
       fenafechafenomeno: ['', Validators.required],
       fenaactivo: ['', Validators.required],
       fenaubicacion: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],

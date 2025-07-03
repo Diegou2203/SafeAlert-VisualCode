@@ -28,8 +28,10 @@ export class FenomenoNaturalService {
   setList(listaNueva: FenomenoNatural[]) {
     this.listaCambio.next(listaNueva);
   }
-
-
+  
+  listarintensidadFenomeno(){
+    return this.http.get<FenomenoNatural[]>(this.url+'/list/HistoricoPorIntensidad')
+  }
   //enlistar id fenomeno natural
     listId(id: number) {
       return this.http.get<FenomenoNatural>(`${this.url + '/list'}/${id}`)
@@ -37,7 +39,9 @@ export class FenomenoNaturalService {
     update(fena: FenomenoNatural) {
       return this.http.put(this.url + '/modify', fena)
     }
-
+    listarcantidadFenomeno(){
+        return this.http.get<FenomenoNatural[]>(this.url+'/list/CantidadFenomenosNaturalesPorUbicacion')
+      }
     //delete un fenomeno natural
     deleteFenomeno(id: number) {
     return this.http.delete(`${this.url + '/delete'}/${id}`);

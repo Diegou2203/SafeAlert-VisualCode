@@ -52,10 +52,10 @@ export class IsertareditarrecursoinformativoComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       recursocodigo: [''],
-      recursotipo: ['', Validators.required],
-      recursotitulo: ['', Validators.required],
-      recursodescripcion: ['', Validators.required],
-      recursourl: ['', Validators.required],
+      recursotipo: ['', [Validators.required,Validators.maxLength(20)]],
+      recursotitulo: ['', [Validators.required,Validators.maxLength(35)]],
+      recursodescripcion: ['', [Validators.required,Validators.maxLength(200)]],
+      recursourl: ['', [Validators.required,Validators.maxLength(70)]],
       recursofechapublicacion: ['', Validators.required],
       recursousuario: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });

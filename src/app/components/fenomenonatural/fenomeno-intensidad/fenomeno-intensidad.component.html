@@ -1,0 +1,18 @@
+<div>
+    <div>
+        <h1> Cantidad de fenomenos Fenomenos Por Intensidad </h1>
+    </div>
+    
+
+
+    <!-- Pie Chart -->
+    <div class="pie-chart-container">
+        <canvas baseChart
+                [datasets]="[{ data: pieChartData }]"
+                [labels]="pieChartLabels"
+                [options]="pieChartOptions"
+                [legend]="true"
+                [type]="pieChartType">
+        </canvas>
+    </div>
+</div>

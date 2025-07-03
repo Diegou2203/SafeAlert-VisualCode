@@ -15,10 +15,18 @@
             <!-- Nombre de tipo fenomeno natural -->
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Nombre del tipo fenomeno natural</mat-label>
-                <input matInput formControlName="tipofenomenonombre" required>
+                <mat-select formControlName="tipofenomenonombre">
+                    @for (food of tipos; track food) 
+                    {
+                    <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+                    }
+                </mat-select>
                 <mat-error *ngIf="form.get('tipofenomenonombre')?.hasError('required')">
-                    El nombre del tipo fenomeno natural es obligatorio
+                El tipo fenomeno es obligatorio!!
                 </mat-error>
+                <mat-error *ngIf="form.get('tipofenomenonombre')?.hasError('maxlength')">
+                    Maximo 50 caracteres
+                </mat-error> 
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width-field">
@@ -27,6 +35,9 @@
                 <mat-error *ngIf="form.get('tipofenomenodescripcion')?.hasError('required')">
                     La Descripción del tipo fenomeno natural es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('tipofenomenodescripcion')?.hasError('maxlength')">
+                    Maximo 200 caracteres
+                </mat-error> 
             </mat-form-field>
 
             <!-- id user -->

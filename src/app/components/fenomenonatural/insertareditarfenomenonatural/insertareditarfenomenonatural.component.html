@@ -14,20 +14,26 @@
 
             <!-- Nombre de fenomeno natural -->
             <mat-form-field appearance="outline" class="full-width-field">
-                <mat-label>Nombre del Rol</mat-label>
+                <mat-label>Nombre del Fenomeno</mat-label>
                 <input matInput formControlName="fenanombre" required>
                 <mat-error *ngIf="form.get('fenanombre')?.hasError('required')">
                     El nombre del fenomeno natural es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('fenanombre')?.hasError('maxlength')">
+                    Maximo 30 caracteres
+                </mat-error> 
             </mat-form-field>
 
             <!-- intesidad fenomeno natural -->
             <mat-form-field appearance="outline" class="full-width-field">
-                <mat-label>Nombre del Rol</mat-label>
+                <mat-label>Intensidad</mat-label>
                 <input matInput formControlName="fenaintesidad" required>
                 <mat-error *ngIf="form.get('fenaintesidad')?.hasError('required')">
                     El nombre del fenomeno natural es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('fenaintesidad')?.hasError('maxlength')">
+                    Maximo 10 caracteres
+                </mat-error> 
             </mat-form-field>
 
             <!-- Fecha de registro -->

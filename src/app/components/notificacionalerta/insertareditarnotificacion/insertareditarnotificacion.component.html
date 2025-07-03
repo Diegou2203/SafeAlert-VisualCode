@@ -19,6 +19,9 @@
                 <mat-error *ngIf="form.get('notificaciontitulo')?.hasError('required')">
                     El titulo de la notificación es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('notificaciontitulo')?.hasError('maxlength')">
+                    Maximo 200 caracteres
+                </mat-error>                 
             </mat-form-field>
 
             <!-- resumen -->
@@ -28,6 +31,9 @@
                 <mat-error *ngIf="form.get('notificacionresumen')?.hasError('required')">
                     El resumen de la notificación es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('notificacionresumen')?.hasError('maxlength')">
+                    Maximo 150 caracteres
+                </mat-error> 
             </mat-form-field>
 
              <!-- Fecha de emision -->

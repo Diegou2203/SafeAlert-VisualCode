@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { VermapaService } from '../../services/vermapa.service';
 
 @Component({
   selector: 'app-vermapa',
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink],
   templateUrl: './vermapa.component.html',
   styleUrl: './vermapa.component.css'
 })

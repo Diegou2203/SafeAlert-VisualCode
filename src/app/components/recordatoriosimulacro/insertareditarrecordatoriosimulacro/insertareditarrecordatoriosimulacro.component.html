@@ -31,6 +31,9 @@
                 <mat-error *ngIf="form.get('recordatoriometodoenvio')?.hasError('required')">
                     El metodo de envio es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('recordatoriometodoenvio')?.hasError('maxlength')">
+                    Maximo 40 caracteres
+                </mat-error>       
             </mat-form-field>
 
              <!-- Estado -->
@@ -40,6 +43,9 @@
                 <mat-error *ngIf="form.get('recordatorioestado')?.hasError('required')">
                     El estado del recordatorio es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('recordatorioestado')?.hasError('maxlength')">
+                    Maximo 30 caracteres
+                </mat-error>    
             </mat-form-field>
 
             <!-- id simulacro -->

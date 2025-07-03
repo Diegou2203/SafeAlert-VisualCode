@@ -39,5 +39,9 @@ export class RecursoinformativoService {
 
   deleteRecursoInformativo(id: number) {
     return this.http.delete(`${this.url + '/delete' }/${id}`)
-  }    
+  }   
+  
+   listarcantidadRecurso(){
+          return this.http.get<RecursoInformativo[]>(this.url+'/list/CantidadRecursosPorUsuario')
+        } 
 }

@@ -54,7 +54,7 @@ export class InsertareditarrolComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       rolcodigo: [''],
-      rolrol: ['', Validators.required],
+      rolrol: ['', [Validators.required, Validators.maxLength(50)]],
       rolusuario: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }

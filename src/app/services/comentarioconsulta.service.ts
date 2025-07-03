@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { Comentario } from '../models/comentarioconsulta';
 import { Subject } from 'rxjs';
@@ -40,5 +40,12 @@ export class ComentarioService {
 
   listId(id: number) {
     return this.http.get<Comentario>(`${this.url + '/list'}/${id}`)
+  }
+   lisCantidadrespuestaComentario(){
+        return this.http.get<Comentario[]>(this.url+'/list/CantidadRespuestasPorComentario')
+      }
+  searchType(tema:string){
+    const params={tema:tema}
+    return this.http.get<Comentario[]>(`${this.url}/list/ComentarioPorTema`,{params})
   }
 }

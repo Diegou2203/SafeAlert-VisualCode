@@ -52,10 +52,10 @@ export class InsertareditarsimulacroComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       simulacrocodigo: [''],
-      simulacrotitulo: ['', Validators.required],
+      simulacrotitulo: ['', [Validators.required, Validators.maxLength(20)]],
       simulacrofecha: ['', Validators.required],
       simulacroduracion: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      simulacrotipo: ['', Validators.required],
+      simulacrotipo: ['', [Validators.required, Validators.maxLength(50)]],
       simulacroubicacion: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }
@@ -95,7 +95,7 @@ export class InsertareditarsimulacroComponent implements OnInit {
       this.simuS.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
           simulacrocodigo: new FormControl(data.idSimulacro),
-          rolrol: new FormControl(data.titulo),
+          simulacrotitulo: new FormControl(data.titulo),
           simulacrofecha: new FormControl(data.fecha_simulacro),
           simulacroduracion: new FormControl(data.duracion_minutos),
           simulacrotipo: new FormControl(data.tipo),

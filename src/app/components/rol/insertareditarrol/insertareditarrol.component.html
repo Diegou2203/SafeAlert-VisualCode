@@ -19,6 +19,9 @@
                 <mat-error *ngIf="form.get('rolrol')?.hasError('required')">
                     El nombre del rol es obligatorio
                 </mat-error>
+                <mat-error *ngIf="form.get('rolrol')?.hasError('maxlength')">
+                    Maximo 50 caracteres
+                </mat-error> 
             </mat-form-field>
 
             <!-- id user -->

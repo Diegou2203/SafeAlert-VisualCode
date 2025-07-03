@@ -1,0 +1,24 @@
+
+<div>
+    <div>
+        <h1> Cantidad de Notificaciones Revisadas </h1>
+      <h3> Por usuario</h3>
+      </div>
+
+    <div *ngIf="hasData; else noData" class="chart-container">
+        <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [type]="barChartType">
+        </canvas>
+    </div>
+
+    <ng-template #noData>
+        <div class="no-data-container">
+            <mat-icon class="no-data-icon">info_outline</mat-icon>
+            <p class="no-data-message">No hay datos disponibles para mostrar.</p>
+        </div>
+    </ng-template>
+</div>
