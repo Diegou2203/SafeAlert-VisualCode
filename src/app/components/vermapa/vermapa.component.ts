@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { VermapaService } from '../../services/vermapa.service';
@@ -13,8 +13,8 @@ import { VermapaService } from '../../services/vermapa.service';
 export class VermapaComponent {
   isLoading:boolean = false
   mapaUrl: string = '';
-  lat: number=0
-  lon: number=0
+  @Input() lat: number=0
+   @Input() lon: number=0
 
 
   constructor(private route: ActivatedRoute, private vuS: VermapaService){}
