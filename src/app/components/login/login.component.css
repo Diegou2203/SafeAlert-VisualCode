@@ -1,8 +1,13 @@
 mat-form-field {
     width: 50%;
 }
+
+
+.logo{
+  padding-top: 50px;
+}
   button[mat-raised-button] {
- background-color:rgb(46, 158, 46); /* color primario bootstrap azul */
+ background-color: #F97316; /* color primario bootstrap azul */
  color: white;
  border: none;
  padding: 0.5rem 1.25rem;

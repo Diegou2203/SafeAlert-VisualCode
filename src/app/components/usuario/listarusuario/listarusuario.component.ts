@@ -8,44 +8,67 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listarusuario',
   standalone: true,
-  imports: [MatTableModule, CommonModule, MatButtonModule, RouterLink, MatIconModule, MatPaginatorModule],
+ imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule, MatPaginatorModule,MatPaginator],
   templateUrl: './listarusuario.component.html',
   styleUrl: './listarusuario.component.css'
 })
 export class ListarusuarioComponent implements OnInit {
-  datasource: MatTableDataSource<Usuario> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'];
+  datasource = new MatTableDataSource<Usuario>([]);
+  pageSize = 4;
+  currentPage = 0;
+  paginatedData: Usuario[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private uS: UsuarioService) {}
 
-  ngOnInit(): void {
-    this.uS.list().subscribe(data => {
-      this.datasource = new MatTableDataSource(data);
-      this.datasource.paginator = this.paginator;
-    });
-    this.uS.getList().subscribe(data => {
-      this.datasource = new MatTableDataSource(data);
-      this.datasource.paginator = this.paginator;
-    });
+   ngOnInit(): void {
+    this.loadNotifications();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.datasource.paginator = this.paginator;
+    this.updatePaginatedData();
+    this.paginator.page.subscribe(() => {
+      this.updatePaginatedData();
+    });
   }
 
-  eliminar(id: number) {
-    this.uS.deleteA(id).subscribe(data => {
-      this.uS.list().subscribe(data => {
-        this.uS.setList(data);
-        this.datasource = new MatTableDataSource(data);
-        this.datasource.paginator = this.paginator;
-      });
+  loadNotifications(): void {
+    this.uS.list().subscribe({
+      next: (data) => {
+        this.datasource.data = data;
+        this.updatePaginatedData();
+      },
+      error: (err) => {
+        console.error('Error al cargar usuario', err);
+      }
+    });
+  }
+
+  updatePaginatedData(): void {
+    if (this.paginator) {
+      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+      const endIndex = startIndex + this.paginator.pageSize;
+      this.paginatedData = this.datasource.data.slice(startIndex, endIndex);
+    } else {
+      this.paginatedData = this.datasource.data;
+    }
+  }
+
+  eliminar(id: number): void {
+    this.uS.deleteA(id).subscribe({
+      next: () => {
+        this.loadNotifications();
+      },
+      error: (err) => {
+        console.error('Error al eliminar usuario', err);
+      }
     });
   }
 }

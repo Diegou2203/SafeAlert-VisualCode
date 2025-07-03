@@ -5,20 +5,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-listarcomentario',
   standalone: true,
-  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule, MatPaginatorModule,MatPaginator],
+  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule, MatPaginatorModule,MatPaginator,NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './listarcomentario.component.html',
   styleUrl: './listarcomentario.component.css'
 })
 export class ListarcomentarioComponent {
   datasource = new MatTableDataSource<Comentario>([]);
-  pageSize = 5;
+  pageSize = 4;
   currentPage = 0;
   paginatedData: Comentario[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
