@@ -27,7 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ListarrespuestaComponent {
   datasource = new MatTableDataSource<Respuesta>([]);
-  pageSize = 5;
+  pageSize = 4;
   currentPage = 0;
   paginatedData: Respuesta[] = [];
 

@@ -5,20 +5,20 @@ import { RecordatoriosimulacroService } from '../../../services/recordatoriosimu
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 
 @Component({
   selector: 'app-listarrecordatoriosimulacro',
-  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule, MatPaginatorModule,MatPaginator],
+  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule, MatPaginatorModule,MatPaginator,NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './listarrecordatoriosimulacro.component.html',
   styleUrl: './listarrecordatoriosimulacro.component.css'
 })
 export class ListarrecordatoriosimulacroComponent implements OnInit {
   datasource = new MatTableDataSource<recordatoriosimulacro>([]);
-  pageSize = 5;
+  pageSize = 4;
   currentPage = 0;
   paginatedData: recordatoriosimulacro[]=[]
    

@@ -99,3 +99,11 @@ mat-card-actions button:hover {
   background: transparent;
   border-radius: 4px;
 }
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+

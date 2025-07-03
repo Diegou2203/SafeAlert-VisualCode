@@ -19,7 +19,9 @@
         <p><strong>Fecha simulacro:</strong> {{ element.fecha_simulacro }}</p>
         <p><strong>Duración (minutos):</strong> {{ element.duracion_minutos }}</p>
         <p><strong>Tipo:</strong> {{ element.tipo }}</p>
-        <p><strong>Id Ubicación:</strong> {{ element.ubicacion.idUbicacion }}</p>
+        <p><strong>Usuario que recibe el simulacro:</strong> {{ element.ubicacion.usuario.username}}</p>
+        <p><strong>Ciudad:</strong> {{ element.ubicacion.ciudad }}</p>
+        
       </mat-card-content>
 
       <mat-card-actions>
@@ -34,11 +36,11 @@
   </div>
 
 
-  <!-- Paginador fuera del contenedor de cards -->
+ <!-- Paginador fuera del contenedor de cards -->
   <div class="pagination-wrapper">
     <mat-paginator [length]="datasource.data.length"
-                 [pageSize]="5"
-                 [pageSizeOptions]="[5, 10, 20]"
+                 [pageSize]="4"
+                 [pageSizeOptions]="[4, 8, 12]"
                  showFirstLastButtons
                  aria-label="Selecciona página de notificaciones">
     </mat-paginator>

@@ -19,7 +19,7 @@
       <mat-card-content>
         <p><strong>Nombre tipo:</strong> {{ element.nombre_tipo }}</p>
         <p><strong>Descripción:</strong> {{ element.descripcion }}</p>
-        <p><strong>Id Fenómeno Natural:</strong> {{ element.fenomenoNatural.idFenomenoNatural }}</p>
+        <p><strong>Fenómeno Natural:</strong> {{ element.fenomenoNatural.nombre_fenomeno }}</p>
       </mat-card-content>
 
       <mat-card-actions>
@@ -34,13 +34,14 @@
     </mat-card>
   </div>
 
-  <!-- Paginador fuera del contenedor de cards -->
+     <!-- Paginador fuera del contenedor de cards -->
   <div class="pagination-wrapper">
     <mat-paginator [length]="datasource.data.length"
-                 [pageSize]="5"
-                 [pageSizeOptions]="[5, 10, 20]"
+                 [pageSize]="4"
+                 [pageSizeOptions]="[4, 8, 12]"
                  showFirstLastButtons
                  aria-label="Selecciona página de notificaciones">
     </mat-paginator>
   </div>
+
 </div>

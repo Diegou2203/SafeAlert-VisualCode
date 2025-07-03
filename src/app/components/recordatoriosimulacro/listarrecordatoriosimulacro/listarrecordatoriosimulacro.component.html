@@ -14,10 +14,19 @@
      
 
       <mat-card-content>
+           <p><strong>Usuario que recibe el recordatorio:</strong> {{ element.simulacro.ubicacion.usuario.username }}</p>
         <p><strong>Fecha recordatorio:</strong> {{ element.fecha_recordatorio }}</p>
         <p><strong>Método de envío:</strong> {{ element.metodo_envio }}</p>
-        <p><strong>Estado:</strong> {{ element.estado }}</p>
-        <p><strong>Id Simulacro:</strong> {{ element.simulacro.idSimulacro }}</p>
+
+         <p><strong>Estado:</strong>
+  <span [ngSwitch]="element.estado" class="estado-badge">
+    <span *ngSwitchCase="'Enviado'" class="estado-enviado"> Enviado</span>
+    <span *ngSwitchCase="'Pendiente'" class="estado-en-pendiente"> Pendiente</span>
+    <span *ngSwitchCase="'Fallido'" class="estado-fallido"> Fallido</span>
+    <span *ngSwitchDefault class="estado-inactivo">{{element.estado}}</span>
+  </span>
+</p>
+        <p><strong>Nombre del simulacro:</strong> {{ element.simulacro.titulo }}</p>
       </mat-card-content>
 
       <mat-card-actions>
@@ -31,12 +40,12 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  
-  <!-- Paginador fuera del contenedor de cards -->
+
+   <!-- Paginador fuera del contenedor de cards -->
   <div class="pagination-wrapper">
     <mat-paginator [length]="datasource.data.length"
-                 [pageSize]="5"
-                 [pageSizeOptions]="[5, 10, 20]"
+                 [pageSize]="4"
+                 [pageSizeOptions]="[4, 8, 12]"
                  showFirstLastButtons
                  aria-label="Selecciona página de notificaciones">
     </mat-paginator>

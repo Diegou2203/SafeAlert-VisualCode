@@ -18,7 +18,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 })
 export class ListarnotificacionesComponent implements OnInit {
   datasource = new MatTableDataSource<notificacionalerta>([]);
-  pageSize = 5;
+  pageSize = 4;
   currentPage = 0;
   paginatedData: notificacionalerta[] = [];
 

@@ -18,7 +18,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 })
 export class ListarsugerenciaComponent implements OnInit{
   datasource = new MatTableDataSource<Sugerencia>([]);
-  pageSize = 5;
+  pageSize = 4;
   currentPage = 0;
   paginatedData:Sugerencia[] = [];
 

@@ -17,7 +17,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 })
 export class ListarrecursoinformativoComponent implements OnInit {
     datasource = new MatTableDataSource<RecursoInformativo>([]);
-    pageSize = 5;
+    pageSize = 4;
     currentPage = 0;
     paginatedData: RecursoInformativo[]=[];
     @ViewChild(MatPaginator) paginator!: MatPaginator;

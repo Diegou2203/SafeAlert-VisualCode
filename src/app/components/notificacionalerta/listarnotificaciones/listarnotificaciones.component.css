@@ -14,7 +14,7 @@ h1 {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -98,4 +98,21 @@ mat-card-actions button:hover {
 .mat-paginator {
   background: transparent;
   border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mejora para el estado Activo/Inactivo */
+.estado-activo {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.estado-inactivo {
+  color: #f44336;
+  font-weight: 500;
 }

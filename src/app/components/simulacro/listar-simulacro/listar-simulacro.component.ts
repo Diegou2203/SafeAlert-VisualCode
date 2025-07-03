@@ -21,7 +21,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 export class ListarSimulacroComponent implements OnInit {
 
   datasource = new MatTableDataSource<Simulacro>([]);
-    pageSize = 5;
+    pageSize = 4;
     currentPage = 0;
 
   paginatedData: Simulacro[]=[]

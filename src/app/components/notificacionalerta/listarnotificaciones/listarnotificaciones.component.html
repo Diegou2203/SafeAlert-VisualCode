@@ -18,7 +18,12 @@
         <p><strong>Resumen:</strong> {{ element.resumen }}</p>
         <p><strong>Fecha de emisión:</strong> {{ element.fecha_emision | date }}</p>
         <p><strong>Fecha de expiración:</strong> {{ element.fecha_expiracion | date }}</p>
-        <p><strong>Revisada:</strong> {{ element.notificacion_revisada ? 'Sí' : 'No' }}</p>
+        <p>
+          <strong>Activo:</strong>
+          <span [class]="element.notificacion_revisada ? 'estado-activo' : 'estado-inactivo'">
+            {{ element.notificacion_revisada ? "Sí" : "No" }}
+          </span>
+        </p>
         <p><strong>Nombre del Usuario:</strong> {{ element.usuario.username }}</p>
       </mat-card-content>
       
@@ -33,13 +38,15 @@
     </mat-card>
   </div>
   
-  <!-- Paginador fuera del contenedor de cards -->
+   <!-- Paginador fuera del contenedor de cards -->
   <div class="pagination-wrapper">
-    <mat-paginator [length]="datasource.data.length"
-                 [pageSize]="5"
-                 [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Selecciona página de notificaciones">
+    <mat-paginator
+      [length]="datasource.data.length"
+      [pageSize]="4"
+      [pageSizeOptions]="[4, 8, 12]"
+      showFirstLastButtons
+      aria-label="Selecciona página de usuarios"
+    >
     </mat-paginator>
   </div>
 </div>

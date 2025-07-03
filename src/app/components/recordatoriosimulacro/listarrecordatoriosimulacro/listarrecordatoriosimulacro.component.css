@@ -99,3 +99,26 @@ mat-card-actions button:hover {
   background: transparent;
   border-radius: 4px;
 }
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.estado-en-pendiente {
+  color: #ff9800; /* Naranja */
+  font-weight: 500;
+}
+
+.estado-enviado {
+  color: #33f321; /* Azul */
+  font-weight: 500;
+}
+
+.estado-fallido {
+  color: #f44336;/* Morado */
+  font-weight: 500;
+}
+

@@ -19,7 +19,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 export class ListarTipoFenomenoComponent implements OnInit {
 
     datasource = new MatTableDataSource<TipoFenomeno>([]);
-    pageSize = 5;
+    pageSize = 4;
     currentPage = 0;
     paginatedData: TipoFenomeno[]=[]
 

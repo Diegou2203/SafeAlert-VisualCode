@@ -100,29 +100,25 @@ mat-card-actions button:hover {
   border-radius: 4px;
 }
 
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
 .estado-en-revision {
   color: #ff9800; /* Naranja */
   font-weight: 500;
-  background-color: rgba(255, 152, 0, 0.1);
-  padding: 2px 8px;
-  border-radius: 12px;
-  display: inline-block;
 }
 
 .estado-respondido {
-  color: #2196f3; /* Azul */
+  color: #33f321; /* Azul */
   font-weight: 500;
-  background-color: rgba(33, 150, 243, 0.1);
-  padding: 2px 8px;
-  border-radius: 12px;
-  display: inline-block;
 }
 
 .estado-pendiente {
-  color: #9c27b0; /* Morado */
+  color: #2797b0; /* Morado */
   font-weight: 500;
-  background-color: rgba(156, 39, 176, 0.1);
-  padding: 2px 8px;
-  border-radius: 12px;
-  display: inline-block;
 }
+
