@@ -89,18 +89,18 @@ aceptar() {
     }
   }
 
-
   init() {
     if (this.edicion) {
       this.suG.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          sugerenciacodigo: new FormControl(data.idSugerenciaPreventiva),
-          sugerenciaarea: new FormControl(data.area),
-          sugerenciadescripcion: new FormControl(data.descripcion),
-          sugerenciafecha: new FormControl(data.fecha_sugerencia),
-          sugerenciausuario: new FormControl(data.usuario.idUsuario)        
-        })
-      })
+        this.form = this.formBuilder.group({
+          sugerenciacodigo: [data.idSugerenciaPreventiva],
+          sugerenciaarea: [data.area, [Validators.required, Validators.maxLength(50)]],
+          sugerenciadescripcion: [data.descripcion, [Validators.required, Validators.maxLength(200)]],
+          sugerenciafecha: [data.fecha_sugerencia, [Validators.required]],
+          sugerenciausuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]]
+        });
+      });
     }
   }
+
 }

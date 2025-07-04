@@ -94,15 +94,15 @@ export class InsertareditarfenomenonaturalComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.fenaS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          fenacodigo: new FormControl(data.idFenomenoNatural),
-          fenanombre: new FormControl(data.nombre_fenomeno),
-          fenaintesidad: new FormControl(data.intensidad),
-          fenafechafenomeno: new FormControl(data.fecha_fenomeno),
-          fenaactivo: new FormControl(data.activo),
-          fenaubicacion: new FormControl(data.ubicacion.idUbicacion)
-        })
-      })
+        this.form = this.formBuilder.group({
+          fenacodigo: [data.idFenomenoNatural],
+          fenanombre: [data.nombre_fenomeno, [Validators.required, Validators.maxLength(30)]],
+          fenaintesidad: [data.intensidad, [Validators.required, Validators.maxLength(10)]],
+          fenafechafenomeno: [data.fecha_fenomeno, Validators.required],
+          fenaactivo: [data.activo, Validators.required],
+          fenaubicacion: [data.ubicacion.idUbicacion, [Validators.required, Validators.pattern('^[0-9]*$')]],
+        });
+      });
     }
   }
 }

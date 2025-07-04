@@ -93,15 +93,15 @@ export class InsertareditarsimulacroComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.simuS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          simulacrocodigo: new FormControl(data.idSimulacro),
-          simulacrotitulo: new FormControl(data.titulo),
-          simulacrofecha: new FormControl(data.fecha_simulacro),
-          simulacroduracion: new FormControl(data.duracion_minutos),
-          simulacrotipo: new FormControl(data.tipo),
-          simulacroubicacion: new FormControl(data.ubicacion.idUbicacion)
-        })
-      })
+        this.form = this.formBuilder.group({
+          simulacrocodigo: [data.idSimulacro],
+          simulacrotitulo: [data.titulo, [Validators.required, Validators.maxLength(20)]],
+          simulacrofecha: [data.fecha_simulacro, Validators.required],
+          simulacroduracion: [data.duracion_minutos, [Validators.required, Validators.pattern('^[0-9]*$')]],
+          simulacrotipo: [data.tipo, [Validators.required, Validators.maxLength(50)]],
+          simulacroubicacion: [data.ubicacion.idUbicacion, [Validators.required, Validators.pattern('^[0-9]*$')]],
+        });
+      });
     }
   }
 }

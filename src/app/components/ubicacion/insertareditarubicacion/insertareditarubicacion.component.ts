@@ -99,18 +99,18 @@ aceptar() {
   init() {
     if (this.edicion) {
       this.ubiS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          ubicacioncodigo: new FormControl(data.idUbicacion),
-          ubicacionlatitud: new FormControl(data.latitud),
-          ubicacionlongitud: new FormControl(data.longitud),
-          ubicacionaltitud: new FormControl(data.altitud),
-          ubicacionciudad: new FormControl(data.ciudad),
-          ubicacionregion: new FormControl(data.region),
-          ubicacionpais: new FormControl(data.pais),
-          ubicacioncodigopostal: new FormControl(data.codigo_postal),
-          ubicacionusuario: new FormControl(data.usuario.idUsuario)      
-        })
-      })
+        this.form = this.formBuilder.group({
+          ubicacioncodigo: [data.idUbicacion],
+          ubicacionlatitud: [data.latitud, [Validators.required, Validators.pattern('^-?\\d+(\\.\\d+)?$')]],
+          ubicacionlongitud: [data.longitud, [Validators.required, Validators.pattern('^-?\\d+(\\.\\d+)?$')]],
+          ubicacionaltitud: [data.altitud, [Validators.required, Validators.pattern('^-?\\d+(\\.\\d+)?$')]],
+          ubicacionciudad: [data.ciudad, [Validators.required, Validators.maxLength(20)]],
+          ubicacionregion: [data.region, [Validators.required, Validators.maxLength(20)]],
+          ubicacionpais: [data.pais, [Validators.required, Validators.maxLength(20)]],
+          ubicacioncodigopostal: [data.codigo_postal, [Validators.required, Validators.maxLength(5)]],
+          ubicacionusuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]]
+        });
+      });
     }
   }
 }

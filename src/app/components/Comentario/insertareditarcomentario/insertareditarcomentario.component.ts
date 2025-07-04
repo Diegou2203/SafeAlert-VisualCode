@@ -105,15 +105,15 @@ export class InsertareditarcomentarioComponent {
   init() {
     if (this.edicion) {
       this.cS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          comentariocodigo: new FormControl(data.idComentario),
-          comentariofecha: new FormControl(data.fechaComentario),
-          comentariocontenido: new FormControl(data.contenido),
-          comentariotema: new FormControl(data.tema),
-          comentarioestado: new FormControl(data.estado),
-          comentariorespuesta: new FormControl(data.respuesta.idRespuesta)          
-        })
-      })
+        this.form = this.formBuilder.group({
+          comentariocodigo: [data.idComentario],
+          comentariofecha: [data.fechaComentario, Validators.required],
+          comentariotema: [data.tema, [Validators.required]],
+          comentariocontenido: [data.contenido, [Validators.required, Validators.maxLength(200)]],
+          comentarioestado: [data.estado, [Validators.required, Validators.maxLength(40)]],
+          comentariorespuesta: [data.respuesta.idRespuesta, [Validators.required, Validators.pattern('^[0-9]*$')]]
+        });
+      });
     }
   }
 }

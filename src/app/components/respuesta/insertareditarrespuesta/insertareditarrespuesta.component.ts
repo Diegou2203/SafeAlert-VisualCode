@@ -89,14 +89,17 @@ export class InsertareditarrespuestaComponent {
   init() {
     if (this.edicion) {
       this.resS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          respuestacodigo: new FormControl(data.idRespuesta),
-          respuestatitulo: new FormControl(data.titulo),
-          respuestacontenido: new FormControl(data.contenido),
-          respuestafechacreacion: new FormControl(data.fechacreacion),
-          respuestausuario: new FormControl(data.usuario.idUsuario)       
-        })
-      })
+        this.form = this.formBuilder.group({
+          respuestacodigo: [data.idRespuesta],
+          respuestatitulo: [data.titulo, [Validators.required, Validators.maxLength(20)]],
+          respuestacontenido: [data.contenido, [Validators.required, Validators.maxLength(150)]],
+          respuestafechacreacion: [data.fechacreacion, [Validators.required]],
+          respuestausuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]]
+        });
+      });
     }
   }
+
+
+
 }

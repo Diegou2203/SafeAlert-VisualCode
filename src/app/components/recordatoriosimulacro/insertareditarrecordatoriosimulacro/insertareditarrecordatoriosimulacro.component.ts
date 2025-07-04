@@ -91,14 +91,14 @@ export class InsertareditarrecordatoriosimulacroComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.recorS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          recordatoriocodigo: new FormControl(data.idRecordatorioSimulacro),
-          recordatoriofecha: new FormControl(data.fecha_recordatorio),
-          recordatoriometodoenvio: new FormControl(data.metodo_envio),
-          recordatorioestado: new FormControl(data.estado),
-          recordatoriosimulacro: new FormControl(data.simulacro.idSimulacro)
-        })
-      })
+        this.form = this.formBuilder.group({
+          recordatoriocodigo: [data.idRecordatorioSimulacro],
+          recordatoriofecha: [data.fecha_recordatorio, Validators.required],
+          recordatoriometodoenvio: [data.metodo_envio, [Validators.required, Validators.maxLength(40)]],
+          recordatorioestado: [data.estado, [Validators.required, Validators.maxLength(30)]],
+          recordatoriosimulacro: [data.simulacro.idSimulacro, [Validators.required, Validators.pattern('^[0-9]*$')]]
+        });
+      });
     }
   }
 }

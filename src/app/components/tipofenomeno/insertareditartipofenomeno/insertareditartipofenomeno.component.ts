@@ -107,17 +107,17 @@ export class InsertareditartipofenomenoComponent implements OnInit {
     }
   }
 
-  init() {
-    if (this.edicion) {
-      this.tifemS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          tipofenomenocodigo: new FormControl(data.idTipoFenomeno),
-          tipofenomenonombre: new FormControl(data.nombre_tipo),
-          tipofenomenodescripcion: new FormControl(data.descripcion),
-          tipofenomenofemnatural: new FormControl(data.fenomenoNatural.idFenomenoNatural)
-        })
-      })
+    init() {
+      if (this.edicion) {
+        this.tifemS.listId(this.id).subscribe(data => {
+          this.form = this.formBuilder.group({
+            tipofenomenocodigo: [data.idTipoFenomeno],
+            tipofenomenonombre: [data.nombre_tipo, [Validators.required, Validators.maxLength(50)]],
+            tipofenomenodescripcion: [data.descripcion, [Validators.required, Validators.maxLength(200)]],
+            tipofenomenofemnatural: [data.fenomenoNatural.idFenomenoNatural, [Validators.required, Validators.pattern('^[0-9]*$')]]
+          });
+        });
+      }
     }
-  }
 
 }

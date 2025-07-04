@@ -12,7 +12,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 @Component({
   selector: 'app-listarcomentario',
   standalone: true,
-  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule, MatPaginatorModule,MatPaginator,NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [MatTableModule, CommonModule, MatButtonModule,RouterLink, MatIconModule, MatCardModule, MatPaginatorModule,MatPaginator],
   templateUrl: './listarcomentario.component.html',
   styleUrl: './listarcomentario.component.css'
 })

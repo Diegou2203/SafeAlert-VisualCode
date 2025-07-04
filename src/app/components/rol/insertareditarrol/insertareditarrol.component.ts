@@ -89,12 +89,12 @@ export class InsertareditarrolComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.rS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          rolcodigo: new FormControl(data.idRol),
-          rolrol: new FormControl(data.rol),
-          rolusuario: new FormControl(data.usuario.idUsuario)
-        })
-      })
+        this.form = this.formBuilder.group({
+          rolcodigo: [data.idRol],
+          rolrol: [data.rol, [Validators.required, Validators.maxLength(50)]],
+          rolusuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]]
+        });
+      });
     }
   }
 }

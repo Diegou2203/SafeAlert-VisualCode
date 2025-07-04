@@ -95,16 +95,16 @@ export class InsertareditarnotificacionComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.notiS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          notificacioncodigo: new FormControl(data.idNotificacionAlerta),
-          notificaciontitulo: new FormControl(data.titulo),
-          notificacionresumen: new FormControl(data.resumen),
-          notificacionfechaemision: new FormControl(data.fecha_emision),
-          notificacionfechaexpiracion: new FormControl(data.fecha_expiracion),
-          notificacionrevisada: new FormControl(data.notificacion_revisada),
-          notificacionusuario: new FormControl(data.usuario.idUsuario)
-        })
-      })
+        this.form = this.formBuilder.group({
+          notificacioncodigo: [data.idNotificacionAlerta],
+          notificaciontitulo: [data.titulo, [Validators.required, Validators.maxLength(200)]],
+          notificacionresumen: [data.resumen, [Validators.required, Validators.maxLength(150)]],
+          notificacionfechaemision: [data.fecha_emision, Validators.required],
+          notificacionfechaexpiracion: [data.fecha_expiracion, Validators.required],
+          notificacionrevisada: [data.notificacion_revisada, Validators.required],
+          notificacionusuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]],
+        });
+      });
     }
   }
 }

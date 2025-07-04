@@ -92,19 +92,19 @@ export class IsertareditarrecursoinformativoComponent implements OnInit {
     }
   }
 
-  init() {
-    if (this.edicion) {
-      this.recuS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          recursocodigo: new FormControl(data.idRecursoInformativo),
-          recursotipo: new FormControl(data.tipo),
-          recursotitulo: new FormControl(data.titulo),
-          recursodescripcion: new FormControl(data.descripcion),
-          recursourl: new FormControl(data.url),
-          recursofechapublicacion: new FormControl(data.fecha_publicacion),
-          recursousuario: new FormControl(data.usuario.idUsuario)
-        })
-      })
-    }
+init() {
+  if (this.edicion) {
+    this.recuS.listId(this.id).subscribe(data => {
+      this.form = this.formBuilder.group({
+        recursocodigo: [data.idRecursoInformativo],
+        recursotipo: [data.tipo, [Validators.required, Validators.maxLength(20)]],
+        recursotitulo: [data.titulo, [Validators.required, Validators.maxLength(35)]],
+        recursodescripcion: [data.descripcion, [Validators.required, Validators.maxLength(200)]],
+        recursourl: [data.url, [Validators.required, Validators.maxLength(70)]],
+        recursofechapublicacion: [data.fecha_publicacion, Validators.required],
+        recursousuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]]
+      });
+    });
   }
+}
 }

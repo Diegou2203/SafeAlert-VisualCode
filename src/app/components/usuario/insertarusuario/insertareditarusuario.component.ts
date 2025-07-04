@@ -102,16 +102,22 @@ export class Insertareditarusuario implements OnInit {
   init() {
     if (this.edicion) {
       this.aS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          usercodigo: new FormControl(data.idUsuario),
-          userusername: new FormControl(data.username),
-          usecorreo: new FormControl(data.correo),
-          userpassword: new FormControl(data.password),
-          userenabled: new FormControl(data.enabled),
-          usertelefono: new FormControl(data.telefono),
-          userfecha_Registro: new FormControl(data.fecha_Registro)
-        })
-      })
+        this.form = this.formBuilder.group({
+          usercodigo: [data.idUsuario],
+          userusername: [data.username, Validators.required],
+          usecorreo: [data.correo, [Validators.required, Validators.email]],
+          userpassword: [data.password, [Validators.required, Validators.minLength(8)]],
+          userenabled: [data.enabled, Validators.required],
+          usertelefono: [data.telefono, [
+            Validators.required,
+            Validators.minLength(9),
+            Validators.maxLength(9),
+            Validators.pattern('^[0-9]*$')
+          ]],
+          userfecha_Registro: [data.fecha_Registro, Validators.required]
+        });
+      });
     }
   }
+
 }

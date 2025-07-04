@@ -20,14 +20,6 @@
         <p><strong>Tema:</strong> {{ element.tema }}</p>
         <p><strong>Contenido:</strong> {{ element.contenido }}</p>
         <p><strong>Estado:</strong> {{ element.estado }}</p>
-       <p><strong>Estado:</strong>
-  <span [ngSwitch]="element.estado" class="estado-badge">
-    <span *ngSwitchCase="'En revisión'" class="estado-en-revision">En revisión</span>
-    <span *ngSwitchCase="'Respondido'" class="estado-respondido">Respondido</span>
-    <span *ngSwitchCase="'Pendiente'" class="estado-pendiente">Pendiente</span>
-    <span *ngSwitchDefault class="estado-inactivo">{{element.estado}}</span>
-  </span>
-</p>
         <p><strong>Titulo de la respuesta:</strong> {{ element.respuesta.titulo }}</p>
       </mat-card-content>
 
