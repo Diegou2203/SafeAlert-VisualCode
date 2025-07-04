@@ -5,8 +5,11 @@ import { FenomenoNaturalService } from '../../../services/fenomenonatural.servic
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-listar-fenomeno-natural',
@@ -26,7 +29,11 @@ export class ListarFenomenoNaturalComponent implements OnInit {
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'];
 
    @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private fnS: FenomenoNaturalService) {}
+  constructor(private fnS: FenomenoNaturalService,  
+    private router: Router,
+        private loginService: LoginService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.fnS.list().subscribe((data) => {
@@ -44,6 +51,15 @@ export class ListarFenomenoNaturalComponent implements OnInit {
   }
 
   eliminar(id: number) {
+        const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     this.fnS.deleteFenomeno(id).subscribe((data) => {
       this.fnS.list().subscribe((data) => {
         this.fnS.setList(data);

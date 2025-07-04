@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { notificacionalerta } from '../../../models/notificacion';
 import { notificacionalertaService } from '../../../services/notificacionalerta.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-insertareditarnotificacion',
@@ -39,10 +41,23 @@ export class InsertareditarnotificacionComponent implements OnInit {
     private notiS: notificacionalertaService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+
+    const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -93,6 +108,15 @@ export class InsertareditarnotificacionComponent implements OnInit {
   }
 
   init() {
+        const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     if (this.edicion) {
       this.notiS.listId(this.id).subscribe(data => {
         this.form = this.formBuilder.group({

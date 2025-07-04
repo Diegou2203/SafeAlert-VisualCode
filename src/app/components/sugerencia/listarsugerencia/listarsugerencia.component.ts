@@ -2,12 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SugerenciaService } from '../../../services/sugerencia.service';
 import { Sugerencia } from '../../../models/sugerenciapreventiva';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
 
 
 @Component({
@@ -25,7 +27,11 @@ export class ListarsugerenciaComponent implements OnInit{
 
    @ViewChild(MatPaginator) paginator!: MatPaginator;
    
-  constructor(private suS:SugerenciaService){}
+  constructor(private suS:SugerenciaService,
+        private router: Router,
+        private loginService: LoginService,
+    private snackBar: MatSnackBar
+  ){}
 
     ngOnInit(): void {
     this.loadNotifications();
@@ -56,6 +62,17 @@ export class ListarsugerenciaComponent implements OnInit{
 
 
     eliminar(id: number): void {
+
+            const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
+
     this.suS.deleteS(id).subscribe({
       next: () => {
         this.loadNotifications();

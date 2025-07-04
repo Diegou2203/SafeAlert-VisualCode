@@ -3,11 +3,13 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Simulacro } from '../../../models/Simulacro';
 import { SimulacroService } from '../../../services/simulacro.service';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -27,7 +29,11 @@ export class ListarSimulacroComponent implements OnInit {
   paginatedData: Simulacro[]=[]
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private smS:SimulacroService){}
+  constructor(private smS:SimulacroService,
+        private router: Router,
+        private loginService: LoginService,
+    private snackBar: MatSnackBar
+  ){}
 
    ngOnInit(): void {
     this.loadNotifications();
@@ -64,6 +70,15 @@ export class ListarSimulacroComponent implements OnInit {
   }
 
   eliminar(id: number): void {
+            const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     this.smS.deleteSimulacro(id).subscribe({
       next: () => {
         this.loadNotifications();

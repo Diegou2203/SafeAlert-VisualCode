@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { Sugerencia } from '../../../models/sugerenciapreventiva';
 import { SugerenciaService } from '../../../services/sugerencia.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-insertareditarsugerencia',
@@ -38,10 +40,23 @@ export class InsertareditarsugerenciaComponent {
     private suG: SugerenciaService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+        private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
  ngOnInit(): void {
+            const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
+
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id']
       this.edicion = data['id'] != null
@@ -90,6 +105,16 @@ aceptar() {
   }
 
   init() {
+
+                const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     if (this.edicion) {
       this.suG.listId(this.id).subscribe(data => {
         this.form = this.formBuilder.group({

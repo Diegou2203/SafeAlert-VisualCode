@@ -11,6 +11,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
 
 
 @Component({
@@ -42,11 +44,14 @@ export class Insertareditarusuario implements OnInit {
     private aS: UsuarioService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
  
+
      this.route.params.subscribe((data: Params) => {
       this.id = data['id']
       this.edicion = data['id'] != null

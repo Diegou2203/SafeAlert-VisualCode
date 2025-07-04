@@ -5,7 +5,9 @@ import { Rol } from '../../../models/rol';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarrol',
@@ -17,9 +19,14 @@ export class ListarrolComponent implements OnInit {
   datasource: MatTableDataSource<Rol>=new MatTableDataSource()
   displayedColumns:string[]=['c1','c2','c3', 'c4', 'c5'];
 
-    constructor(private rS:RolService){}
+    constructor(private rS:RolService,
+          private router: Router,
+        private loginService: LoginService,
+    private snackBar: MatSnackBar
+    ){}
 
     ngOnInit(): void {
+
     this.rS.list().subscribe(data=>{
       this.datasource = new MatTableDataSource(data)
     })
@@ -30,6 +37,16 @@ export class ListarrolComponent implements OnInit {
   }
 
       eliminar(id: number) {
+                const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
+
       this.rS.deleteRol(id).subscribe(data => {
         this.rS.list().subscribe(data => {
         this.rS.setList(data)

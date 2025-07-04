@@ -2,12 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Respuesta } from '../../../models/respuesta';
 import { RespuestaService } from '../../../services/respuesta.service';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   standalone: true,
@@ -33,7 +35,11 @@ export class ListarrespuestaComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-  constructor(private reS: RespuestaService) {}
+  constructor(private reS: RespuestaService, 
+        private loginService: LoginService,
+    private snackBar: MatSnackBar,
+    private router:Router
+  ) {}
 
    ngOnInit(): void {
     this.loadNotifications();
@@ -70,6 +76,18 @@ export class ListarrespuestaComponent {
   }
 
   eliminar(id: number): void {
+
+          const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
+
+
     this.reS.deleteRespuesta(id).subscribe({
       next: () => {
         this.loadNotifications();

@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-insertareditarrespuesta',
@@ -38,10 +40,23 @@ export class InsertareditarrespuestaComponent {
     private resS: RespuestaService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+        private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
  ngOnInit(): void {
+
+          const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id']
       this.edicion = data['id'] != null
@@ -87,6 +102,17 @@ export class InsertareditarrespuestaComponent {
   }
 
   init() {
+
+          const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
+
     if (this.edicion) {
       this.resS.listId(this.id).subscribe(data => {
         this.form = this.formBuilder.group({

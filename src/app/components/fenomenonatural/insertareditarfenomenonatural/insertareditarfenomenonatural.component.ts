@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { FenomenoNatural } from '../../../models/FenomenoNatural';
 import { FenomenoNaturalService } from '../../../services/fenomenonatural.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-insertareditarfenomenonatural',
@@ -39,16 +41,21 @@ export class InsertareditarfenomenonaturalComponent implements OnInit {
     private fenaS: FenomenoNaturalService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Params) => {
-      this.id = data['id']
-      this.edicion = data['id'] != null
-      //actualizar
-      this.init()
-    })
+    const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
 
     this.form = this.formBuilder.group({
       fenacodigo: [''],
@@ -92,6 +99,15 @@ export class InsertareditarfenomenonaturalComponent implements OnInit {
   }
 
   init() {
+    const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     if (this.edicion) {
       this.fenaS.listId(this.id).subscribe(data => {
         this.form = this.formBuilder.group({

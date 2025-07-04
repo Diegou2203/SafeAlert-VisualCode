@@ -4,11 +4,13 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarusuario',
@@ -25,7 +27,11 @@ export class ListarusuarioComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private uS: UsuarioService) {}
+  constructor(private uS: UsuarioService,
+            private loginService: LoginService,
+    private snackBar: MatSnackBar,
+        private router: Router
+  ) {}
 
    ngOnInit(): void {
     this.loadNotifications();
@@ -62,6 +68,15 @@ export class ListarusuarioComponent implements OnInit {
   }
 
   eliminar(id: number): void {
+                 const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     this.uS.deleteA(id).subscribe({
       next: () => {
         this.loadNotifications();
