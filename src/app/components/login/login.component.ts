@@ -7,6 +7,7 @@ import { JwtRequest } from '../../models/jwtRequest';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,18 @@ export class LoginComponent implements OnInit {
     request.password = this.password;
     this.loginService.login(request).subscribe(
       (data: any) => {
+        
+         const token = data.jwttoken;
         sessionStorage.setItem('token', data.jwttoken);
+
+
+        const helper = new JwtHelperService();
+        const decodedToken = helper.decodeToken(token);
+
+        const usernameFromToken = decodedToken?.sub || decodedToken?.username || '';
+        sessionStorage.setItem('username', usernameFromToken);
+
+
         this.router.navigate(['home']);
       },
       (error) => {

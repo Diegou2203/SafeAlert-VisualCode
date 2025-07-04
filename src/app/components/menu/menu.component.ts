@@ -26,7 +26,7 @@ export class MenuComponent {
   private hideTimeout: any;
   private isMouseOverMenu = false;
   private isMouseOverSubmenu = false;
-
+  username: string = '';
   // Mostrar el menú
   showMenu() {
     this.isHidden = false;
@@ -119,6 +119,7 @@ export class MenuComponent {
 
   verificar() {
     this.role = this.loginService.showRole();
+    this.username = this.loginService.showUsername();
     return this.loginService.verificar();
   }
   isAdmin() {
