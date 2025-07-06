@@ -1,5 +1,5 @@
 export const environment={
     production:false,
-    base:"https://safealertapp.azurewebsites.net"
+    base:"https://safealerweb.azurewebsites.net"
 
 }
