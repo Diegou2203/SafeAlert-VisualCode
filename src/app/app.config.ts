@@ -29,8 +29,8 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:8083'],
-          disallowedRoutes: ['http://localhost:8083/login/forget'],
+          allowedDomains: ['safealertapp.azurewebsites.net'],
+          disallowedRoutes: ['https://safealertapp.azurewebsites.net/login/forget'],
         },
       })
     )
