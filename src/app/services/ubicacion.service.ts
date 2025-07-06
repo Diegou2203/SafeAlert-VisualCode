@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Ubicacion } from '../models/ubicacion';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+
+import { UsuariosPorNivelRiesgoDTO } from '../models/UsuariosPorNivelRiesgoDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root',
@@ -38,6 +40,11 @@ export class UbicacionService {
 
     update(u: Ubicacion) {
       return this.http.put(this.url + '/modify', u)
+    }
+
+  
+    getlistUsuarioPorZonaAltoRiesgo():Observable<UsuariosPorNivelRiesgoDTO[]>{
+      return this.http.get<UsuariosPorNivelRiesgoDTO[]>(this.url+'/list/ListaUsuariosPorZonasAltoRiesgo')
     }
   
 }

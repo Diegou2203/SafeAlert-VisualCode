@@ -11,6 +11,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { Rol } from '../../../models/rol';
 import { RolService } from '../../../services/rol.service';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -41,10 +43,21 @@ export class InsertareditarrolComponent implements OnInit {
     private rS: RolService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+        private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+        const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     this.route.params.subscribe((data: Params) => {
       this.id = data['id']
       this.edicion = data['id'] != null
@@ -54,7 +67,7 @@ export class InsertareditarrolComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       rolcodigo: [''],
-      rolrol: ['', Validators.required],
+      rolrol: ['', [Validators.required, Validators.maxLength(50)]],
       rolusuario: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }
@@ -87,14 +100,23 @@ export class InsertareditarrolComponent implements OnInit {
   }
 
   init() {
+        const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     if (this.edicion) {
       this.rS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          rolcodigo: new FormControl(data.idRol),
-          rolrol: new FormControl(data.rol),
-          rolusuario: new FormControl(data.usuario.idUsuario)
-        })
-      })
+        this.form = this.formBuilder.group({
+          rolcodigo: [data.idRol],
+          rolrol: [data.rol, [Validators.required, Validators.maxLength(50)]],
+          rolusuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]]
+        });
+      });
     }
   }
 }

@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { FenomenoNatural } from '../../../models/FenomenoNatural';
 import { FenomenoNaturalService } from '../../../services/fenomenonatural.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-insertareditarfenomenonatural',
@@ -39,21 +41,32 @@ export class InsertareditarfenomenonaturalComponent implements OnInit {
     private fenaS: FenomenoNaturalService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+    const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     this.route.params.subscribe((data: Params) => {
-      this.id = data['id']
-      this.edicion = data['id'] != null
-      //actualizar
-      this.init()
-    })
-
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      // actualizar
+      this.init();
+    });
+    
     this.form = this.formBuilder.group({
       fenacodigo: [''],
-      fenanombre: ['', Validators.required],
-      fenaintesidad: ['', Validators.required],
+      fenanombre: ['', [Validators.required, Validators.maxLength(30)]],
+      fenaintesidad: ['', [Validators.required, Validators.maxLength(10)]],
       fenafechafenomeno: ['', Validators.required],
       fenaactivo: ['', Validators.required],
       fenaubicacion: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
@@ -92,17 +105,26 @@ export class InsertareditarfenomenonaturalComponent implements OnInit {
   }
 
   init() {
+    const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     if (this.edicion) {
       this.fenaS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          fenacodigo: new FormControl(data.idFenomenoNatural),
-          fenanombre: new FormControl(data.nombre_fenomeno),
-          fenaintesidad: new FormControl(data.intensidad),
-          fenafechafenomeno: new FormControl(data.fecha_fenomeno),
-          fenaactivo: new FormControl(data.activo),
-          fenaubicacion: new FormControl(data.ubicacion.idUbicacion)
-        })
-      })
+        this.form = this.formBuilder.group({
+          fenacodigo: [data.idFenomenoNatural],
+          fenanombre: [data.nombre_fenomeno, [Validators.required, Validators.maxLength(30)]],
+          fenaintesidad: [data.intensidad, [Validators.required, Validators.maxLength(10)]],
+          fenafechafenomeno: [data.fecha_fenomeno, Validators.required],
+          fenaactivo: [data.activo, Validators.required],
+          fenaubicacion: [data.ubicacion.idUbicacion, [Validators.required, Validators.pattern('^[0-9]*$')]],
+        });
+      });
     }
   }
 }

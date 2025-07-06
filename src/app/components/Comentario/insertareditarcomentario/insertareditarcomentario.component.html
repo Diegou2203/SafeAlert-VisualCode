@@ -14,11 +14,14 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width-field">
-                <mat-label>Tema</mat-label>
-                <input matInput formControlName="comentariotema" required>
-                <mat-error *ngIf="form.get('comentariotema')?.hasError('required')">
-                    El tema del comentario es obligatorio
-                </mat-error>
+            <mat-label>Tema</mat-label>
+            <mat-select formControlName="comentariotema" required>
+                <mat-option value="">Seleccione un tema</mat-option>
+                <mat-option *ngFor="let tema of temas" [value]="tema">{{ tema }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('comentariotema')?.hasError('required')">
+                El tema del comentario es obligatorio
+            </mat-error>
             </mat-form-field>
 
             <mat-form-field>
@@ -39,13 +42,17 @@
                     El contenido del comentario es obligatorio
                 </mat-error>
                 <mat-error *ngIf="form.get('comentariocontenido')?.hasError('maxlength')">
-                    Maximo 40 caracteres
+                    Maximo 200 caracteres
                 </mat-error>              
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Estado</mat-label>
                 <input matInput formControlName="comentarioestado" required>
+                <mat-select formControlName="comentarioestado" required>
+                    <mat-option value="">Seleccione un estado</mat-option>
+                    <mat-option *ngFor="let estado of estados" [value]="estado">{{ estado }}</mat-option>
+                </mat-select>
                 <mat-error *ngIf="form.get('comentarioestado')?.hasError('required')">
                     El estado del comentario es obligatorio
                 </mat-error>

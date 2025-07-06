@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { VermapaService } from '../../services/vermapa.service';
 
 @Component({
   selector: 'app-vermapa',
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink],
   templateUrl: './vermapa.component.html',
   styleUrl: './vermapa.component.css'
 })
 export class VermapaComponent {
   isLoading:boolean = false
   mapaUrl: string = '';
-  lat: number=0
-  lon: number=0
+  @Input() lat: number=0
+   @Input() lon: number=0
 
 
   constructor(private route: ActivatedRoute, private vuS: VermapaService){}

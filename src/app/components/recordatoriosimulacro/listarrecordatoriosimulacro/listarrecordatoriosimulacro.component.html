@@ -1,63 +1,54 @@
+<div class="notification-container">
+  <h1>Lista de Recordatorio Simulacro</h1>
 
-<div>
-    <div>
-        <h1>Lista de Recordatorio simulacro</h1>
-    </div>
-    
-    <div>
-        <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+  <div class="cards">
+    <mat-card *ngFor="let element of datasource.data.slice(
+        ((paginator?.pageIndex ?? 0) * (paginator?.pageSize ?? 5)),
+        (((paginator?.pageIndex ?? 0) + 1) * (paginator?.pageSize ?? 5)))"
+        class="notification-card mat-elevation-z4">
+       
+        <mat-card-title-group>
+           <mat-card-title>Recordatorio #{{ element.idRecordatorioSimulacro }}</mat-card-title>
+           <mat-icon class="editar">alarm</mat-icon>
+        </mat-card-title-group>
+     
 
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
-            <!-- Position Column -->
-            <ng-container matColumnDef="c1">
-              <th mat-header-cell *matHeaderCellDef> Id Recordatorio Simulacro</th>
-              <td mat-cell *matCellDef="let element"> {{element.idRecordatorioSimulacro}} </td>
-            </ng-container>
-          
-            <!-- Name Column -->
-            <ng-container matColumnDef="c2">
-              <th mat-header-cell *matHeaderCellDef> Fecha recordatorio</th>
-              <td mat-cell *matCellDef="let element"> {{element.fecha_recordatorio}} </td>
-            </ng-container>
+      <mat-card-content>
+           <p><strong>Usuario que recibe el recordatorio:</strong> {{ element.simulacro.ubicacion.usuario.username }}</p>
+        <p><strong>Fecha recordatorio:</strong> {{ element.fecha_recordatorio }}</p>
+        <p><strong>Método de envío:</strong> {{ element.metodo_envio }}</p>
 
-            <ng-container matColumnDef="c3">
-                <th mat-header-cell *matHeaderCellDef> Metodo de envio </th>
-                <td mat-cell *matCellDef="let element"> {{element.metodo_envio}} </td>
-              </ng-container>
-           <ng-container matColumnDef="c4">
-              <th mat-header-cell *matHeaderCellDef> Estado</th>
-              <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
-            </ng-container>
-         
-            <ng-container matColumnDef="c5">
-              <th mat-header-cell *matHeaderCellDef> Id Simulacro </th>
-              <td mat-cell *matCellDef="let element"> {{element.simulacro.idSimulacro}} </td>
-            </ng-container>
+         <p><strong>Estado:</strong>
+  <span [ngSwitch]="element.estado" class="estado-badge">
+    <span *ngSwitchCase="'Enviado'" class="estado-enviado"> Enviado</span>
+    <span *ngSwitchCase="'Pendiente'" class="estado-en-pendiente"> Pendiente</span>
+    <span *ngSwitchCase="'Fallido'" class="estado-fallido"> Fallido</span>
+    <span *ngSwitchDefault class="estado-inactivo">{{element.estado}}</span>
+  </span>
+</p>
+        <p><strong>Nombre del simulacro:</strong> {{ element.simulacro.titulo }}</p>
+      </mat-card-content>
 
-            <ng-container matColumnDef="c6">
-                <th mat-header-cell *matHeaderCellDef> Actualizar </th>
-                <td mat-cell *matCellDef="let element">
-                  <button mat-button [routerLink]="['/Recordatorios/EdicionesRecordatorios',element.idRecordatorioSimulacro]">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                </td>
-              </ng-container>
+      <mat-card-actions>
+        <button mat-icon-button
+          [routerLink]="['/Recordatorios/EdicionesRecordatorios', element.idRecordatorioSimulacro]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="eliminar(element.idRecordatorioSimulacro)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 
-            <ng-container matColumnDef="c7">
-              <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-button  
-                (click)="eliminar(element.idRecordatorioSimulacro)"
-                >
-                <mat-icon>delete</mat-icon>
-              </button>
-              </td>
-            </ng-container>
+   <!-- Paginador fuera del contenedor de cards -->
+  <div class="pagination-wrapper">
+    <mat-paginator [length]="datasource.data.length"
+                 [pageSize]="4"
+                 [pageSizeOptions]="[4, 8, 12]"
+                 showFirstLastButtons
+                 aria-label="Selecciona página de notificaciones">
+    </mat-paginator>
+  </div>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-    </div>
 </div>

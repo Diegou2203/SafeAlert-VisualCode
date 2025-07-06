@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { notificacionalerta } from '../../../models/notificacion';
 import { notificacionalertaService } from '../../../services/notificacionalerta.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-insertareditarnotificacion',
@@ -39,10 +41,23 @@ export class InsertareditarnotificacionComponent implements OnInit {
     private notiS: notificacionalertaService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+
+    const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -52,8 +67,8 @@ export class InsertareditarnotificacionComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       notificacioncodigo: [''],
-      notificaciontitulo: ['', Validators.required],
-      notificacionresumen: ['', Validators.required],
+      notificaciontitulo: ['',  [Validators.required, Validators.maxLength(200)]],
+      notificacionresumen: ['',  [Validators.required, Validators.maxLength(150)]],
       notificacionfechaemision: ['', Validators.required],
       notificacionfechaexpiracion: ['', Validators.required],
       notificacionrevisada: ['', Validators.required],
@@ -93,18 +108,27 @@ export class InsertareditarnotificacionComponent implements OnInit {
   }
 
   init() {
+        const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     if (this.edicion) {
       this.notiS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          notificacioncodigo: new FormControl(data.idNotificacionAlerta),
-          notificaciontitulo: new FormControl(data.titulo),
-          notificacionresumen: new FormControl(data.resumen),
-          notificacionfechaemision: new FormControl(data.fecha_emision),
-          notificacionfechaexpiracion: new FormControl(data.fecha_expiracion),
-          notificacionrevisada: new FormControl(data.notificacion_revisada),
-          notificacionusuario: new FormControl(data.usuario.idUsuario)
-        })
-      })
+        this.form = this.formBuilder.group({
+          notificacioncodigo: [data.idNotificacionAlerta],
+          notificaciontitulo: [data.titulo, [Validators.required, Validators.maxLength(200)]],
+          notificacionresumen: [data.resumen, [Validators.required, Validators.maxLength(150)]],
+          notificacionfechaemision: [data.fecha_emision, Validators.required],
+          notificacionfechaexpiracion: [data.fecha_expiracion, Validators.required],
+          notificacionrevisada: [data.notificacion_revisada, Validators.required],
+          notificacionusuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]],
+        });
+      });
     }
   }
 }

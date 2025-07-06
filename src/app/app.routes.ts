@@ -36,13 +36,40 @@ import { InsertareditarsimulacroComponent } from './components/simulacro/inserta
 import { SugerenciaComponent } from './components/sugerencia/sugerencia.component';
 import { ListarsugerenciaComponent } from './components/sugerencia/listarsugerencia/listarsugerencia.component';
 import { InsertareditarsugerenciaComponent } from './components/sugerencia/insertareditarsugerencia/insertareditarsugerencia.component';
+import { ListarUsuarioPorZonaRiesgoComponent } from './components/ubicacion/listar-usuario-por-zona-riesgo/listar-usuario-por-zona-riesgo.component';
+import { ListarCantidadNotificacionRevisadaPorUsuarioComponent } from './components/notificacionalerta/listar-cantidad-notificacion-revisada-por-usuario/listar-cantidad-notificacion-revisada-por-usuario.component';
+import { BuscarTemaComponent } from './components/Comentario/buscar-tema/buscar-tema.component';
+import { CantidadRespuestaComentarioComponent } from './components/Comentario/cantidad-respuesta-comentario/cantidad-respuesta-comentario.component';
+import { CantidadfenomenoComponent } from './components/fenomenonatural/cantidadfenomeno/cantidadfenomeno.component';
+import { CantidadRecursoUsuarioComponent } from './components/recursoinformativo/cantidad-recurso-usuario/cantidad-recurso-usuario.component';
+import { CantidadrespuestaPorUsuarioComponent } from './components/respuesta/cantidadrespuesta-por-usuario/cantidadrespuesta-por-usuario.component';
+import { BuscarPorTituloComponent } from './components/respuesta/buscar-por-titulo/buscar-por-titulo.component';
+
+import { LandingComponent } from './components/landing/landing.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+
+import { FenomenoIntensidadComponentDTO } from './components/fenomenonatural/fenomeno-intensidad/fenomeno-intensidad.component';
+import { HomeComponent } from './components/home/home.component';
+import { JuntarapisComponent } from './components/juntarapis/juntarapis.component';
 
 export const routes: Routes = [
+
   {
     path: '',
-    redirectTo: 'usuarios',
+    redirectTo: 'lanpage',
     pathMatch: 'full',
   },
+  { path: "lanpage",
+    component: LandingComponent,},
+     { path: "home",
+    component: HomeComponent,},
+
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  
   {
     path: 'usuarios',
     component: UsuarioComponent,
@@ -60,6 +87,7 @@ export const routes: Routes = [
         component: Insertareditarusuario,
       },
     ],
+     canActivate: [seguridadGuard],
   },
   {
     path: 'ubicaciones',
@@ -77,12 +105,18 @@ export const routes: Routes = [
         path: 'ediciones/:id',
         component: InsertareditarubicacionComponent,
       },
-        { 
-    path: 'vermapa/:lat/:lon', 
-    component: VermapaComponent 
-  },
 
+       {
+        path: 'listarUsuarioPorZonaDeRiesgo',
+        component: ListarUsuarioPorZonaRiesgoComponent,
+      },     
+  {
+     path: 'Detalles/:lat/:lon/:ciudad', 
+    component: JuntarapisComponent 
+  }
+  
     ],
+     canActivate: [seguridadGuard],
   },
   {
     path: 'Rol',
@@ -101,6 +135,7 @@ export const routes: Routes = [
         component: InsertareditarrolComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
    {
     path: 'Comentarios',
@@ -118,7 +153,16 @@ export const routes: Routes = [
         path: 'EdicionesComentarios/:id',
         component: InsertareditarcomentarioComponent,
       },
+      {
+        path: 'ListarCantidadRespuestaPorComentario',
+        component: CantidadRespuestaComentarioComponent,
+      },
+      {
+        path: 'BuscarTema',
+        component: BuscarTemaComponent,
+      },
     ],
+     canActivate: [seguridadGuard],
   },
 
   {
@@ -137,7 +181,16 @@ export const routes: Routes = [
         path: 'EdicionesRespuestas/:id',
         component: InsertareditarrespuestaComponent,
       },
+      {
+        path: 'Cantidadrespuestaporusuario',
+        component: CantidadrespuestaPorUsuarioComponent,
+      },
+      {
+        path: 'BuscarPorTitulo',
+        component: BuscarPorTituloComponent,
+      },
     ],
+     canActivate: [seguridadGuard],
   },
    {
     path: 'Recursos',
@@ -155,7 +208,13 @@ export const routes: Routes = [
         path: 'EdicionesRecursos/:id',
         component: IsertareditarrecursoinformativoComponent,
       },
+      {
+        path: 'CantidadrecursoPorUsuario',
+        component: CantidadRecursoUsuarioComponent,
+      },
+
     ],
+     canActivate: [seguridadGuard],
   },
   {
     path: 'Fenomenos',
@@ -173,7 +232,20 @@ export const routes: Routes = [
         path: 'EdicionesFenomenos/:id',
         component: InsertareditarfenomenonaturalComponent,
       },
+       {
+        path: 'CantidadFenomeno',
+        component: CantidadfenomenoComponent,
+      },
+       {
+        path: 'Cantidadporintensidad',
+        component: FenomenoIntensidadComponentDTO,
+      },
+        { 
+    path: 'vermapa/:lat/:lon', 
+    component: VermapaComponent 
+  },
     ],
+     canActivate: [seguridadGuard],
   },
   {
     path: 'TipoFenomenos',
@@ -192,6 +264,7 @@ export const routes: Routes = [
         component: InsertareditartipofenomenoComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
    {
     path: 'Notificaciones',
@@ -209,7 +282,12 @@ export const routes: Routes = [
         path: 'EdicionesNotificaciones/:id',
         component: InsertareditarnotificacionComponent,
       },
+      {
+        path: 'ListarCantidadNotificacionRevisadas',
+        component: ListarCantidadNotificacionRevisadaPorUsuarioComponent,
+      },
     ],
+     canActivate: [seguridadGuard],
   },
     {
     path: 'Recordatorios',
@@ -228,6 +306,7 @@ export const routes: Routes = [
         component: InsertareditarrecordatoriosimulacroComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
     {
     path: 'Simulacros',
@@ -246,6 +325,7 @@ export const routes: Routes = [
         component: InsertareditarsimulacroComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
      {
     path: 'Sugerencias',
@@ -264,6 +344,7 @@ export const routes: Routes = [
         component: InsertareditarsugerenciaComponent,
       },
     ],
+     canActivate: [seguridadGuard],
   },
  
 ];

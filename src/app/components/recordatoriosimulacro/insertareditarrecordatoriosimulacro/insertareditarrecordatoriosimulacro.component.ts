@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { recordatoriosimulacro } from '../../../models/recordatoriosimulacro';
 import { RecordatoriosimulacroService } from '../../../services/recordatoriosimulacro.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-insertareditarrecordatoriosimulacro',
@@ -39,10 +41,21 @@ export class InsertareditarrecordatoriosimulacroComponent implements OnInit {
     private recorS: RecordatoriosimulacroService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+        private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+            const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -53,8 +66,8 @@ export class InsertareditarrecordatoriosimulacroComponent implements OnInit {
     this.form = this.formBuilder.group({
       recordatoriocodigo: [''],
       recordatoriofecha: ['', Validators.required],
-      recordatoriometodoenvio: ['', Validators.required],
-      recordatorioestado: ['', Validators.required],
+      recordatoriometodoenvio: ['', [Validators.required, Validators.maxLength(40)]],
+      recordatorioestado: ['', [Validators.required, Validators.maxLength(30)]],
       recordatoriosimulacro: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }
@@ -89,16 +102,25 @@ export class InsertareditarrecordatoriosimulacroComponent implements OnInit {
   }
 
   init() {
+            const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     if (this.edicion) {
       this.recorS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          recordatoriocodigo: new FormControl(data.idRecordatorioSimulacro),
-          recordatoriofecha: new FormControl(data.fecha_recordatorio),
-          recordatoriometodoenvio: new FormControl(data.metodo_envio),
-          recordatorioestado: new FormControl(data.estado),
-          recordatoriosimulacro: new FormControl(data.simulacro.idSimulacro)
-        })
-      })
+        this.form = this.formBuilder.group({
+          recordatoriocodigo: [data.idRecordatorioSimulacro],
+          recordatoriofecha: [data.fecha_recordatorio, Validators.required],
+          recordatoriometodoenvio: [data.metodo_envio, [Validators.required, Validators.maxLength(40)]],
+          recordatorioestado: [data.estado, [Validators.required, Validators.maxLength(30)]],
+          recordatoriosimulacro: [data.simulacro.idSimulacro, [Validators.required, Validators.pattern('^[0-9]*$')]]
+        });
+      });
     }
   }
 }

@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -25,7 +26,7 @@ export class MenuComponent {
   private hideTimeout: any;
   private isMouseOverMenu = false;
   private isMouseOverSubmenu = false;
-
+  username: string = '';
   // Mostrar el menú
   showMenu() {
     this.isHidden = false;
@@ -106,5 +107,26 @@ export class MenuComponent {
       this.isMouseOverMenu = false;
       this.isMouseOverSubmenu = false;
     }
+  }
+
+
+  role: string = '';
+  constructor(private loginService: LoginService) {}
+  cerrar() {
+    
+    sessionStorage.clear();
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    this.username = this.loginService.showUsername();
+    return this.loginService.verificar();
+  }
+  isAdmin() {
+    return this.role === 'ADMIN';
+  }
+
+  isUsuario() {
+    return this.role === 'USUARIO';
   }
 }

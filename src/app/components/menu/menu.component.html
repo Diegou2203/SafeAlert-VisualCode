@@ -10,8 +10,18 @@
   </mat-toolbar>
 
   <div class="sidebar-content">
-    <!-- Sección Usuarios -->
-    <div class="menu-section">
+
+        <!-- Sección Inicio -->
+     <div class="menu-section" *ngIf="verificar()">
+    <button mat-button class="menu-button" [routerLink]="['/home']">
+      <mat-icon>home</mat-icon>
+    <span class="menu-label">Inicio</span>
+    </button>
+  </div>
+
+
+    <!-- Sección Usuarios  (Ambos roles)-->
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuUsuarios"
               (menuOpened)="onSubmenuOpened()"
@@ -21,8 +31,8 @@
       </button>
     </div>
 
-    <!-- Sección Ubicaciones -->
-    <div class="menu-section">
+    <!-- Sección Ubicaciones  -->
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuUbicaciones"
               (menuOpened)="onSubmenuOpened()"
@@ -32,8 +42,8 @@
       </button>
     </div>
 
-    <!-- Sección Roles -->
-    <div class="menu-section">
+    <!-- Sección Roles  (solo admin)-->
+    <div class="menu-section" *ngIf="isAdmin()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuRoles"
               (menuOpened)="onSubmenuOpened()"
@@ -44,7 +54,7 @@
     </div>
 
     <!-- Sección Comentarios -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuComentarios"
               (menuOpened)="onSubmenuOpened()"
@@ -55,7 +65,7 @@
     </div>
 
     <!-- Sección Respuesta -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuRespuesta"
               (menuOpened)="onSubmenuOpened()"
@@ -66,7 +76,7 @@
     </div>
 
     <!-- Sección Recurso Informativo -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuRecurso"
               (menuOpened)="onSubmenuOpened()"
@@ -77,7 +87,7 @@
     </div>
 
     <!-- Sección Fenomeno Natural -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuFenomeno"
               (menuOpened)="onSubmenuOpened()"
@@ -88,7 +98,7 @@
     </div>
 
     <!-- Sección Tipo Fenomeno Natural -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuTipoFenomeno"
               (menuOpened)="onSubmenuOpened()"
@@ -99,7 +109,7 @@
     </div>
 
     <!-- Sección Notificaciones de alerta -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuNotificacion"
               (menuOpened)="onSubmenuOpened()"
@@ -110,7 +120,7 @@
     </div>
 
     <!-- Sección Recordatorio de simulacro -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuRecordatorio"
               (menuOpened)="onSubmenuOpened()"
@@ -121,7 +131,7 @@
     </div>
 
     <!-- Sección Simulacro -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuSimulacro"
               (menuOpened)="onSubmenuOpened()"
@@ -132,7 +142,7 @@
     </div>
 
     <!-- Sección Sugerencias -->
-    <div class="menu-section">
+    <div class="menu-section" *ngIf="isAdmin() || isUsuario()">
       <button mat-button class="menu-button" 
               [matMenuTriggerFor]="menuTipoSugerencia"
               (menuOpened)="onSubmenuOpened()"
@@ -142,13 +152,16 @@
       </button>
     </div>
 
-    <!-- Sección Registro de Usuario -->
-    <div class="menu-section">
-      <button mat-button class="menu-button" routerLink="/registro">
-        <mat-icon>person_add</mat-icon>
-        <span class="menu-label">Registro</span>
+ <div class="menu-section" *ngIf="verificar()">
+  <button mat-button class="menu-button" 
+              [matMenuTriggerFor]="menuSalir"
+              (menuOpened)="onSubmenuOpened()"
+              (menuClosed)="onSubmenuClosed()">
+        <mat-icon>person</mat-icon>
+        <span class="menu-label">Salir</span>
       </button>
-    </div>
+ </div>
+    
   </div>
 </div>
 
@@ -178,6 +191,10 @@
     <mat-icon>add_location</mat-icon>
     <span>Registrar Ubicación</span>
   </button>
+  <button mat-menu-item routerLink="/ubicaciones/listarUsuarioPorZonaDeRiesgo">
+    <mat-icon>add_location</mat-icon>
+    <span>Listar Usuario Por Zona de Riesgo</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuRoles="matMenu">
@@ -200,6 +217,14 @@
     <mat-icon>add_comment</mat-icon>
     <span>Registrar Comentario</span>
   </button>
+   <button mat-menu-item routerLink="/Comentarios/ListarCantidadRespuestaPorComentario">
+    <mat-icon>list</mat-icon>
+    <span> Cantidad de Respuestas Por Comentario </span>
+  </button>
+  <button mat-menu-item routerLink="/Comentarios/BuscarTema">
+    <mat-icon>list</mat-icon>
+    <span> Buscar Comentarios Por Tema</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuRespuesta="matMenu">
@@ -210,6 +235,14 @@
   <button mat-menu-item routerLink="/Respuestas/RegistrarRespuestas">
     <mat-icon>reply</mat-icon>
     <span>Registrar Respuesta</span>
+  </button>
+   <button mat-menu-item routerLink="/Respuestas/Cantidadrespuestaporusuario">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad de Respuesta por usuario</span>
+  </button>
+   <button mat-menu-item routerLink="/Respuestas/BuscarPorTitulo">
+    <mat-icon>list</mat-icon>
+    <span>Buscar por titulo</span>
   </button>
 </mat-menu>
 
@@ -222,6 +255,10 @@
     <mat-icon>post_add</mat-icon>
     <span>Registrar Recurso</span>
   </button>
+   <button mat-menu-item routerLink="/Recursos/CantidadrecursoPorUsuario">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad Recurso por usuario</span>
+  </button>
 </mat-menu>
 
 <mat-menu #menuFenomeno="matMenu">
@@ -232,6 +269,14 @@
   <button mat-menu-item routerLink="/Fenomenos/RegistrarFenomenos">
     <mat-icon>nature_people</mat-icon>
     <span>Registrar Fenómeno</span>
+  </button>
+   <button mat-menu-item routerLink="/Fenomenos/CantidadFenomeno">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad Fenómeno por ciudad</span>
+  </button>
+  <button mat-menu-item routerLink="/Fenomenos/Cantidadporintensidad">
+    <mat-icon>list</mat-icon>
+    <span >Cantidad Fenómeno por Intensidad</span>
   </button>
 </mat-menu>
 
@@ -255,6 +300,11 @@
     <mat-icon>add_alert</mat-icon>
     <span>Registrar Notificación</span>
   </button>
+  <button mat-menu-item routerLink="/Notificaciones/ListarCantidadNotificacionRevisadas">
+    <mat-icon>list</mat-icon>
+    <span>Cantidad de Notificaciones Revisadas Por Usuario</span>
+  </button>
+
 </mat-menu>
 
 <mat-menu #menuRecordatorio="matMenu">
@@ -282,10 +332,25 @@
 <mat-menu #menuTipoSugerencia="matMenu">
   <button mat-menu-item routerLink="/Sugerencias/ListarSugerencias">
     <mat-icon>list</mat-icon>
-    <span>Listar Sugerencias</span>
+    <span >Listar Sugerencias</span>
   </button>
   <button mat-menu-item routerLink="/Sugerencias/RegistrarSugerencias">
-    <mat-icon>lightbulb_outline</mat-icon>
-    <span>Registrar Sugerencia</span>
+    <mat-icon>lightbulb_outline</mat-icon>  
+    <span >Registrar Sugerencia</span>
+  </button>
+</mat-menu>
+
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol:
+    <span>{{ role }}</span>
+  </button>
+  <button mat-menu-item>
+    Username:
+    <span>{{ username }}</span>
   </button>
 </mat-menu>

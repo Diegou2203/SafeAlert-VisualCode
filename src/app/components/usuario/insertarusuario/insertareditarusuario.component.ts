@@ -11,6 +11,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
 
 
 @Component({
@@ -42,11 +44,14 @@ export class Insertareditarusuario implements OnInit {
     private aS: UsuarioService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
  
+
      this.route.params.subscribe((data: Params) => {
       this.id = data['id']
       this.edicion = data['id'] != null
@@ -102,16 +107,22 @@ export class Insertareditarusuario implements OnInit {
   init() {
     if (this.edicion) {
       this.aS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          usercodigo: new FormControl(data.idUsuario),
-          userusername: new FormControl(data.username),
-          usecorreo: new FormControl(data.correo),
-          userpassword: new FormControl(data.password),
-          userenabled: new FormControl(data.enabled),
-          usertelefono: new FormControl(data.telefono),
-          userfecha_Registro: new FormControl(data.fecha_Registro)
-        })
-      })
+        this.form = this.formBuilder.group({
+          usercodigo: [data.idUsuario],
+          userusername: [data.username, Validators.required],
+          usecorreo: [data.correo, [Validators.required, Validators.email]],
+          userpassword: [data.password, [Validators.required, Validators.minLength(8)]],
+          userenabled: [data.enabled, Validators.required],
+          usertelefono: [data.telefono, [
+            Validators.required,
+            Validators.minLength(9),
+            Validators.maxLength(9),
+            Validators.pattern('^[0-9]*$')
+          ]],
+          userfecha_Registro: [data.fecha_Registro, Validators.required]
+        });
+      });
     }
   }
+
 }

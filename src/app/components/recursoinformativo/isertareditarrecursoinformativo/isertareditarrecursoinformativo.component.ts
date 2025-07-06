@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { RecursoInformativo } from '../../../models/recursoinformativo';
 import { RecursoinformativoService } from '../../../services/recursoinformativo.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-isertareditarrecursoinformativo',
@@ -39,10 +41,21 @@ export class IsertareditarrecursoinformativoComponent implements OnInit {
     private recuS: RecursoinformativoService,
     private router: Router,
     private formBuilder: FormBuilder, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+        const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
+    }
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -52,10 +65,10 @@ export class IsertareditarrecursoinformativoComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       recursocodigo: [''],
-      recursotipo: ['', Validators.required],
-      recursotitulo: ['', Validators.required],
-      recursodescripcion: ['', Validators.required],
-      recursourl: ['', Validators.required],
+      recursotipo: ['', [Validators.required,Validators.maxLength(20)]],
+      recursotitulo: ['', [Validators.required,Validators.maxLength(35)]],
+      recursodescripcion: ['', [Validators.required,Validators.maxLength(200)]],
+      recursourl: ['', [Validators.required,Validators.maxLength(70)]],
       recursofechapublicacion: ['', Validators.required],
       recursousuario: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
@@ -92,19 +105,28 @@ export class IsertareditarrecursoinformativoComponent implements OnInit {
     }
   }
 
-  init() {
-    if (this.edicion) {
-      this.recuS.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          recursocodigo: new FormControl(data.idRecursoInformativo),
-          recursotipo: new FormControl(data.tipo),
-          recursotitulo: new FormControl(data.titulo),
-          recursodescripcion: new FormControl(data.descripcion),
-          recursourl: new FormControl(data.url),
-          recursofechapublicacion: new FormControl(data.fecha_publicacion),
-          recursousuario: new FormControl(data.usuario.idUsuario)
-        })
-      })
+init() {
+      const rol = sessionStorage.getItem('token') ? this.loginService.showRole() : null;
+    if (rol === 'USUARIO') {
+      this.snackBar.open('No tienes permiso para acceder a esta funcionalidad.', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.router.navigate(['/home']); // O cualquier otra ruta segura
+      return;
     }
+  if (this.edicion) {
+    this.recuS.listId(this.id).subscribe(data => {
+      this.form = this.formBuilder.group({
+        recursocodigo: [data.idRecursoInformativo],
+        recursotipo: [data.tipo, [Validators.required, Validators.maxLength(20)]],
+        recursotitulo: [data.titulo, [Validators.required, Validators.maxLength(35)]],
+        recursodescripcion: [data.descripcion, [Validators.required, Validators.maxLength(200)]],
+        recursourl: [data.url, [Validators.required, Validators.maxLength(70)]],
+        recursofechapublicacion: [data.fecha_publicacion, Validators.required],
+        recursousuario: [data.usuario.idUsuario, [Validators.required, Validators.pattern('^[0-9]*$')]]
+      });
+    });
   }
+}
 }
