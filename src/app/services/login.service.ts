@@ -35,5 +35,4 @@ export class LoginService {
   const decodedToken = helper.decodeToken(token);
   return decodedToken?.sub || decodedToken?.username; // depende de cómo venga el JWT
   }
-  
 }
