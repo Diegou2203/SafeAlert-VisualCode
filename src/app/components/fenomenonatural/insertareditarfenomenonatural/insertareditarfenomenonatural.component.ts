@@ -56,7 +56,13 @@ export class InsertareditarfenomenonaturalComponent implements OnInit {
       this.router.navigate(['/home']); // O cualquier otra ruta segura
       return;
     }
-
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      // actualizar
+      this.init();
+    });
+    
     this.form = this.formBuilder.group({
       fenacodigo: [''],
       fenanombre: ['', [Validators.required, Validators.maxLength(30)]],
